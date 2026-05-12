@@ -44,6 +44,7 @@ L'architecture repose sur un design system "architectural" :
 
 ## 6. Accessibilité & SEO
 - **A11Y :** Utilisation des rôles ARIA, `aria-label` sur les icônes, et gestion du focus sur le formulaire. Navigation clavier supportée sur les carrousels et boutons.
+- **Mobile UX :** Gestion native des "Safe Areas" pour les écrans avec encoches (iPhone, Android récents) via `viewport-fit=cover`.
 - **SEO :** Hiérarchie Hn stricte. Meta-tags et JSON-LD pour l'agence.
 - **Sémantique :** Utilisation de `header`, `main`, `section`, `footer` pour une structure HTML5 pure.
 

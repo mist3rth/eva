@@ -39,6 +39,8 @@ Le site Eva Architecte est la vitrine numérique de Réda Lahlou, maître d'œuv
   - Hiérarchie Hn stricte.
   - Meta-tags dynamiques.
   - JSON-LD pour les services et l'organisation.
+- **Mobile UX :**
+  - Gestion des "Safe Areas" (encoches, barres d'état) via `viewport-fit=cover` et variables CSS `env(safe-area-inset-*)`.
 
 ## 5. Design System (Tokens)
 - **Couleurs :**

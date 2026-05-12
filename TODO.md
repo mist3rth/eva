@@ -164,6 +164,12 @@
 - [x] **Server (Amen) :** Configuration `.htaccess` optimisée (Expires 1 mois, Immutable).
 - [x] **Preloads :** Ajout des preloads critiques (Fonts, Hero) dans `index.html`.
 
+## 🚀 Story 28 : Optimisation Mobile & Safe Areas
+- [x] Ajouter `viewport-fit=cover` dans `index.html`.
+- [x] Gérer les `env(safe-area-inset-top)` dans la `Navbar`.
+- [x] Ajuster les éléments flottants (`App.tsx`) avec `env(safe-area-inset-bottom)`.
+- [x] Optimiser l'overlay du menu mobile pour les écrans avec encoche.
+
 ## ✅ Terminées
 
 - [x] Analyse initiale du projet.
