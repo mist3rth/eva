@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
   };
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-[140px] md:pt-0">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <img 
@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           className="flex flex-col items-center"
         >
           <motion.h1 
-            className="font-display text-white text-4xl md:text-8xl font-light tracking-tight max-w-5xl mx-auto leading-tight"
+            className="font-display text-white text-4xl md:text-8xl font-light tracking-tight max-w-5xl mx-auto leading-tight mt-12 md:mt-0"
             initial="hidden"
             animate="visible"
             variants={{

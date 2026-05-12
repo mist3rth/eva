@@ -148,31 +148,7 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Floating Contact CTA */}
-      <AnimatePresence>
-        {showScrollTop && activeSection !== 'contact' && !isAtBottom && (
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              setActiveSection('contact');
-              const el = document.getElementById('contact');
-              if (el) {
-                const offset = 80;
-                window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
-              }
-            }}
-            className="fixed bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] left-8 z-40 md:hidden bg-brand-gold text-white px-6 py-3 rounded-full shadow-2xl font-sans text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 cursor-pointer no-underline"
-          >
-            <span>Démarrer un projet</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          </motion.a>
-        )}
-      </AnimatePresence>
+
 
       {/* Scroll to Top Button */}
       <AnimatePresence>
@@ -184,7 +160,7 @@ const App: React.FC = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] right-8 z-40 w-12 h-12 bg-brand-text text-white rounded-full flex items-center justify-center shadow-xl border border-white/10 group overflow-hidden cursor-pointer"
+            className="fixed bottom-[calc(2rem+env(safe-area-inset-bottom,0px))] right-8 z-40 w-12 h-12 bg-brand-text text-white rounded-full hidden md:flex items-center justify-center shadow-xl border border-white/10 group overflow-hidden cursor-pointer"
             aria-label="Retour en haut"
           >
             <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

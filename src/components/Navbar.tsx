@@ -102,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className={cn(
           "fixed top-0 left-0 w-full z-50 transition-colors duration-500",
-          "h-[80px] pt-[env(safe-area-inset-top,0px)] flex items-center px-[5vw]",
+          "h-[80px] pt-[env(safe-area-inset-top,20px)] flex items-center px-[5vw]",
           isScrolled ? "bg-brand-bg shadow-sm" : "bg-transparent"
         )}
       >
@@ -197,12 +197,12 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: "spring", damping: 35, stiffness: 300 }}
-            className="absolute inset-0 w-full h-full flex flex-col pt-[calc(8rem+env(safe-area-inset-top,0px))] pb-[calc(3rem+env(safe-area-inset-bottom,0px))] overflow-y-auto overflow-x-hidden scrollbar-hide overscroll-none"
+            className="absolute inset-0 w-full h-full flex flex-col pt-[calc(8rem+env(safe-area-inset-top,20px))] pb-[calc(3rem+env(safe-area-inset-bottom,0px))] overflow-y-auto overflow-x-hidden scrollbar-hide overscroll-none"
             >
               {/* Close Button Inside - Strictly positioned to avoid layout shifts */}
               <button 
                 onClick={() => setMobileMenuOpen(false)}
-                className="absolute top-[calc(1.5rem+env(safe-area-inset-top,0px))] right-6 p-3 text-brand-text hover:text-brand-gold transition-colors duration-300 z-50"
+                className="absolute top-[calc(1.5rem+env(safe-area-inset-top,20px))] right-6 p-3 text-brand-text hover:text-brand-gold transition-colors duration-300 z-50"
                 aria-label="Fermer le menu"
               >
                 <X size={32} strokeWidth={1.5} />
