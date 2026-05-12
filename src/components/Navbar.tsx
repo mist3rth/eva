@@ -102,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className={cn(
           "fixed top-0 left-0 w-full z-50 transition-colors duration-500",
-          "h-[80px] pt-[env(safe-area-inset-top,20px)] flex items-center px-[5vw]",
+          "min-h-[80px] pt-[env(safe-area-inset-top,20px)] pb-2 flex items-center px-[5vw]",
           isScrolled ? "bg-brand-bg shadow-sm" : "bg-transparent"
         )}
       >

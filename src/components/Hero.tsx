@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-[140px] md:pt-0">
+    <section id="hero" className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-[calc(120px+env(safe-area-inset-top,20px))] md:pt-0">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <img 
