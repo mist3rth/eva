@@ -1,0 +1,317 @@
+@import "tailwindcss";
+
+/* Self-hosted Fonts */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/assets/fonts/Outfit-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-Variable.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mrs Saint Delafield';
+  src: url('/assets/fonts/MrsSaintDelafield-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@theme {
+  --color-brand-bg: #FBFBF9;
+  --color-brand-bg-soft: #F8F5F0;
+  --color-brand-bg-warm: #FAF8F5;
+  --color-brand-bg-sand: #F5F2ED;
+  --color-brand-accent-bg: #F5F5F3;
+  --color-brand-text: #1A1714;
+  --color-brand-text-muted: #5F5E5A;
+  --color-brand-muted: #7A746E;
+  --color-brand-gold: #C5A572;
+  
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-signature: "Mrs Saint Delafield", cursive;
+
+  /* Premium Shadows */
+  --shadow-architect: 0 10px 30px -10px rgba(26, 23, 20, 0.1);
+  --shadow-architect-hover: 0 20px 40px -15px rgba(26, 23, 20, 0.15);
+
+  /* Blueprint Colors */
+  --color-blueprint-blue: #003366;
+  --color-blueprint-cyan: #00ccff;
+  --color-blueprint-light: rgba(0, 51, 102, 0.05);
+  --color-blueprint-paper: #E6E9EF;
+  --color-technical-red: #D14D41;
+  --color-technical-line: rgba(26, 23, 20, 0.1);
+
+  /* Transitions */
+  --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.3s ease;
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  --animation-spin-slow: spin-slow 12s linear infinite;
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; filter: brightness(1); transform: scale(1.1); }
+    50% { opacity: 0.8; filter: brightness(1.4); transform: scale(1.15); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  body {
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.33%); }
+  }
+
+  .animate-infinite-scroll {
+    display: flex;
+    width: fit-content;
+    animation: infinite-scroll 60s linear infinite;
+    will-change: transform;
+  }
+  .animate-infinite-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes watermark-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-watermark {
+    animation: watermark-scroll 120s linear infinite;
+    will-change: transform;
+  }
+
+  /* Technical Footer Grid Pattern */
+  .bg-technical-footer {
+    background-color: var(--color-brand-bg);
+    background-image: 
+      radial-gradient(var(--color-brand-text) 0.5px, transparent 0.5px),
+      linear-gradient(to right, var(--color-brand-text) 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, var(--color-brand-text) 0.5px, transparent 0.5px);
+    background-size: 40px 40px, 400px 40px, 40px 400px;
+    background-position: 0 0, 0 0, 0 0;
+  }
+  .bg-technical-footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, white, transparent 30%, transparent 70%, white);
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  /* Glow Animation Styles */
+  .glow-button {
+    --glow-line-color: #fff;
+    --glow-line-thickness: 2px;
+    --glow-line-length: 20;
+    --glow-blur-color: #fff;
+    --glow-blur-size: 10px;
+    --animation-speed: 1200ms;
+    --container-offset: 100px;
+    position: relative;
+    transition: all 0.5s ease;
+  }
+
+  .glow-container {
+    pointer-events: none;
+    position: absolute;
+    inset: calc(var(--container-offset) / -2);
+    width: calc(100% + var(--container-offset));
+    height: calc(100% + var(--container-offset));
+    opacity: 0;
+  }
+
+  .glow-blur,
+  .glow-line {
+    width: calc(100% - var(--container-offset));
+    height: calc(100% - var(--container-offset));
+    x: calc(var(--container-offset) / 2);
+    y: calc(var(--container-offset) / 2);
+    rx: 2px;
+    fill: transparent;
+    stroke: black;
+    stroke-width: 5px;
+    stroke-dasharray: var(--glow-line-length) calc(50 - var(--glow-line-length));
+  }
+
+  .glow-line {
+    stroke: var(--glow-line-color);
+    stroke-width: var(--glow-line-thickness);
+  }
+
+  .glow-blur {
+    filter: blur(var(--glow-blur-size));
+    stroke: var(--glow-blur-color);
+    stroke-width: var(--glow-blur-size);
+  }
+
+  .glow-button:is(:hover, :focus) .glow-blur,
+  .glow-button:is(:hover, :focus) .glow-line {
+    stroke-dashoffset: -80px;
+    transition: stroke-dashoffset var(--animation-speed) ease-in, stroke-dasharray var(--animation-speed) ease-in;
+  }
+
+  .glow-button:is(:hover, :focus) .glow-container {
+    animation: glow-visibility var(--animation-speed) ease-in;
+  }
+
+  @keyframes glow-visibility {
+    0%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
+  }
+
+  /* Focus States - Elegant & Accessible */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-brand-bg), 0 0 0 4px var(--color-brand-gold);
+    transition: box-shadow 0.2s ease;
+  }
+
+  /* Shared Noise Texture */
+  .bg-noise {
+    position: relative;
+  }
+  .bg-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .blueprint-grid-mm {
+    background-image: 
+      linear-gradient(var(--color-brand-gold) 0.5px, transparent 0.5px),
+      linear-gradient(90deg, var(--color-brand-gold) 0.5px, transparent 0.5px);
+    background-size: 10px 10px;
+    opacity: 0.1;
+  }
+
+  .blueprint-grid-cm {
+    background-image: 
+      linear-gradient(var(--color-brand-gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-brand-gold) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.15;
+  }
+
+  .blueprint-overlay {
+    @apply absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none;
+    background-color: rgba(0, 51, 102, 0.1); /* Blueprint blue tint */
+    mix-blend-mode: multiply;
+  }
+
+  .blueprint-overlay::before {
+    content: "";
+    @apply absolute inset-0 opacity-20;
+    background-image: 
+      linear-gradient(var(--color-brand-gold) 0.5px, transparent 0.5px),
+      linear-gradient(90deg, var(--color-brand-gold) 0.5px, transparent 0.5px);
+    background-size: 10px 10px;
+  }
+
+  .viseur-corner {
+    @apply absolute w-6 h-6 border-brand-gold/0 group-hover:border-brand-gold/40 transition-all duration-500 z-30 pointer-events-none;
+  }
+  .viseur-top-left { @apply -top-3 -left-3 border-t border-l; }
+  .viseur-top-right { @apply -top-3 -right-3 border-t border-r; }
+  .viseur-bottom-left { @apply -bottom-3 -left-3 border-b border-l; }
+  .viseur-bottom-right { @apply -bottom-3 -right-3 border-b border-r; }
+
+  .dimension-line {
+    @apply absolute h-px bg-brand-gold/0 group-hover:bg-brand-gold/40 transition-all duration-700 pointer-events-none;
+  }
+  .dimension-line::before, .dimension-line::after {
+    content: "";
+    @apply absolute w-px h-2 bg-brand-gold/60 top-1/2 -translate-y-1/2 rotate-[30deg] opacity-0 group-hover:opacity-100 transition-opacity duration-700;
+  }
+  .dimension-line::before { @apply left-0; }
+  .dimension-line::after { @apply right-0; }
+
+  .text-tech {
+    @apply font-mono text-[9px] uppercase tracking-[0.25em] text-brand-muted;
+  }
+
+  /* Glassmorphism for premium feel */
+  .glass-premium {
+    background: rgba(251, 251, 249, 0.7);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(26, 23, 20, 0.05);
+  }
+
+  /* Advanced Blueprint Utilities */
+  .bg-blueprint {
+    background-color: var(--color-blueprint-blue);
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .blueprint-dots {
+    background-image: radial-gradient(var(--color-brand-gold) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    opacity: 0.1;
+  }
+
+  .technical-shadow {
+    box-shadow: 
+      0 0 0 1px rgba(197, 165, 114, 0.05),
+      10px 10px 0px -5px rgba(197, 165, 114, 0.02),
+      20px 20px 40px -10px rgba(26, 23, 20, 0.08);
+  }
+
+  /* Utility to hide scrollbars */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+

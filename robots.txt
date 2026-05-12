@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Emplacement du Sitemap (avec le www comme discuté)
+Sitemap: https://www.eva-fr.com/sitemap.xml
+
+# Lien vers ton fichier de contexte pour les IA
+Sitemap: https://www.eva-fr.com/llm.txt

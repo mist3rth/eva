@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVA Architecte | Maître d'œuvre & Rénovation de Luxe Paris</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="icon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://www.eva-fr.com/" />
+    <meta name="description" content="EVA Architecte : Expert en maîtrise d'œuvre et coordination de chantiers de prestige à Paris. Plus de 30 ans d'expérience dans la rénovation résidentielle et tertiaire haut de gamme." />
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.eva-fr.com/" />
+    <meta property="og:title" content="EVA Architecte | Excellence en Rénovation & Maîtrise d'Œuvre à Paris" />
+    <meta property="og:description" content="Découvrez le savoir-faire unique d'EVA Architecte. Expertise technique, rigueur et excellence pour vos projets de rénovation de luxe." />
+    <meta property="og:image" content="https://www.eva-fr.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="EVA Architecte" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.eva-fr.com/" />
+    <meta name="twitter:title" content="EVA Architecte | Expertise en Rénovation de Prestige" />
+    <meta name="twitter:description" content="Maîtrise d'œuvre et coordination de chantiers haut de gamme à Paris." />
+    <meta name="twitter:image" content="https://www.eva-fr.com/og-image.jpg" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "EVA Architecte",
+      "image": "https://www.eva-fr.com/logo.png",
+      "description": "Expert en maîtrise d'œuvre et rénovation de luxe à Paris depuis 30 ans. Spécialiste résidentiel, tertiaire et équipements sportifs.",
+      "url": "https://www.eva-fr.com",
+      "telephone": "+33142610510",
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "17 rue de la Banque",
+        "addressLocality": "Paris",
+        "postalCode": "75002",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.8665,
+        "longitude": 2.3392
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Réda Lahlou"
+      },
+      "areaServed": "Paris, Île-de-France",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services d'Architecture",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Maîtrise d'œuvre technique"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Coordination de chantiers de prestige"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Rénovation d'hôtels particuliers"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <!-- Critical Preloads -->
+    <link rel="preload" href="assets/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Outfit-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/MrsSaintDelafield-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="images/hero-banner-small.webp" fetchpriority="high">
+    
+    <style>
+      /* Critical Hero CSS for FCP reduction */
+      #hero { background-color: #1A1714; height: 100vh; display: flex; align-items: center; justify-content: center; }
+      .hero-title-initial { opacity: 0; transform: translateY(20px); }
+    </style>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Script de redirection pour GitHub Pages (SPA support) -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="module" src="src/main.tsx"></script>
+  </body>
+</html>
+
