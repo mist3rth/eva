@@ -57,7 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
  
            {/* Carousel */}
            <div 
-            className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-x"
+            className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y"
              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
              onScroll={(e) => {
                const target = e.target as HTMLDivElement;
@@ -72,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                >
                  <img 
                    src={img}
-                   alt=""
+                   alt={`${project.title} - Vue ${idx + 1}`}
                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
                    loading="lazy"
                  />

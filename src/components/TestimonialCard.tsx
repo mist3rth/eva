@@ -78,9 +78,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
               <span className={`${isMobile ? 'text-[100px]' : 'text-[120px]'} font-display font-black text-white/[0.02] rotate-[-15deg] select-none uppercase`}>EVA</span>
             </div>
             <span className={`absolute ${isMobile ? '-top-3 -left-1 text-4xl' : '-top-4 -left-2 text-6xl'} text-brand-gold opacity-20 font-serif`}>"</span>
-            <p className={`font-display ${isMobile ? 'text-[15px]' : 'text-[16px]'} font-light italic text-white/90 ${isMobile ? 'leading-[1.8]' : 'leading-[1.9]'} relative z-10`}>
+            <blockquote className={`font-display ${isMobile ? 'text-[15px]' : 'text-[16px]'} font-light italic text-white/90 ${isMobile ? 'leading-[1.8]' : 'leading-[1.9]'} relative z-10`}>
               {testimonial.content}
-            </p>
+            </blockquote>
           </div>
 
           <div className={`pt-8 border-t border-white/10 mt-auto flex justify-between items-end`}>

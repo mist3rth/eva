@@ -119,7 +119,7 @@ const Approche: React.FC = () => {
                 <div className="md:hidden">
                   <div 
                     ref={scrollRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-x pt-12 pb-8 px-[7.5%]"
+                    className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y pt-12 pb-8 px-[7.5%]"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     onScroll={handleScroll}
                   >

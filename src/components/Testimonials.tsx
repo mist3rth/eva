@@ -162,7 +162,7 @@ const Testimonials: React.FC = () => {
 
             {/* Native Scroll Carousel */}
             <div 
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-x -mx-6 px-6 pb-4"
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y -mx-6 px-6 pb-4"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               onScroll={(e) => {
                 const target = e.target as HTMLDivElement;

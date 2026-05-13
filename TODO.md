@@ -233,3 +233,14 @@
 - [x] Ajouter `.nojekyll` pour l'intégrité des dossiers.
 - [x] Vérifier la résolution des chemins d'assets (relatifs).
 - [x] Valider le build final (`npm run build`).
+
+## 🚀 Story 29 : Finalisation Interactions Mobiles
+- [x] **Expérience tactile :** Ajout de `touch-action: pan-y` sur tous les sliders (Approche, Projets, Témoignages) pour garantir le scroll vertical.
+- [x] **Feedback :** Optimisation des états hover pour qu'ils ne se déclenchent pas accidentellement sur mobile.
+- [x] **Cohérence :** Vérification des ancres de navigation et des offsets sur tous les devices.
+
+## 🚀 Story 30 : SEO & Excellence Sémantique
+- [x] **Sémantique :** Utilisation des balises `blockquote` pour les témoignages.
+- [x] **Assets :** Génération et configuration d'une image OG (`og-image.jpg`) premium.
+- [x] **Audit :** Validation finale de la structure Hn et des attributs Alt descriptifs.
+
