@@ -13,32 +13,6 @@ const PILLARS = [
 
 const Approche: React.FC = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const target = e.currentTarget;
-    const scrollLeft = target.scrollLeft;
-    const width = target.offsetWidth;
-    
-    // Each item is effectively 85% of the container width due to the 7.5% padding on each side
-    const step = width * 0.85;
-    const newIndex = Math.round(scrollLeft / step);
-    
-    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < PILLARS.length) {
-      setActiveIndex(newIndex);
-    }
-  };
-
-  const scrollToPillar = (idx: number) => {
-    if (scrollRef.current) {
-      const width = scrollRef.current.offsetWidth;
-      const step = width * 0.85;
-      scrollRef.current.scrollTo({
-        left: idx * step,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <section id="approche" className="py-32 md:py-56 bg-brand-bg-warm relative overflow-hidden" aria-labelledby="approche-title-desktop">
@@ -115,46 +89,61 @@ const Approche: React.FC = () => {
 
               {/* The Three Pillars: Carousel on Mobile, Grid on Desktop */}
               <div className="relative pt-4 border-t border-brand-accent-bg mb-12">
-                {/* Mobile Slider (Native Scroll Swipe) */}
-                <div className="md:hidden">
-                  <div 
-                    ref={scrollRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y pt-12 pb-8 px-[7.5%]"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                    onScroll={handleScroll}
+                {/* Mobile Slider (Framer Motion Slider pour éviter le blocage du scroll) */}
+                <div className="md:hidden overflow-hidden relative">
+                  <motion.div 
+                    drag="x"
+                    dragDirectionLock
+                    dragConstraints={{ right: 0, left: 0 }}
+                    dragElastic={0.2}
+                    dragListener={true}
+                    dragMomentum={false}
+                    onDragEnd={(_, info) => {
+                      const threshold = 50;
+                      if (info.offset.x < -threshold && activeIndex < PILLARS.length - 1) {
+                        setActiveIndex(prev => prev + 1);
+                      } else if (info.offset.x > threshold && activeIndex > 0) {
+                        setActiveIndex(prev => prev - 1);
+                      }
+                    }}
+                    animate={{ x: `-${activeIndex * 100}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="flex pt-12 pb-8 cursor-grab active:cursor-grabbing"
+                    style={{ touchAction: 'manipulation' }}
                   >
                     {PILLARS.map((pillar, idx) => (
                       <div 
                         key={pillar.label}
-                        className="w-full shrink-0 flex flex-col items-center text-center snap-center transition-all duration-500"
+                        className="w-full shrink-0 flex flex-col items-center text-center transition-all duration-500"
                         style={{ 
                           opacity: activeIndex === idx ? 1 : 0.3, 
-                          transform: `scale(${activeIndex === idx ? 1 : 0.9})` 
+                          transform: `scale(${activeIndex === idx ? 1 : 0.9})`,
+                          touchAction: 'pan-y'
                         }}
                       >
-                        <div className="w-20 h-20 rounded-full bg-brand-gold/5 flex items-center justify-center mb-6 relative">
+                        <div className="w-20 h-20 rounded-full bg-brand-gold/5 flex items-center justify-center mb-6 relative select-none">
                           <div className={cn(
                             "absolute inset-0 border border-brand-gold/10 rounded-full scale-110 transition-transform duration-500",
                             activeIndex === idx && "scale-125 border-brand-gold/30"
                           )} />
                           <pillar.icon className="w-8 h-8 text-brand-gold" strokeWidth={1} />
                         </div>
-                        <h4 className="text-brand-text text-sm font-bold uppercase tracking-[0.2em] mb-2">
+                        <h4 className="text-brand-text text-sm font-bold uppercase tracking-[0.2em] mb-2 select-none">
                           {pillar.label}
                         </h4>
-                        <p className="text-[10px] uppercase tracking-widest text-brand-gold">
+                        <p className="text-[10px] uppercase tracking-widest text-brand-gold select-none">
                           {pillar.sub}
                         </p>
                       </div>
                     ))}
-                  </div>
+                  </motion.div>
                   
                   {/* Progress Indicators (Dots) */}
                   <div className="flex justify-center gap-4 mt-8">
                     {PILLARS.map((_, idx) => (
                       <button 
                         key={idx}
-                        onClick={() => scrollToPillar(idx)}
+                        onClick={() => setActiveIndex(idx)}
                         className="p-2 -m-2 group"
                         aria-label={`Aller au pilier ${idx + 1}`}
                       >

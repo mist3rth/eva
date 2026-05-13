@@ -55,29 +55,44 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            {/* Blueprint Overlay (Millimetric Grid) */}
           <div className="blueprint-overlay" />
  
-           {/* Carousel */}
-           <div 
-            className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y"
-             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-             onScroll={(e) => {
-               const target = e.target as HTMLDivElement;
-               const index = Math.round(target.scrollLeft / target.clientWidth);
-               if (index !== carouselIndex) setCarouselIndex(index);
-             }}
-           >
-             {project.images.map((img, idx) => (
-               <div 
-                 key={idx} 
-                className="min-w-full h-full snap-center relative overflow-hidden"
-               >
-                 <img 
-                   src={img}
-                   alt={`${project.title} - Vue ${idx + 1}`}
-                   className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
-                   loading="lazy"
-                 />
-               </div>
-             ))}
+           {/* Carousel (Framer Motion Slider pour éviter le blocage du scroll mobile) */}
+           <div className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]">
+             <motion.div 
+               drag="x"
+               dragDirectionLock
+               dragConstraints={{ right: 0, left: 0 }}
+               dragElastic={0.2}
+               dragListener={true}
+               dragMomentum={false}
+               onDragEnd={(_, info) => {
+                 const threshold = 50;
+                 if (info.offset.x < -threshold && carouselIndex < project.images.length - 1) {
+                   setCarouselIndex(prev => prev + 1);
+                 } else if (info.offset.x > threshold && carouselIndex > 0) {
+                   setCarouselIndex(prev => prev - 1);
+                 }
+               }}
+               animate={{ x: `-${carouselIndex * 100}%` }}
+               transition={{ type: "spring", stiffness: 300, damping: 30 }}
+               className="flex h-full cursor-grab active:cursor-grabbing"
+               style={{ touchAction: 'manipulation' }}
+             >
+               {project.images.map((img, idx) => (
+                 <div 
+                   key={idx} 
+                   className="min-w-full h-full relative overflow-hidden flex-shrink-0"
+                   style={{ touchAction: 'pan-y' }}
+                 >
+                   <img 
+                     src={img}
+                     alt={`${project.title} - Vue ${idx + 1}`}
+                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out select-none"
+                     loading="lazy"
+                     draggable={false}
+                   />
+                 </div>
+               ))}
+             </motion.div>
            </div>
  
            {/* Dimension Lines with Ticks (Hover Only) */}

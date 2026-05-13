@@ -160,29 +160,38 @@ const Testimonials: React.FC = () => {
               </div>
             </div>
 
-            {/* Native Scroll Carousel */}
-            <div 
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y -mx-6 px-6 pb-4"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              onScroll={(e) => {
-                const target = e.target as HTMLDivElement;
-                // Calculate which card is most visible
-                // Each card is w-[85%] + gap-6
-                const cardWidth = target.offsetWidth * 0.85 + 24; 
-                const index = Math.round(target.scrollLeft / cardWidth);
-                if (index !== testimonialIndex && index >= 0 && index < TESTIMONIALS.length) {
-                  setTestimonialIndex(index);
-                }
-              }}
-            >
-              {TESTIMONIALS.map((testimonial) => (
-                <div 
-                  key={testimonial.id}
-                  className="w-[85%] flex-shrink-0 snap-center"
-                >
-                  <TestimonialCard testimonial={testimonial} isMobile />
-                </div>
-              ))}
+            {/* Framer Motion Drag Carousel */}
+            <div className="relative -mx-6 px-6 overflow-hidden">
+              <motion.div 
+                drag="x"
+                dragDirectionLock
+                dragConstraints={{ right: 0, left: -((TESTIMONIALS.length - 1) * 300) }} // Valeur indicative, le drag est fluide
+                dragElastic={0.1}
+                dragListener={true}
+                dragMomentum={true}
+                onDragEnd={(_, info) => {
+                  const threshold = 50;
+                  if (info.offset.x < -threshold && testimonialIndex < TESTIMONIALS.length - 1) {
+                    setTestimonialIndex(prev => prev + 1);
+                  } else if (info.offset.x > threshold && testimonialIndex > 0) {
+                    setTestimonialIndex(prev => prev - 1);
+                  }
+                }}
+                animate={{ x: -(testimonialIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth * 0.85 + 24 : 424)) }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing"
+                style={{ touchAction: 'manipulation' }}
+              >
+                {TESTIMONIALS.map((testimonial) => (
+                  <div 
+                    key={testimonial.id}
+                    className="w-[85vw] md:w-[400px] flex-shrink-0"
+                    style={{ touchAction: 'pan-y' }}
+                  >
+                    <TestimonialCard testimonial={testimonial} isMobile />
+                  </div>
+                ))}
+              </motion.div>
             </div>
 
             {/* Visual Navigation Hint */}

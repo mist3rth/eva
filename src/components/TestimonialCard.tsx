@@ -36,6 +36,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       onMouseLeave={onMouseLeave}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`relative overflow-hidden group/card ${isMobile ? 'h-[500px] w-full' : 'h-[540px] border border-white/10 shadow-2xl'}`}
+      style={{ touchAction: 'pan-y' }}
     >
       {/* Background Image - Darkened for Architecture Layer Contrast */}
       <div className="absolute inset-0 z-0">
