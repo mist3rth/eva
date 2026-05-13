@@ -61,8 +61,21 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     return isValid;
   };
 
+  const sanitize = (text: string) => {
+    return text.replace(/<[^>]*>?/gm, '').trim();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check
+    const honey = (e.target as HTMLFormElement).elements.namedItem('website') as HTMLInputElement;
+    if (honey && honey.value) {
+      console.warn('Bot detected');
+      onSuccess(); // Simulate success to confuse the bot
+      return;
+    }
+
     if (!validateForm()) {
       const el = document.getElementById('contact');
       if (el) {
@@ -78,15 +91,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
     const env = (import.meta as unknown as { env: Record<string, string | undefined> }).env;
     const endpoint = env.VITE_GAS_ENDPOINT;
+    const apiKey = env.VITE_GAS_API_KEY;
 
     try {
       if (endpoint) {
         const body = new FormData();
-        body.append('prenom', formData.firstName);
-        body.append('nom', formData.lastName);
-        body.append('email', formData.email);
+        body.append('prenom', sanitize(formData.firstName));
+        body.append('nom', sanitize(formData.lastName));
+        body.append('email', sanitize(formData.email));
         body.append('typeProjet', formData.projectType);
-        body.append('message', formData.message);
+        body.append('message', sanitize(formData.message));
+        if (apiKey) body.append('apiKey', apiKey);
+        
         await fetch(endpoint, { method: 'POST', mode: 'no-cors', body });
       } else {
         await new Promise<void>(resolve => setTimeout(resolve, 800));
@@ -158,6 +174,11 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           className="bg-white/5 backdrop-blur-2xl border border-white/10 p-8 md:p-16 shadow-2xl rounded-sm"
         >
           <form className="space-y-8 text-left" onSubmit={handleSubmit}>
+            {/* Honeypot field - hidden from users */}
+            <div className="absolute opacity-0 pointer-events-none -z-10" aria-hidden="true">
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-3">
                 <label htmlFor="firstName" className="text-[10px] uppercase tracking-[0.3em] text-white/50 ml-0.5 font-bold">Prénom <span className="text-brand-gold">*</span></label>

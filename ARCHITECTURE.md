@@ -52,4 +52,14 @@ L'architecture repose sur un design system "architectural" :
 - **Base URL :** `/eva/` (configuré dans `vite.config.ts`).
 - **Support SPA :** Utilisation de `public/404.html` pour rediriger les erreurs 404 vers `index.html` avec encodage du chemin.
 - **Chemins :** Conversion de tous les liens critiques en chemins relatifs dans `index.html` et `manifest.json`.
-- **Intégrité :** Fichier `public/.nojekyll` présent pour empêcher Jekyll de filtrer les assets.
+## 8. Sécurité & Robustesse
+- **Serveur (Amen) :** Fichier `.htaccess` durci incluant :
+  - `Content-Security-Policy` (CSP) strict pour prévenir les injections.
+  - `HSTS` pour forcer le HTTPS.
+  - `X-Frame-Options: DENY` contre le clickjacking.
+  - Redirection automatique HTTP -> HTTPS.
+- **Formulaire de Contact :**
+  - **Honeypot :** Champ caché pour piéger les bots de spam sans déranger les utilisateurs.
+  - **Sanitisation :** Nettoyage automatique des entrées utilisateur (Regex anti-HTML) côté client et serveur.
+  - **Validation d'origine :** Utilisation d'un Token API personnalisé (`X-API-KEY`) pour les échanges avec le backend GAS.
+- **Backend (GAS) :** Script découplé avec validation de jeton, échappement HTML des variables dans les emails et logs sécurisés.

@@ -247,4 +247,10 @@
 ## 🚀 Story 31 : Déploiement & Mise en Ligne
 - [x] Configuration des scripts de déploiement dans `package.json`.
 - [x] Build de production final validé.
-- [x] Déploiement réussi sur GitHub Pages (mist3rth.github.io/eva/).
+## 🚀 Story 32 : Audit de Sécurité & Durcissement (Hardening)
+- [x] **Audit :** Analyse complète des vulnérabilités, fuites de secrets et mixed content.
+- [x] **Headers :** Mise en place d'un fichier `.htaccess` sécurisé (CSP, HSTS, X-Frame-Options).
+- [x] **Formulaire :** Implémentation d'un système de protection contre le spam (Honeypot).
+- [x] **Backend :** Sécurisation de l'endpoint Google Apps Script (Validation de Token API).
+- [x] **Confidentialité :** Nettoyage des entrées utilisateur (Sanitisation XSS).
+- [x] **Production :** Mise à jour de `.env.example` pour les futures installations.

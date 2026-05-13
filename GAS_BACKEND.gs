@@ -14,20 +14,38 @@
  */
 
 function doPost(e) {
-  const recipient = "contact@eva-fr.com"; // <-- REMPLACER PAR VOTRE EMAIL
+  const recipient = "contact@eva-fr.com";
+  const EXPECTED_API_KEY = "votre_token_secret_ici"; // À synchroniser avec le .env
   
   try {
     const data = e.parameter;
-    const nom = data.nom || "Non spécifié";
-    const email = data.email || "Non spécifié";
-    const telephone = data.telephone || "Non spécifié";
-    const typeProjet = data.type_projet || data.typeProjet || "Non spécifié";
-    const budget = data.budget || "Non spécifié";
-    const message = data.message || "Aucun message";
     
-    // 1. Enregistrement dans une feuille de calcul
-    // On cherche la sheet par son nom ou on en crée une
-    const sheetName = "eva_contact_form"; // On évite .xlsx dans le nom interne de la sheet
+    // 1. Validation de l'API Key
+    const apiKey = data.apiKey;
+    if (apiKey !== EXPECTED_API_KEY) {
+      return ContentService.createTextOutput("Unauthorized").setMimeType(ContentService.MimeType.TEXT);
+    }
+    
+    // 2. Validation Honeypot
+    const website = data.website;
+    if (website) {
+      console.warn("Spam detected via honeypot");
+      return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+    }
+    
+    // 3. Extraction et Sanitisation basique
+    const prenom = sanitizeInput(data.prenom || "");
+    const nom = sanitizeInput(data.nom || "");
+    const email = sanitizeInput(data.email || "");
+    const typeProjet = sanitizeInput(data.typeProjet || "Non spécifié");
+    const message = sanitizeInput(data.message || "");
+    
+    if (!email || !message) {
+      return ContentService.createTextOutput("Missing required fields").setMimeType(ContentService.MimeType.TEXT);
+    }
+
+    // 4. Enregistrement dans une feuille de calcul
+    const sheetName = "eva_contact_form";
     let ss;
     const files = DriveApp.getFilesByName(sheetName);
     if (files.hasNext()) {
@@ -38,39 +56,61 @@ function doPost(e) {
     
     const sheet = ss.getSheets()[0];
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Date_Enregistrement", "Prenom_Nom", "Email", "Telephone", "Type_Projet", "Budget", "Message"]);
+      sheet.appendRow(["Date", "Prenom", "Nom", "Email", "Type Projet", "Message"]);
     }
-    sheet.appendRow([new Date(), nom, email, telephone, typeProjet, budget, message]);
+    sheet.appendRow([new Date(), prenom, nom, email, typeProjet, message]);
     
-    // 2. Envoi de l'email de notification
-    const subject = "Nouveau contact : " + nom + " (" + typeProjet + ")";
+    // 5. Envoi de l'email de notification
+    const subject = "EVA Contact : " + prenom + " " + nom + " (" + typeProjet + ")";
     const htmlBody = `
       <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #eee; padding: 20px;">
         <h2 style="color: #c5a059;">Nouveau message depuis eva-fr.com</h2>
-        <p><strong>De :</strong> ${nom} (${email})</p>
-        <p><strong>Téléphone :</strong> ${telephone}</p>
-        <p><strong>Type de projet :</strong> ${typeProjet}</p>
-        <p><strong>Budget :</strong> ${budget}</p>
+        <p><strong>De :</strong> ${escapeHtml(prenom)} ${escapeHtml(nom)} (${escapeHtml(email)})</p>
+        <p><strong>Type de projet :</strong> ${escapeHtml(typeProjet)}</p>
         <hr style="border: 0; border-top: 1px solid #eee;" />
-        <p style="white-space: pre-wrap;">${message}</p>
+        <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
         <hr style="border: 0; border-top: 1px solid #eee;" />
-        <p style="font-size: 12px; color: #999;">Cet email a été envoyé automatiquement depuis le formulaire de contact.</p>
+        <p style="font-size: 12px; color: #999;">Cet email a été envoyé via le système sécurisé EVA.</p>
       </div>
     `;
     
     MailApp.sendEmail({
       to: recipient,
       subject: subject,
-      htmlBody: htmlBody
+      htmlBody: htmlBody,
+      replyTo: email
     });
     
     return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
     
   } catch (err) {
-    return ContentService.createTextOutput("Error: " + err.toString()).setMimeType(ContentService.MimeType.TEXT);
+    Logger.log(err.toString());
+    return ContentService.createTextOutput("Error").setMimeType(ContentService.MimeType.TEXT);
   }
 }
 
+/**
+ * Nettoie les entrées pour éviter les injections
+ */
+function sanitizeInput(input) {
+  if (typeof input !== 'string') return "";
+  return input.trim().substring(0, 5000); // Limite de taille
+}
+
+/**
+ * Échappe les caractères HTML pour l'affichage sécurisé dans l'email
+ */
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
 function doGet(e) {
-  return ContentService.createTextOutput("Backend opérationnel. Utilisez POST pour envoyer des données.").setMimeType(ContentService.MimeType.TEXT);
+  return ContentService.createTextOutput("Backend sécurisé opérationnel.").setMimeType(ContentService.MimeType.TEXT);
 }
