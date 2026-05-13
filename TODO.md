@@ -253,4 +253,8 @@
 - [x] **Formulaire :** Implémentation d'un système de protection contre le spam (Honeypot).
 - [x] **Backend :** Sécurisation de l'endpoint Google Apps Script (Validation de Token API).
 - [x] **Confidentialité :** Nettoyage des entrées utilisateur (Sanitisation XSS).
-- [x] **Production :** Mise à jour de `.env.example` pour les futures installations.
+## 🚀 Story 33 : Stabilisation des Interactions Tactiles (Carrousels)
+- [x] **ProjectCard :** Implémentation de `isDragging` pour basculer dynamiquement le `touch-action` (none/pan-y).
+- [x] **Approche :** Calcul dynamique des `dragConstraints` via `useRef` pour s'adapter à toutes les largeurs d'écran.
+- [x] **Testimonials :** Stabilisation du drag avec `dragDirectionLock` et transition cinétique optimisée.
+- [x] **TypeScript :** Création de `env.d.ts` pour sécuriser les variables d'environnement.

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import TestimonialCard, { Testimonial } from './TestimonialCard';
 
@@ -38,6 +38,27 @@ const TESTIMONIALS: Testimonial[] = [
 const Testimonials: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  useEffect(() => {
+    const updateConstraints = () => {
+      if (carouselRef.current) {
+        const containerWidth = carouselRef.current.offsetWidth;
+        const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.85 + 24 : 424;
+        setDragConstraints({
+          left: -((TESTIMONIALS.length - 1) * cardWidth),
+          right: 0
+        });
+      }
+    };
+
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, []);
 
   return (
     <section id="temoignages" className="py-32 md:py-48 px-[5vw] bg-brand-bg-soft relative overflow-hidden" aria-labelledby="testimonials-title">
@@ -161,15 +182,18 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Framer Motion Drag Carousel */}
-            <div className="relative -mx-6 px-6 overflow-hidden">
+            <div className="relative -mx-6 px-6 overflow-hidden" ref={carouselRef}>
               <motion.div 
                 drag="x"
                 dragDirectionLock
-                dragConstraints={{ right: 0, left: -((TESTIMONIALS.length - 1) * 300) }} // Valeur indicative, le drag est fluide
+                dragConstraints={dragConstraints}
                 dragElastic={0.1}
                 dragListener={true}
                 dragMomentum={true}
+                dragTransition={{ power: 0.2, timeConstant: 200 }}
+                onDragStart={() => setIsDragging(true)}
                 onDragEnd={(_, info) => {
+                  setIsDragging(false);
                   const threshold = 50;
                   if (info.offset.x < -threshold && testimonialIndex < TESTIMONIALS.length - 1) {
                     setTestimonialIndex(prev => prev + 1);
@@ -180,7 +204,7 @@ const Testimonials: React.FC = () => {
                 animate={{ x: -(testimonialIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth * 0.85 + 24 : 424)) }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing"
-                style={{ touchAction: 'manipulation' }}
+                style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
               >
                 {TESTIMONIALS.map((testimonial) => (
                   <div 

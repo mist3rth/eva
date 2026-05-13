@@ -4,6 +4,7 @@ import Eye from 'lucide-react/dist/esm/icons/eye';
 import Ruler from 'lucide-react/dist/esm/icons/ruler';
 import Compass from 'lucide-react/dist/esm/icons/compass';
 import { cn } from '@/src/lib/utils';
+import { useRef, useEffect, useState } from 'react';
 
 const PILLARS = [
   { label: 'Vision', sub: 'Anticipation', icon: Eye },
@@ -12,7 +13,28 @@ const PILLARS = [
 ];
 
 const Approche: React.FC = () => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  useEffect(() => {
+    const updateConstraints = () => {
+      if (carouselRef.current) {
+        const containerWidth = carouselRef.current.offsetWidth;
+        setDragConstraints({
+          left: -((PILLARS.length - 1) * containerWidth),
+          right: 0
+        });
+      }
+    };
+
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, []);
 
   return (
     <section id="approche" className="py-32 md:py-56 bg-brand-bg-warm relative overflow-hidden" aria-labelledby="approche-title-desktop">
@@ -90,15 +112,18 @@ const Approche: React.FC = () => {
               {/* The Three Pillars: Carousel on Mobile, Grid on Desktop */}
               <div className="relative pt-4 border-t border-brand-accent-bg mb-12">
                 {/* Mobile Slider (Framer Motion Slider pour éviter le blocage du scroll) */}
-                <div className="md:hidden overflow-hidden relative">
+                <div className="md:hidden overflow-hidden relative" ref={carouselRef}>
                   <motion.div 
                     drag="x"
                     dragDirectionLock
-                    dragConstraints={{ right: 0, left: 0 }}
-                    dragElastic={0.2}
+                    dragConstraints={dragConstraints}
+                    dragElastic={0.1}
                     dragListener={true}
-                    dragMomentum={false}
+                    dragMomentum={true}
+                    dragTransition={{ power: 0.2, timeConstant: 200 }}
+                    onDragStart={() => setIsDragging(true)}
                     onDragEnd={(_, info) => {
+                      setIsDragging(false);
                       const threshold = 50;
                       if (info.offset.x < -threshold && activeIndex < PILLARS.length - 1) {
                         setActiveIndex(prev => prev + 1);
@@ -109,7 +134,7 @@ const Approche: React.FC = () => {
                     animate={{ x: `-${activeIndex * 100}%` }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     className="flex pt-12 pb-8 cursor-grab active:cursor-grabbing"
-                    style={{ touchAction: 'manipulation' }}
+                    style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
                   >
                     {PILLARS.map((pillar, idx) => (
                       <div 

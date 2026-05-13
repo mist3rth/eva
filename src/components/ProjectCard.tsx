@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
@@ -28,6 +28,27 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  useEffect(() => {
+    const updateConstraints = () => {
+      if (carouselRef.current) {
+        const containerWidth = carouselRef.current.offsetWidth;
+        setDragConstraints({
+          left: -((project.images.length - 1) * containerWidth),
+          right: 0
+        });
+      }
+    };
+
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, [project.images.length]);
 
   return (
     <motion.div
@@ -56,15 +77,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
           <div className="blueprint-overlay" />
  
            {/* Carousel (Framer Motion Slider pour éviter le blocage du scroll mobile) */}
-           <div className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]">
+           <div className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" ref={carouselRef}>
              <motion.div 
                drag="x"
                dragDirectionLock
-               dragConstraints={{ right: 0, left: 0 }}
-               dragElastic={0.2}
+               dragConstraints={dragConstraints}
+               dragElastic={0.1}
                dragListener={true}
-               dragMomentum={false}
+               dragMomentum={true}
+               dragTransition={{ power: 0.2, timeConstant: 200 }}
+               onDragStart={() => setIsDragging(true)}
                onDragEnd={(_, info) => {
+                 setIsDragging(false);
                  const threshold = 50;
                  if (info.offset.x < -threshold && carouselIndex < project.images.length - 1) {
                    setCarouselIndex(prev => prev + 1);
@@ -75,7 +99,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                animate={{ x: `-${carouselIndex * 100}%` }}
                transition={{ type: "spring", stiffness: 300, damping: 30 }}
                className="flex h-full cursor-grab active:cursor-grabbing"
-               style={{ touchAction: 'manipulation' }}
+               style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
              >
                {project.images.map((img, idx) => (
                  <div 
