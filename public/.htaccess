@@ -1,0 +1,59 @@
+# Redirect SPA — Apache/Amen
+# Toutes les routes inconnues renvoient vers index.html (React Router/Ancres)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Ne pas réécrire les fichiers/dossiers existants
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Tout le reste → index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Force HTTPS
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Compression Brotli & GZIP
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript application/json image/svg+xml font/woff2
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml font/woff2 video/mp4 video/webm
+</IfModule>
+
+# Cache navigateur — assets statiques (Long-term Caching)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Fonts (Immutable)
+  ExpiresByType font/woff2 "access plus 1 year"
+  # Images
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  # Videos
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType video/webm "access plus 1 month"
+  # Logic/Styles
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Force le navigateur à vérifier si le fichier a changé (ETag)
+<IfModule mod_headers.c>
+  Header append Vary Accept-Encoding
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Security hardening
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Cache-Control spécifique pour les vidéos (Amen/Apache)
+  <FilesMatch "\.(mp4|webm)$">
+    Header set Cache-Control "public, max-age=2592000, immutable"
+  </FilesMatch>
+</IfModule>

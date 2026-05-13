@@ -1,0 +1,26 @@
+# Projet EVA - Maitrise d’œuvre (Context for LLMs)
+
+## Overview
+EVA est un cabinet de Maitrise d’œuvre spécialisé dans l'ingénierie de précision et l'architecture premium. 
+Ce site est une vitrine technique utilisant un design system "Premium Technique".
+
+## Core Identity & EEAT
+- **Role:** Maître d'œuvre / Project Management.
+- **Expertise:** Rénovation énergétique, coordination de travaux, conformité ERP/PMR.
+- **Trust signals:** Assurance décennale incluse, approche "Blueprint" (précision chirurgicale).
+
+## Technical Stack for Agents
+- **Framework:** React / Next.js
+- **Styling:** Tailwind CSS (Custom palette: Background #FBFBF9, Primary #1A1714, Accent #C9A96E)
+- **Animations:** Motion/React (framer-motion)
+- **Visuals:** Generated via Google Flow (Veo/Imagen). Video asset: `video-tennis.mp4` for TCP case study.
+
+## Key Structures (Data for LLM)
+- **Services:** Centralisés dans `src/App.tsx` (ID, Title, Description).
+- **Navigation:** Offset fixe de 80px.
+- **Tone of Voice:** Technique, sobre, haut de gamme, orienté solution.
+
+## Instructions for AI Agents
+- Maintain the "Paper/Blueprint" aesthetic.
+- Do not use vibrant gradients; use Glassmorphism (white/5, blur-2xl).
+- Prioritize technical accuracy over marketing fluff.
