@@ -244,3 +244,7 @@
 - [x] **Assets :** Génération et configuration d'une image OG (`og-image.jpg`) premium.
 - [x] **Audit :** Validation finale de la structure Hn et des attributs Alt descriptifs.
 
+## 🚀 Story 31 : Déploiement & Mise en Ligne
+- [x] Configuration des scripts de déploiement dans `package.json`.
+- [x] Build de production final validé.
+- [x] Déploiement réussi sur GitHub Pages (mist3rth.github.io/eva/).
