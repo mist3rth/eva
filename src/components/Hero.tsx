@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { m, useScroll, useMotionValueEvent } from 'motion/react';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
 import { Button } from './ui/Button';
@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           />
           <img 
             src={`${import.meta.env.BASE_URL}images/hero-banner-small.webp`} 
-            alt="DÃ©tail architectural - RÃ©novation de prestige Paris"
+            alt="Détail architectural - Rénovation de prestige Paris"
             className={`w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 ease-out ${isColored ? 'opacity-80 mix-blend-normal' : 'opacity-60 mix-blend-luminosity'}`}
             fetchPriority="high"
             loading="eager"
@@ -72,7 +72,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
               visible: { transition: { staggerChildren: 0.08 } }
             }}
           >
-            {"L'art de bÃ¢tir, la discipline de diriger.".split(" ").map((word, i) => (
+            {"L'art de bâtir, la discipline de diriger.".split(" ").map((word, i) => (
               <span key={i} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
                 <m.span
                   className="inline-block"
@@ -98,7 +98,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
             transition={{ delay: 0.8, duration: 1 }}
             className="mt-8 text-white/70 font-sans text-[10px] md:text-xs uppercase tracking-[0.4em] max-w-2xl mx-auto leading-relaxed"
           >
-            L'expertise de la maÃ®trise d'Å“uvre haut de gamme <br className="hidden md:block" /> pour vos actifs rÃ©sidentiels et tertiaires.
+            L'expertise de la maîtrise d'œuvre haut de gamme <br className="hidden md:block" /> pour vos actifs résidentiels et tertiaires.
           </m.p>
         </m.div>
         
@@ -111,10 +111,10 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           <Button 
             variant="glow"
             onClick={scrollToProjects}
-            aria-label="DÃ©couvrir nos projets rÃ©alisÃ©s"
+            aria-label="Découvrir nos projets réalisés"
             className="bg-white text-brand-text md:bg-transparent md:text-white border-white/10 md:border-white/30"
           >
-            VOIR LES PROJETS LIVRÃ‰S
+            VOIR LES PROJETS LIVRÉS
           </Button>
         </m.div>
         
@@ -124,7 +124,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           transition={{ delay: 1, duration: 1 }}
           className="flex flex-col items-center text-white/60 gap-3 mt-[150px] mx-auto md:hidden"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em]">DÃ©couvrez nous</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">Découvrez nous</span>
           <ArrowDown size={20} className="animate-bounce" aria-hidden="true" />
         </m.div>
       </div>

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
@@ -16,39 +16,39 @@ const EXPERTISES: Expertise[] = [
     id: "01",
     title: "Architecture de Vie",
     subtitle: "(Concept)",
-    description: "Votre vision, magnifiÃ©e par la technique. Nous concevons des espaces singuliers qui valorisent votre patrimoine tout en respectant strictement vos habitudes de vie.",
+    description: "Votre vision, magnifiée par la technique. Nous concevons des espaces singuliers qui valorisent votre patrimoine tout en respectant strictement vos habitudes de vie.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-concept.webp`,
     align: "left"
   },
   {
     id: "02",
-    title: "Signature EsthÃ©tique",
+    title: "Signature Esthétique",
     subtitle: "(Design)",
-    description: "Lâ€™Ã©quilibre entre audace et pÃ©rennitÃ©. Choix des matiÃ¨res, gestion de la lumiÃ¨re et ergonomie : nous crÃ©ons une identitÃ© visuelle forte et intemporelle pour votre bien.",
+    description: "L’équilibre entre audace et pérennité. Choix des matières, gestion de la lumière et ergonomie : nous créons une identité visuelle forte et intemporelle pour votre bien.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-design.webp`,
     align: "right"
   },
   {
     id: "03",
-    title: "SÃ©rÃ©nitÃ© Chantier",
-    subtitle: "(DÃ©veloppement)",
-    description: "Nous gÃ©rons les contraintes, vous savourez l'avancement. MaÃ®trise totale des budgets et des dÃ©lais. 98% de nos chantiers sont livrÃ©s Ã  la date convenue.",
+    title: "Sérénité Chantier",
+    subtitle: "(Développement)",
+    description: "Nous gérons les contraintes, vous savourez l'avancement. Maîtrise totale des budgets et des délais. 98% de nos chantiers sont livrés à la date convenue.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-management.webp`,
     align: "left"
   },
   {
     id: "04",
-    title: "IngÃ©nierie de RÃ©alisation",
+    title: "Ingénierie de Réalisation",
     subtitle: "(Architecture)",
-    description: "La rigueur du trait, la soliditÃ© du bÃ¢ti. Une direction de travaux sans concession pour garantir la conformitÃ© technique et la longÃ©vitÃ© de votre ouvrage.",
+    description: "La rigueur du trait, la solidité du bâti. Une direction de travaux sans concession pour garantir la conformité technique et la longévité de votre ouvrage.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-engineering.webp`,
     align: "right"
   },
   {
     id: "05",
-    title: "Ã‰co-Performance",
+    title: "Éco-Performance",
     subtitle: "(Construction)",
-    description: "BÃ¢tir aujourd'hui pour demain. Optimisation Ã©nergÃ©tique et matÃ©riaux biosourcÃ©s pour rÃ©duire votre empreinte carbone et vos coÃ»ts d'exploitation futurs.",
+    description: "Bâtir aujourd'hui pour demain. Optimisation énergétique et matériaux biosourcés pour réduire votre empreinte carbone et vos coûts d'exploitation futurs.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-eco.webp`,
     align: "left"
   }
@@ -87,7 +87,7 @@ const Expertises: React.FC = () => {
           <div className="flex items-center gap-6">
             <div className="w-12 h-px bg-brand-gold" />
             <p className="font-sans text-[11px] font-normal tracking-[0.3em] uppercase text-brand-gold">
-              La MaÃ®trise en Mouvement
+              La Maîtrise en Mouvement
             </p>
           </div>
         </div>

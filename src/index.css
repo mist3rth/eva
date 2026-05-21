@@ -313,12 +313,5 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  /* WebPerf: Magic Move for off-screen sections */
-  .section-under-fold,
-  section:not(#hero) {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 1000px;
-  }
 }
 

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
 import Facebook from 'lucide-react/dist/esm/icons/facebook';
@@ -37,7 +37,7 @@ export default function Communaute() {
               className="flex items-center gap-4 mb-6"
             >
               <div className="w-12 h-[1px] bg-brand-gold" />
-              <span className="text-[10px] uppercase tracking-[0.4em] text-brand-gold font-bold">CommunautÃ©</span>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-brand-gold font-bold">Communauté</span>
             </m.div>
             <h2 className="font-display text-5xl md:text-7xl font-light tracking-tight leading-[1.1] mb-6">
               L'architecture au <br/> 
@@ -45,14 +45,14 @@ export default function Communaute() {
             </h2>
           </div>
           <div className="md:text-right">
-            <p className="text-brand-text text-sm mb-2 font-medium">ActualitÃ©s & RÃ©alisations</p>
+            <p className="text-brand-text text-sm mb-2 font-medium">Actualités & Réalisations</p>
             <p className="text-brand-muted text-xs uppercase tracking-widest max-w-xs md:ml-auto">
               Coulisses, inspirations et chantiers en direct de l'agence.
             </p>
           </div>
         </div>
         
-        {/* TODO: IntÃ©gration Flux Instagram - Ce conteneur accueillera le flux dynamique */}
+        {/* TODO: Intégration Flux Instagram - Ce conteneur accueillera le flux dynamique */}
         <m.div 
           initial="hidden"
           whileInView="show"

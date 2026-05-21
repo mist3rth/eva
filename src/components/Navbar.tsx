@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 import Menu from 'lucide-react/dist/esm/icons/menu';
 import X from 'lucide-react/dist/esm/icons/x';
@@ -10,11 +10,11 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { name: 'RÃ©alisations', id: 'projets' },
+  { name: 'Réalisations', id: 'projets' },
   { name: 'Expertises', id: 'expertises' },
   { name: 'Approche', id: 'approche' },
-  { name: 'TÃ©moignages', id: 'temoignages' },
-  { name: 'CommunautÃ©', id: 'communaute' }
+  { name: 'Témoignages', id: 'temoignages' },
+  { name: 'Communauté', id: 'communaute' }
 ];
 
 const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
@@ -117,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
               EVA
             </span>
             <span className="font-sans text-[7px] md:text-[8px] tracking-[0.5em] uppercase font-light text-brand-muted mt-1.5 pl-0.5 group-hover:text-brand-gold transition-all duration-300">
-              Maitrise dâ€™Å“uvre
+              Maitrise d’œuvre
             </span>
           </a>
 

@@ -1,8 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 
 const LOGOS = [
-  'Coca-Cola', 'BNP Paribas', 'L\'OrÃ©al', 'Cheuvreux', 'TC Paris', 'Stade FranÃ§ais'
+  'Coca-Cola', 'BNP Paribas', 'L\'Oréal', 'Cheuvreux', 'TC Paris', 'Stade Français'
 ];
 
 /**
@@ -13,7 +13,7 @@ const LOGOS = [
 const References: React.FC = () => {
   return (
     <section id="references" className="pt-16 pb-12 md:pt-20 md:pb-16 border-y border-brand-accent-bg bg-[#FBFBF9] relative overflow-hidden">
-      <h2 className="sr-only">Clients et RÃ©fÃ©rences</h2>
+      <h2 className="sr-only">Clients et Références</h2>
       {/* Background Texture */}
       <div 
         className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" 
@@ -25,11 +25,11 @@ const References: React.FC = () => {
         <div className="animate-watermark whitespace-nowrap inline-block">
           <span className="text-[120px] md:text-[200px] font-display font-black tracking-[0.25em] uppercase" 
                 style={{ WebkitTextStroke: '1.5px #1A1714', color: 'transparent' }}>
-            MAITRISE D'OEUVRE â€¢ COORDINATION â€¢ RÃ‰ALISATION â€¢ CONCEPTION â€¢&nbsp;
+            MAITRISE D'OEUVRE • COORDINATION • RÉALISATION • CONCEPTION •&nbsp;
           </span>
           <span className="text-[120px] md:text-[200px] font-display font-black tracking-[0.25em] uppercase" 
                 style={{ WebkitTextStroke: '1.5px #1A1714', color: 'transparent' }}>
-            MAITRISE D'OEUVRE â€¢ COORDINATION â€¢ RÃ‰ALISATION â€¢ CONCEPTION â€¢&nbsp;
+            MAITRISE D'OEUVRE • COORDINATION • RÉALISATION • CONCEPTION •&nbsp;
           </span>
         </div>
       </div>
@@ -42,7 +42,7 @@ const References: React.FC = () => {
             viewport={{ once: true }}
             className="text-[11px] font-sans font-normal uppercase tracking-[0.4em] text-brand-gold"
           >
-            Plus de 600 rÃ©fÃ©rences, de l'habitat privÃ© aux groupes internationaux.
+            Plus de 600 références, de l'habitat privé aux groupes internationaux.
           </m.span>
         </div>
       </div>
@@ -73,7 +73,7 @@ const References: React.FC = () => {
             className="inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.25em] font-bold text-brand-text group border-b border-brand-gold/20 pb-2"
           >
             <span>Voir les cas clients</span>
-            <span className="text-brand-gold transition-transform group-hover:translate-x-1">â†’</span>
+            <span className="text-brand-gold transition-transform group-hover:translate-x-1">→</span>
           </m.a>
         </div>
       </div>

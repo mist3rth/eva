@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
 import Zap from 'lucide-react/dist/esm/icons/zap';
@@ -11,7 +11,7 @@ export const PROJECTS: Project[] = [
   {
     id: 1,
     title: "Appartement Victor Hugo",
-    category: "RÃ©sidentiel Luxe",
+    category: "Résidentiel Luxe",
     location: "Paris 16e",
     year: "2023",
     images: [
@@ -19,15 +19,15 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`,
       `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`
     ],
-    details: "RÃ©novation complÃ¨te d'un appartement de maÃ®tre. Valorisation des volumes originaux et intÃ©gration de domotique invisible.",
-    metrics: { area: "240mÂ²", duration: "8 mois", budget: "450kâ‚¬" },
+    details: "Rénovation complète d'un appartement de maître. Valorisation des volumes originaux et intégration de domotique invisible.",
+    metrics: { area: "240m²", duration: "8 mois", budget: "450k€" },
     likes: "342",
-    caption: "RÃ©novation de maÃ®tre",
-    annotation: "Volumes & LumiÃ¨re"
+    caption: "Rénovation de maître",
+    annotation: "Volumes & Lumière"
   },
   {
     id: 2,
-    title: "SiÃ¨ge Social Tech",
+    title: "Siège Social Tech",
     category: "Tertiaire",
     location: "Boulogne",
     year: "2023",
@@ -36,16 +36,16 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`,
       `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`
     ],
-    details: "AmÃ©nagement de bureaux en open-space avec focus sur l'acoustique et la lumiÃ¨re naturelle.",
-    metrics: { area: "1200mÂ²", duration: "14 mois", budget: "1.2Mâ‚¬" },
+    details: "Aménagement de bureaux en open-space avec focus sur l'acoustique et la lumière naturelle.",
+    metrics: { area: "1200m²", duration: "14 mois", budget: "1.2M€" },
     likes: "189",
     caption: "Espace de travail agile",
     annotation: "Focus Acoustique"
   },
   {
     id: 3,
-    title: "HÃ´tel Particulier Marais",
-    category: "RÃ©novation Historique",
+    title: "Hôtel Particulier Marais",
+    category: "Rénovation Historique",
     location: "Paris 4e",
     year: "2022",
     images: [
@@ -53,8 +53,8 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
     ],
-    details: "Restauration minutieuse d'un bÃ¢timent du XVIIe siÃ¨cle. Mise en conformitÃ© technique et structurelle.",
-    metrics: { area: "650mÂ²", duration: "18 mois", budget: "2.8Mâ‚¬" },
+    details: "Restauration minutieuse d'un bâtiment du XVIIe siècle. Mise en conformité technique et structurelle.",
+    metrics: { area: "650m²", duration: "18 mois", budget: "2.8M€" },
     likes: "567",
     caption: "Restauration monument historique",
     annotation: "Patrimoine XVIIe"
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
   {
     id: 4,
     title: "Villa Cap d'Antibes",
-    category: "Architecture BalnÃ©aire",
+    category: "Architecture Balnéaire",
     location: "Antibes",
     year: "2023",
     images: [
@@ -70,11 +70,11 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
     ],
-    details: "Villa contemporaine avec vue mer. Utilisation de bÃ©ton banchÃ© et de larges surfaces vitrÃ©es.",
-    metrics: { area: "450mÂ²", duration: "22 mois", budget: "3.5Mâ‚¬" },
+    details: "Villa contemporaine avec vue mer. Utilisation de béton banché et de larges surfaces vitrées.",
+    metrics: { area: "450m²", duration: "22 mois", budget: "3.5M€" },
     likes: "892",
     caption: "Transparence & Horizon",
-    annotation: "Vue Mer 180Â°"
+    annotation: "Vue Mer 180°"
   },
   {
     id: 5,
@@ -87,10 +87,10 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
     ],
-    details: "Ã‰quipement sportif basse consommation. Charpente bois apparente et toiture vÃ©gÃ©talisÃ©e.",
-    metrics: { area: "1800mÂ²", duration: "18 mois", budget: "4.2Mâ‚¬" },
+    details: "Équipement sportif basse consommation. Charpente bois apparente et toiture végétalisée.",
+    metrics: { area: "1800m²", duration: "18 mois", budget: "4.2M€" },
     likes: "124",
-    caption: "Ã‰quipement durable",
+    caption: "Équipement durable",
     annotation: "Structure Bois"
   },
   {
@@ -104,10 +104,10 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
       `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
     ],
-    details: "Concept store innovant. Mise en scÃ¨ne thÃ©Ã¢trale des produits et parcours client immersif.",
-    metrics: { area: "150mÂ²", duration: "5 mois", budget: "800kâ‚¬" },
+    details: "Concept store innovant. Mise en scène théâtrale des produits et parcours client immersif.",
+    metrics: { area: "150m²", duration: "5 mois", budget: "800k€" },
     likes: "453",
-    caption: "ExpÃ©rience immersive",
+    caption: "Expérience immersive",
     annotation: "Retail Design"
   }
 ];
@@ -131,7 +131,7 @@ const Projets: React.FC = () => {
             className="font-display text-4xl md:text-5xl font-light tracking-tight"
             id="projets-title"
           >
-            {"RÃ©alisations".split("").map((char, i) => (
+            {"Réalisations".split("").map((char, i) => (
               <m.span
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
@@ -151,11 +151,11 @@ const Projets: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mt-6 text-brand-muted font-light max-w-xl text-lg leading-relaxed"
           >
-            Une sÃ©lection de nos projets rÃ©cents
+            Une sélection de nos projets récents
           </m.p>
         </div>
 
-        {/* Featured Case Study Card - Layout Bento Ã‰clatÃ© */}
+        {/* Featured Case Study Card - Layout Bento Éclaté */}
         <m.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +183,7 @@ const Projets: React.FC = () => {
               <div>
                 <div className="flex items-center gap-3 mb-10">
                   <span className="w-6 h-px bg-brand-gold" />
-                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-gold">Ã‰tude de Cas</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-gold">Étude de Cas</span>
                 </div>
                 
                 <h3 
@@ -195,7 +195,7 @@ const Projets: React.FC = () => {
                 
                 <div className="space-y-6 mb-12">
                   <p className="font-sans text-base font-light text-brand-muted leading-relaxed">
-                    Modernisation d'un club mythique. Un dÃ©fi de haute prÃ©cision alliant performance thermique et conservation patrimoniale.
+                    Modernisation d'un club mythique. Un défi de haute précision alliant performance thermique et conservation patrimoniale.
                   </p>
                   
                   <div className="flex flex-col gap-4 pt-6 border-t border-brand-accent-bg/10">
@@ -205,13 +205,13 @@ const Projets: React.FC = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Surface</span>
-                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">5 200 mÂ²</span>
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">5 200 m²</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Status</span>
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                        <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">LivrÃ©</span>
+                        <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">Livré</span>
                       </div>
                     </div>
                   </div>
@@ -220,7 +220,7 @@ const Projets: React.FC = () => {
 
               <div className="bg-brand-accent-bg/30 p-6 border-l-2 border-brand-gold">
                 <p className="font-sans text-[11px] font-light italic text-brand-muted leading-relaxed">
-                  "Une exÃ©cution millimÃ©trÃ©e en site occupÃ©. ZÃ©ro interruption d'activitÃ© pour nos membres."
+                  "Une exécution millimétrée en site occupé. Zéro interruption d'activité pour nos membres."
                 </p>
               </div>
             </div>
@@ -244,7 +244,7 @@ const Projets: React.FC = () => {
                 webmSrc={`${import.meta.env.BASE_URL}video-tennis.webm`}
                 mp4Src={`${import.meta.env.BASE_URL}video-tennis.mp4`}
                 poster={`${import.meta.env.BASE_URL}images/poster-video-tennis.webp`}
-                title="AperÃ§u vidÃ©o du projet Tennis Club de Paris - RÃ©novation technique"
+                title="Aperçu vidéo du projet Tennis Club de Paris - Rénovation technique"
                 containerClassName="flex-1 aspect-video md:aspect-auto md:min-h-[400px] group/video"
               />
 
@@ -270,20 +270,20 @@ const Projets: React.FC = () => {
             {[
               {
                 num: '01',
-                title: 'Le DÃ©fi Technique',
-                content: 'VÃ©tustÃ© critique des installations & Urgence thermique dâ€™un site de 5000mÂ² sans interruption de lâ€™activitÃ© sportive.',
+                title: 'Le Défi Technique',
+                content: 'Vétusté critique des installations & Urgence thermique d’un site de 5000m² sans interruption de l’activité sportive.',
                 accent: 'border-l-4 border-brand-gold/20'
               },
               {
                 num: '02',
-                title: 'Lâ€™Intervention EVA',
-                content: 'Pilotage minutieux en site occupÃ© : ZÃ©ro interruption dâ€™activitÃ© pour les 2500 membres du club. Optimisation radicale de lâ€™Ã©clairage LED.',
+                title: 'L’Intervention EVA',
+                content: 'Pilotage minutieux en site occupé : Zéro interruption d’activité pour les 2500 membres du club. Optimisation radicale de l’éclairage LED.',
                 accent: 'bg-[var(--color-brand-bg)] shadow-architect-hover z-20 scale-[1.02] border-t-4 border-brand-gold'
               },
               {
                 num: '03',
                 title: 'Impact & Performance',
-                content: 'RÃ©duction immÃ©diate de 40% des coÃ»ts Ã©nergÃ©tiques et confort thermique dâ€™exception pour les membres du club.',
+                content: 'Réduction immédiate de 40% des coûts énergétiques et confort thermique d’exception pour les membres du club.',
                 accent: 'border-r-4 border-brand-gold/20'
               }
             ].map((item, idx) => (

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
 

@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { m } from 'motion/react';
 import TestimonialCard, { Testimonial } from './TestimonialCard';
 
@@ -6,18 +6,18 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     name: 'Marc Lefebvre',
-    role: 'PropriÃ©taire',
-    content: "Une rigueur technique exceptionnelle. EVA a su transformer notre appartement haussmannien en un espace contemporain tout en prÃ©servant son Ã¢me. Le suivi de chantier Ã©tait exemplaire.",
+    role: 'Propriétaire',
+    content: "Une rigueur technique exceptionnelle. EVA a su transformer notre appartement haussmannien en un espace contemporain tout en préservant son âme. Le suivi de chantier était exemplaire.",
     image: `${import.meta.env.BASE_URL}images/jean_d.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
     year: '2023',
-    project: 'RÃ©novation Foch'
+    project: 'Rénovation Foch'
   },
   {
     id: 2,
     name: 'Marie Lefebvre',
     role: 'Directrice Patrimoine',
-    content: "En tant que fonciÃ¨re, nous exigeons une prÃ©cision absolue sur les budgets et les dÃ©lais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos rÃ©habilitations complexes.",
+    content: "En tant que foncière, nous exigeons une précision absolue sur les budgets et les délais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos réhabilitations complexes.",
     image: `${import.meta.env.BASE_URL}images/marie_l.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/expertise-engineering.webp`,
     year: '2024',
@@ -26,8 +26,8 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: 3,
     name: 'Jean-Pierre Castaldi',
-    role: 'GÃ©rant, Villa Cap d\'Antibes',
-    content: "L'accompagnement d'EVA a Ã©tÃ© dÃ©terminant dans la rÃ©ussite de notre projet balnÃ©aire. Une vision architecturale forte alliÃ©e Ã  une gestion de chantier rigoureuse.",
+    role: 'Gérant, Villa Cap d\'Antibes',
+    content: "L'accompagnement d'EVA a été déterminant dans la réussite de notre projet balnéaire. Une vision architecturale forte alliée à une gestion de chantier rigoureuse.",
     image: `${import.meta.env.BASE_URL}images/pierre_m.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/villa.webp`,
     year: '2024',
@@ -42,7 +42,7 @@ const Testimonials: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise Ã  jour dynamique des contraintes de drag lors du redimensionnement
+  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
   useEffect(() => {
     const updateConstraints = () => {
       if (carouselRef.current) {
@@ -77,7 +77,7 @@ const Testimonials: React.FC = () => {
             className="text-[400px] font-display font-black leading-none tracking-tighter" 
             style={{ WebkitTextStroke: '1px var(--color-brand-text)', color: 'transparent' }}
           >
-            MAÃŽTRISE
+            MAÎTRISE
           </span>
         </m.div>
 
@@ -111,7 +111,7 @@ const Testimonials: React.FC = () => {
                 id="testimonials-title"
                 className="font-display text-4xl md:text-5xl font-light tracking-tight text-brand-text"
               >
-                {"TÃ©moignages".split("").map((char, i) => (
+                {"Témoignages".split("").map((char, i) => (
                   <m.span
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
@@ -126,12 +126,12 @@ const Testimonials: React.FC = () => {
               </m.h2>
             </div>
             <h3 className="font-display text-[38px] md:text-[60px] font-light text-brand-text leading-[1.1] mb-8 max-w-3xl">
-              La rÃ©ussite se mesure Ã  la satisfaction de nos clients.
+              La réussite se mesure à la satisfaction de nos clients.
             </h3>
             <div className="flex items-center gap-6">
               <div className="w-20 h-px bg-brand-gold" />
               <p className="font-sans text-[11px] font-normal tracking-[0.3em] uppercase text-brand-gold">
-                Plus de 600 chantiers menÃ©s avec la mÃªme rigueur technique
+                Plus de 600 chantiers menés avec la même rigueur technique
               </p>
             </div>
           </m.div>

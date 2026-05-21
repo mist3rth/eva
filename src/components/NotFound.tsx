@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
 import Compass from 'lucide-react/dist/esm/icons/compass';
@@ -25,7 +25,7 @@ const NotFound: React.FC<NotFoundProps> = ({ onBack }) => {
       <div className="absolute inset-0 z-10 opacity-10 pointer-events-none blueprint-grid-cm" />
 
       <div className="relative z-20 max-w-2xl w-full px-6 text-center">
-        {/* Viseurs (Corner Markers) avec plus de dÃ©tails techniques */}
+        {/* Viseurs (Corner Markers) avec plus de détails techniques */}
         <div className="absolute -top-12 -left-4 w-12 h-12 border-t border-l border-brand-gold/50" />
         <div className="absolute -top-12 -right-4 w-12 h-12 border-t border-r border-brand-gold/50" />
         <div className="absolute -bottom-12 -left-4 w-12 h-12 border-b border-l border-brand-gold/50" />
@@ -42,18 +42,18 @@ const NotFound: React.FC<NotFoundProps> = ({ onBack }) => {
         >
           <div className="inline-flex items-center gap-3 mb-8">
             <Compass size={20} className="text-brand-gold animate-[spin_8s_linear_infinite]" />
-            <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold">Erreur 404 â€” Hors Plan</span>
+            <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-brand-gold">Erreur 404 — Hors Plan</span>
           </div>
 
           <h1 className="font-display text-5xl md:text-8xl font-light text-white mb-6 leading-tight tracking-tight">
-            Espace <span className="text-brand-gold italic">Non BÃ¢ti</span>
+            Espace <span className="text-brand-gold italic">Non Bâti</span>
           </h1>
 
           <div className="h-px w-32 bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent mx-auto mb-10" />
 
           <p className="font-sans text-base md:text-xl text-brand-accent-bg/80 font-light leading-relaxed mb-12 max-w-lg mx-auto">
-            Le plan que vous tentez de consulter n'a pas encore Ã©tÃ© tracÃ© ou a Ã©tÃ© archivÃ©. 
-            Aucune coordonnÃ©e technique ne correspond Ã  cette requÃªte.
+            Le plan que vous tentez de consulter n'a pas encore été tracé ou a été archivé. 
+            Aucune coordonnée technique ne correspond à cette requête.
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -63,7 +63,7 @@ const NotFound: React.FC<NotFoundProps> = ({ onBack }) => {
             >
               <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform relative z-10" />
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold relative z-10">Retour Ã  l'agence</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold relative z-10">Retour à l'agence</span>
             </button>
 
             <div className="flex flex-col items-start text-left border-l border-brand-gold/30 pl-8 hidden md:block">

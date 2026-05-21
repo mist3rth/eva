@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 
 const Stats: React.FC = () => {
@@ -13,10 +13,10 @@ const Stats: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-brand-text mb-10 leading-[1.1]">
-              BÃ¢tir l'exception, <br className="hidden md:block"/> orchestrer la rigueur.
+              Bâtir l'exception, <br className="hidden md:block"/> orchestrer la rigueur.
             </h2>
             <p className="font-sans font-light text-brand-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-              BasÃ© Ã  Paris, <span className="text-brand-text font-medium">EVA MaÃ®tre d'Å“uvre</span> ne se contente pas de dessiner des espaces : nous les rÃ©alisons. De l'analyse technique Ã  la rÃ©ception de chantier, nous marions l'exigence du terrain Ã  l'Ã©motion architecturale. Chaque projet est une rÃ©ponse structurelle aux dÃ©fis de votre Ã©poque.
+              Basé à Paris, <span className="text-brand-text font-medium">EVA Maître d'œuvre</span> ne se contente pas de dessiner des espaces : nous les réalisons. De l'analyse technique à la réception de chantier, nous marions l'exigence du terrain à l'émotion architecturale. Chaque projet est une réponse structurelle aux défis de votre époque.
             </p>
           </m.div>
         </div>

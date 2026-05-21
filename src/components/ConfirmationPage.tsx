@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { m } from 'motion/react';
 
 interface ConfirmationPageProps {
@@ -206,7 +206,7 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ onBack }) => (
         transition={{ delay: 0.5, duration: 0.6 }}
         className="font-display text-4xl md:text-6xl font-light tracking-tight text-brand-text mb-8 uppercase"
       >
-        Message ReÃ§u.
+        Message Reçu.
       </m.h2>
       
       <m.p 
@@ -215,8 +215,8 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ onBack }) => (
         transition={{ delay: 0.7, duration: 0.6 }}
         className="font-sans text-brand-muted text-base md:text-lg mb-12 max-w-lg mx-auto leading-relaxed tracking-wide font-light"
       >
-        Merci de votre confiance. Votre demande a Ã©tÃ© transmise avec succÃ¨s. <br className="hidden md:block" />
-        Nous reviendrons vers vous sous 48h pour Ã©changer sur votre projet.
+        Merci de votre confiance. Votre demande a été transmise avec succès. <br className="hidden md:block" />
+        Nous reviendrons vers vous sous 48h pour échanger sur votre projet.
       </m.p>
       
       <m.button 
