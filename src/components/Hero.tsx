@@ -1,12 +1,22 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import { Button } from './ui/Button';
 
 interface HeroProps {
   onSetActiveSection: (section: string) => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
+  const { scrollY } = useScroll();
+  const [isColored, setIsColored] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 50 && !isColored) {
+      setIsColored(true);
+    }
+  });
+
   const scrollToProjects = () => {
     onSetActiveSection('projets');
     const el = document.getElementById('projets');
@@ -22,15 +32,27 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
   return (
     <section id="hero" className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-[calc(120px+env(safe-area-inset-top,20px))] md:pt-0">
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <img 
-          src={`${import.meta.env.BASE_URL}images/hero-banner-small.webp`} 
-          alt="Détail architectural - Rénovation de prestige Paris"
-          className="w-full h-full object-cover opacity-60 mix-blend-luminosity scale-110 group-hover:scale-100 transition-transform duration-[3s]"
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
-        />
+      <div className="absolute inset-0 w-full h-full bg-brand-bg">
+        <picture>
+          {/* Mobile Image (Portrait) - loaded when screen width is < 768px */}
+          <source 
+            media="(max-width: 767px)" 
+            srcSet={`${import.meta.env.BASE_URL}images/hero-banner-mobile.webp`} 
+          />
+          {/* Desktop Image (Landscape) - loaded when screen width is >= 768px */}
+          <source 
+            media="(min-width: 768px)" 
+            srcSet={`${import.meta.env.BASE_URL}images/hero-banner-small.webp`} 
+          />
+          <img 
+            src={`${import.meta.env.BASE_URL}images/hero-banner-small.webp`} 
+            alt="Détail architectural - Rénovation de prestige Paris"
+            className={`w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 ease-out ${isColored ? 'opacity-80 mix-blend-normal' : 'opacity-60 mix-blend-luminosity'}`}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         {/* Overlay gradient to ensure text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/20 via-transparent to-brand-bg/80" />
       </div>
@@ -86,17 +108,14 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-12"
         >
-          <button 
+          <Button 
+            variant="glow"
             onClick={scrollToProjects}
-            className="glow-button px-8 py-4 border border-white/30 text-white font-sans text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-brand-text transition-all duration-500 rounded-sm cursor-pointer group"
             aria-label="Découvrir nos projets réalisés"
+            className="bg-white text-brand-text md:bg-transparent md:text-white border-white/10 md:border-white/30"
           >
             VOIR LES PROJETS LIVRÉS
-            <svg className="glow-container">
-              <rect pathLength="100" strokeLinecap="round" className="glow-blur"></rect>
-              <rect pathLength="100" strokeLinecap="round" className="glow-line"></rect>
-            </svg>
-          </button>
+          </Button>
         </motion.div>
         
         <motion.div 

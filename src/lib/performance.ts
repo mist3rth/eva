@@ -16,7 +16,8 @@ export const loadNonCriticalScripts = (scripts: { src: string; id: string; async
   };
 
   if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(() => {
+    const w = window as unknown as { requestIdleCallback: (cb: () => void) => void };
+    w.requestIdleCallback(() => {
       // Small delay even after idle to be safe
       setTimeout(load, 2000);
     });

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { cn } from '../lib/utils';
 import { Home, Building2, Gem, Hotel, Sparkles } from 'lucide-react';
+import { Button } from './ui/Button';
 
 interface ContactFormProps {
   onSuccess: () => void;
@@ -321,13 +322,13 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
             <div className="pt-12 flex flex-col items-center gap-10">
               <div className="flex flex-col items-center gap-6 w-full">
-                <button 
+                <Button 
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full md:w-auto px-20 py-6 bg-brand-gold text-white text-[11px] uppercase tracking-[0.4em] font-black hover:bg-white hover:text-brand-gold transition-all duration-500 shadow-3xl disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden cursor-pointer`}
+                  variant="primary"
                 >
-                  <span className="relative z-10">{isSubmitting ? 'Envoi en cours...' : 'Lancer mon projet'}</span>
-                </button>
+                  {isSubmitting ? 'Envoi en cours...' : 'Lancer mon projet'}
+                </Button>
                 
                 <div className="text-center space-y-4">
                   {/* Mention RGPD explicite */}
