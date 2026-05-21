@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
+﻿import React, { useState, useEffect } from 'react';
+import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 import Menu from 'lucide-react/dist/esm/icons/menu';
 import X from 'lucide-react/dist/esm/icons/x';
 import { cn } from '../lib/utils';
@@ -10,11 +10,11 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { name: 'Réalisations', id: 'projets' },
+  { name: 'RÃ©alisations', id: 'projets' },
   { name: 'Expertises', id: 'expertises' },
   { name: 'Approche', id: 'approche' },
-  { name: 'Témoignages', id: 'temoignages' },
-  { name: 'Communauté', id: 'communaute' }
+  { name: 'TÃ©moignages', id: 'temoignages' },
+  { name: 'CommunautÃ©', id: 'communaute' }
 ];
 
 const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
 
   return (
     <>
-      <motion.nav 
+      <m.nav 
         variants={{
           visible: { y: 0 },
           hidden: { y: -100 },
@@ -117,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
               EVA
             </span>
             <span className="font-sans text-[7px] md:text-[8px] tracking-[0.5em] uppercase font-light text-brand-muted mt-1.5 pl-0.5 group-hover:text-brand-gold transition-all duration-300">
-              Maitrise d’œuvre
+              Maitrise dâ€™Å“uvre
             </span>
           </a>
 
@@ -140,7 +140,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
                   >
                     <span className="relative z-10">{link.name}</span>
                     {isActive && (
-                      <motion.div 
+                      <m.div 
                         layoutId="navIndicator"
                         className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-gold"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -157,7 +157,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
           <div className="flex items-center gap-2 md:hidden">
             <AnimatePresence mode="wait">
               {activeSection !== 'hero' && !mobileMenuOpen && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, x: -10, filter: 'blur(4px)' }}
                   animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, x: 10, filter: 'blur(4px)' }}
@@ -166,7 +166,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
                   <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-medium">
                     {NAV_LINKS.find(l => l.id === activeSection)?.name || activeSection}
                   </span>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
 
@@ -179,12 +179,12 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </m.nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -192,7 +192,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
             className="fixed inset-0 bg-brand-bg z-[100] md:hidden overflow-hidden overscroll-none touch-none"
           >
             {/* Main Menu Container */}
-            <motion.div
+            <m.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -224,7 +224,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
                   const isActive = activeSection === link.id || 
                                   (link.id === 'projets' && activeSection === 'references');
                   return (
-                    <motion.a 
+                    <m.a 
                       key={link.id} 
                       href={`#${link.id}`}
                       initial={{ opacity: 0, y: 20 }}
@@ -238,20 +238,20 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
                     >
                       {link.name}
                       {isActive && (
-                        <motion.div 
+                        <m.div 
                           layoutId="mobileActiveDot"
                           className="absolute -left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-brand-gold rounded-full"
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                         />
                       )}
-                    </motion.a>
+                    </m.a>
                   );
                 })}
               </div>
               
               {/* Menu Footer */}
-              <motion.div 
+              <m.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
@@ -259,9 +259,9 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
               >
                 <div className="w-12 h-[1px] bg-brand-gold/30" />
                 <span className="text-[10px] uppercase tracking-[0.5em] text-brand-muted/60 font-light">Architecture & Design</span>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </m.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

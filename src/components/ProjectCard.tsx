@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+﻿import React, { useState, useRef, useEffect } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
 export interface Project {
@@ -33,7 +33,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  // Mise Ã  jour dynamique des contraintes de drag lors du redimensionnement
   useEffect(() => {
     const updateConstraints = () => {
       if (carouselRef.current) {
@@ -51,7 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
   }, [project.images.length]);
 
   return (
-    <motion.div
+    <m.div
       layout
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -76,9 +76,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            {/* Blueprint Overlay (Millimetric Grid) */}
           <div className="blueprint-overlay" />
  
-           {/* Carousel (Framer Motion Slider pour éviter le blocage du scroll mobile) */}
+           {/* Carousel (Framer Motion Slider pour Ã©viter le blocage du scroll mobile) */}
            <div className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" ref={carouselRef}>
-             <motion.div 
+             <m.div 
                drag="x"
                dragDirectionLock
                dragConstraints={dragConstraints}
@@ -116,7 +116,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                    />
                  </div>
                ))}
-             </motion.div>
+             </m.div>
            </div>
  
            {/* Dimension Lines with Ticks (Hover Only) */}
@@ -142,7 +142,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            </div>
            <div className="flex items-center gap-2">
              <span className="text-brand-gold">PHASE_</span>
-             <span className="text-brand-text font-bold">LIVRÉ</span>
+             <span className="text-brand-text font-bold">LIVRÃ‰</span>
            </div>
          </div>
  
@@ -165,7 +165,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            <div className="grid grid-cols-3 border-t border-b border-brand-accent-bg/40 divide-x divide-brand-accent-bg/40 mb-6 bg-[var(--color-brand-accent-bg)]/5">
              {[
                { label: 'Surface', value: project.metrics.area },
-               { label: 'Durée', value: project.metrics.duration },
+               { label: 'DurÃ©e', value: project.metrics.duration },
                { label: 'Budget', value: project.metrics.budget }
              ].map((m, i) => (
                <div key={i} className="py-4 px-2 flex flex-col items-center group/metric">
@@ -184,7 +184,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
             className="w-full text-left cursor-pointer group/readmore focus-visible:ring-2 focus-visible:ring-brand-gold outline-none"
              onClick={onToggle}
             aria-expanded={isActive}
-            aria-label={isActive ? "Masquer les détails du projet" : "Voir les détails du projet"}
+            aria-label={isActive ? "Masquer les dÃ©tails du projet" : "Voir les dÃ©tails du projet"}
             aria-controls={`details-${project.id}`}
            >
              <p className="text-sm font-light text-brand-muted leading-relaxed line-clamp-2 group-hover/readmore:text-brand-text transition-colors duration-300">
@@ -193,7 +193,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
              
              <AnimatePresence>
                {isActive && (
-                 <motion.div 
+                 <m.div 
                   id={`details-${project.id}`}
                    initial={{ height: 0, opacity: 0 }}
                    animate={{ height: "auto", opacity: 1 }}
@@ -204,7 +204,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                    <p className="text-sm text-brand-muted mt-4 font-light leading-relaxed italic border-l-2 border-brand-gold/20 pl-4 py-1">
                      {project.details}
                    </p>
-                 </motion.div>
+                 </m.div>
                )}
              </AnimatePresence>
  
@@ -223,7 +223,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            </button>
          </div>
       </article>
-    </motion.div>
+    </m.div>
   );
 };
 

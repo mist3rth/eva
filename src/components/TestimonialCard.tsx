@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+﻿import React from 'react';
+import { m } from 'motion/react';
 
 export interface Testimonial {
   id: number;
@@ -26,7 +26,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   onMouseLeave
 }) => {
   return (
-    <motion.div 
+    <m.div 
       variants={{
         visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: 30 }
@@ -86,19 +86,19 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
           <div className={`pt-8 border-t border-white/10 mt-auto flex justify-between items-end`}>
             <div className="flex flex-col">
-              <span className="text-[8px] uppercase tracking-[0.2em] text-white/40 mb-1">PROJET LIVRÉ</span>
+              <span className="text-[8px] uppercase tracking-[0.2em] text-white/40 mb-1">PROJET LIVRÃ‰</span>
               <span className={`text-[10px] uppercase tracking-[0.18em] font-medium text-brand-gold ${isMobile ? 'max-w-[120px]' : 'max-w-[160px]'} leading-tight`}>{testimonial.project}</span>
             </div>
             
             {/* Validation Seal */}
             <div className={`border-[0.5px] border-brand-gold/30 -rotate-12 ${isMobile ? 'px-2 py-1' : 'px-3 py-1.5'} flex flex-col items-center opacity-40 group-hover/card:opacity-100 group-hover/card:border-brand-gold/60 transition-all duration-500`}>
-              <span className={`${isMobile ? 'text-[6px]' : 'text-[7px]'} uppercase tracking-[0.2em] text-brand-gold font-bold`}>Livré en {testimonial.year}</span>
-              <span className={`${isMobile ? 'text-[4px]' : 'text-[5px]'} uppercase tracking-[0.1em] text-white/50`}>EVA Maître d'œuvre</span>
+              <span className={`${isMobile ? 'text-[6px]' : 'text-[7px]'} uppercase tracking-[0.2em] text-brand-gold font-bold`}>LivrÃ© en {testimonial.year}</span>
+              <span className={`${isMobile ? 'text-[4px]' : 'text-[5px]'} uppercase tracking-[0.1em] text-white/50`}>EVA MaÃ®tre d'Å“uvre</span>
             </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+﻿import React from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
 interface Expertise {
@@ -16,39 +16,39 @@ const EXPERTISES: Expertise[] = [
     id: "01",
     title: "Architecture de Vie",
     subtitle: "(Concept)",
-    description: "Votre vision, magnifiée par la technique. Nous concevons des espaces singuliers qui valorisent votre patrimoine tout en respectant strictement vos habitudes de vie.",
+    description: "Votre vision, magnifiÃ©e par la technique. Nous concevons des espaces singuliers qui valorisent votre patrimoine tout en respectant strictement vos habitudes de vie.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-concept.webp`,
     align: "left"
   },
   {
     id: "02",
-    title: "Signature Esthétique",
+    title: "Signature EsthÃ©tique",
     subtitle: "(Design)",
-    description: "L’équilibre entre audace et pérennité. Choix des matières, gestion de la lumière et ergonomie : nous créons une identité visuelle forte et intemporelle pour votre bien.",
+    description: "Lâ€™Ã©quilibre entre audace et pÃ©rennitÃ©. Choix des matiÃ¨res, gestion de la lumiÃ¨re et ergonomie : nous crÃ©ons une identitÃ© visuelle forte et intemporelle pour votre bien.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-design.webp`,
     align: "right"
   },
   {
     id: "03",
-    title: "Sérénité Chantier",
-    subtitle: "(Développement)",
-    description: "Nous gérons les contraintes, vous savourez l'avancement. Maîtrise totale des budgets et des délais. 98% de nos chantiers sont livrés à la date convenue.",
+    title: "SÃ©rÃ©nitÃ© Chantier",
+    subtitle: "(DÃ©veloppement)",
+    description: "Nous gÃ©rons les contraintes, vous savourez l'avancement. MaÃ®trise totale des budgets et des dÃ©lais. 98% de nos chantiers sont livrÃ©s Ã  la date convenue.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-management.webp`,
     align: "left"
   },
   {
     id: "04",
-    title: "Ingénierie de Réalisation",
+    title: "IngÃ©nierie de RÃ©alisation",
     subtitle: "(Architecture)",
-    description: "La rigueur du trait, la solidité du bâti. Une direction de travaux sans concession pour garantir la conformité technique et la longévité de votre ouvrage.",
+    description: "La rigueur du trait, la soliditÃ© du bÃ¢ti. Une direction de travaux sans concession pour garantir la conformitÃ© technique et la longÃ©vitÃ© de votre ouvrage.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-engineering.webp`,
     align: "right"
   },
   {
     id: "05",
-    title: "Éco-Performance",
+    title: "Ã‰co-Performance",
     subtitle: "(Construction)",
-    description: "Bâtir aujourd'hui pour demain. Optimisation énergétique et matériaux biosourcés pour réduire votre empreinte carbone et vos coûts d'exploitation futurs.",
+    description: "BÃ¢tir aujourd'hui pour demain. Optimisation Ã©nergÃ©tique et matÃ©riaux biosourcÃ©s pour rÃ©duire votre empreinte carbone et vos coÃ»ts d'exploitation futurs.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-eco.webp`,
     align: "left"
   }
@@ -67,12 +67,12 @@ const Expertises: React.FC = () => {
 
       <div className="max-w-[1280px] mx-auto relative z-10">
         <div className="mb-24 md:mb-40">
-          <motion.h2 
+          <m.h2 
             id="expertises-title"
             className="font-display text-4xl md:text-6xl font-light tracking-tight text-brand-text mb-8"
           >
             {"Expertises".split("").map((char, i) => (
-              <motion.span
+              <m.span
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -81,13 +81,13 @@ const Expertises: React.FC = () => {
                 className="inline-block"
               >
                 {char}
-              </motion.span>
+              </m.span>
             ))}
-          </motion.h2>
+          </m.h2>
           <div className="flex items-center gap-6">
             <div className="w-12 h-px bg-brand-gold" />
             <p className="font-sans text-[11px] font-normal tracking-[0.3em] uppercase text-brand-gold">
-              La Maîtrise en Mouvement
+              La MaÃ®trise en Mouvement
             </p>
           </div>
         </div>
@@ -115,18 +115,18 @@ const Expertises: React.FC = () => {
                     {exp.title}
                   </h3>
                 </div>
-                <motion.div
+                <m.div
                   animate={{ rotate: expandedId === exp.id ? 45 : 0 }}
                   className="w-6 h-6 flex items-center justify-center"
                 >
                   <div className="w-4 h-[1px] bg-brand-gold" />
                   <div className="w-[1px] h-4 bg-brand-gold absolute" />
-                </motion.div>
+                </m.div>
               </button>
 
               <AnimatePresence mode="wait">
                 {expandedId === exp.id && (
-                  <motion.div
+                  <m.div
                     key="content"
                     id={`expertise-content-${exp.id}`}
                     role="region"
@@ -159,7 +159,7 @@ const Expertises: React.FC = () => {
                         {exp.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -172,7 +172,7 @@ const Expertises: React.FC = () => {
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-brand-gold/10 -translate-x-1/2 z-0" />
 
           {EXPERTISES.map((exp) => (
-            <motion.div 
+            <m.div 
               key={exp.id}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -250,7 +250,7 @@ const Expertises: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

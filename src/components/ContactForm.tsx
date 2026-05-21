@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+﻿import React, { useState } from 'react';
+import { m } from 'motion/react';
 import { cn } from '../lib/utils';
 import { Home, Building2, Gem, Hotel, Sparkles } from 'lucide-react';
 import { Button } from './ui/Button';
@@ -31,7 +31,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     const newErrors = { firstName: '', lastName: '', email: '', projectType: '', message: '' };
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'Le prénom est requis';
+      newErrors.firstName = 'Le prÃ©nom est requis';
       isValid = false;
     }
 
@@ -112,7 +112,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       onSuccess();
       setFormData({ firstName: '', lastName: '', email: '', projectType: '', message: '' });
     } catch {
-      setSubmitError('Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.');
+      setSubmitError('Une erreur est survenue. Veuillez rÃ©essayer ou nous contacter par tÃ©lÃ©phone.');
     } finally {
       setIsSubmitting(false);
     }
@@ -124,7 +124,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       <div className="absolute inset-0 z-0">
         <img 
           src={`${import.meta.env.BASE_URL}images/cta_banner_bg.webp`} 
-          alt="Atmosphère de chantier architectural"
+          alt="AtmosphÃ¨re de chantier architectural"
           loading="lazy"
           decoding="async"
           className="w-full h-full object-cover opacity-20 mix-blend-overlay scale-105 group-hover:scale-100 transition-transform duration-[10s]"
@@ -149,26 +149,26 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6">
         <div className="text-center mb-16 md:mb-24">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="font-display text-4xl md:text-6xl font-light tracking-tight mb-8 text-white leading-tight"
           >
-            Donnez vie à votre ambition architecturale.
-          </motion.h2>
-          <motion.p 
+            Donnez vie Ã  votre ambition architecturale.
+          </m.h2>
+          <m.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="text-brand-gold font-sans text-xs md:text-sm uppercase tracking-[0.3em] font-medium"
           >
-            Réponse sous 48h. Analyse personnalisée de votre projet par notre bureau d'étude.
-          </motion.p>
+            RÃ©ponse sous 48h. Analyse personnalisÃ©e de votre projet par notre bureau d'Ã©tude.
+          </m.p>
         </div>
 
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -182,7 +182,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-3">
-                <label htmlFor="firstName" className="text-[10px] uppercase tracking-[0.3em] text-white/50 ml-0.5 font-bold">Prénom <span className="text-brand-gold">*</span></label>
+                <label htmlFor="firstName" className="text-[10px] uppercase tracking-[0.3em] text-white/50 ml-0.5 font-bold">PrÃ©nom <span className="text-brand-gold">*</span></label>
                 <input 
                   id="firstName"
                   type="text" 
@@ -239,7 +239,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
               <label className="text-[10px] uppercase tracking-[0.3em] text-white/50 ml-0.5 font-bold">Type de projet <span className="text-brand-gold">*</span></label>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                 {[
-                  { id: 'residentiel', label: 'Résidentiel', icon: Home },
+                  { id: 'residentiel', label: 'RÃ©sidentiel', icon: Home },
                   { id: 'tertiaire', label: 'Tertiaire', icon: Building2 },
                   { id: 'retail', label: 'Retail Luxe', icon: Gem },
                   { id: 'hospitality', label: 'Hospitality', icon: Hotel },
@@ -254,7 +254,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                         setFormData({...formData, projectType: type.id});
                         if (errors.projectType) setErrors({...errors, projectType: ''});
                       }}
-                      aria-label={`Sélectionner le type de projet : ${type.label}`}
+                      aria-label={`SÃ©lectionner le type de projet : ${type.label}`}
                       aria-pressed={formData.projectType === type.id}
                       className={cn(
                         "flex flex-col items-center justify-center p-6 border rounded-sm transition-all duration-700 gap-4 group/item cursor-pointer relative overflow-hidden",
@@ -315,7 +315,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                 aria-invalid={errors.message ? "true" : "false"}
                 aria-describedby={errors.message ? "message-error" : undefined}
                 className={`w-full bg-white/5 border-b ${errors.message ? 'border-red-500' : 'border-white/10'} py-5 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white resize-none placeholder:text-white/40 text-lg`}
-                placeholder="Quels sont vos objectifs et vos contraintes (budget, délais, lieu) ?"
+                placeholder="Quels sont vos objectifs et vos contraintes (budget, dÃ©lais, lieu) ?"
               />
               {errors.message && <span id="message-error" className="text-[10px] text-red-500 ml-0.5 font-light">{errors.message}</span>}
             </div>
@@ -333,9 +333,9 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                 <div className="text-center space-y-4">
                   {/* Mention RGPD explicite */}
                   <p className="text-[10px] text-white/40 font-light tracking-wide max-w-sm mx-auto leading-relaxed">
-                    Conformément au RGPD, vos données (prénom, nom, email, message) sont collectées uniquement
-                    pour le traitement de votre demande. Elles ne sont pas transmises à des tiers.
-                    <br />Durée de conservation : 3 ans. Droit d'accès, rectification et suppression sur demande à{' '}
+                    ConformÃ©ment au RGPD, vos donnÃ©es (prÃ©nom, nom, email, message) sont collectÃ©es uniquement
+                    pour le traitement de votre demande. Elles ne sont pas transmises Ã  des tiers.
+                    <br />DurÃ©e de conservation : 3 ans. Droit d'accÃ¨s, rectification et suppression sur demande Ã {' '}
                     <a href="mailto:contact@eva-fr.com" className="text-brand-gold/70 hover:text-brand-gold transition-colors">
                       contact@eva-fr.com
                     </a>
@@ -343,15 +343,15 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                   
                   <div className="pt-4 border-t border-white/5">
                     <p className="text-[11px] text-white/60 font-sans tracking-widest uppercase">
-                      Besoin d'une réponse immédiate ? <a href="tel:+33620160905" className="text-brand-gold hover:underline transition-all font-bold">+33 (0)6 20 16 09 05</a>
+                      Besoin d'une rÃ©ponse immÃ©diate ? <a href="tel:+33620160905" className="text-brand-gold hover:underline transition-all font-bold">+33 (0)6 20 16 09 05</a>
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Message d'erreur réseau */}
+              {/* Message d'erreur rÃ©seau */}
               {submitError && (
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   role="alert"
@@ -361,11 +361,11 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                   <p className="text-red-400 text-xs font-medium tracking-widest uppercase">
                     {submitError}
                   </p>
-                </motion.div>
+                </m.div>
               )}
             </div>
           </form>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

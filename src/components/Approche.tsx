@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+﻿import React from 'react';
+import { m } from 'motion/react';
 import Eye from 'lucide-react/dist/esm/icons/eye';
 import Ruler from 'lucide-react/dist/esm/icons/ruler';
 import Compass from 'lucide-react/dist/esm/icons/compass';
@@ -9,7 +9,7 @@ import { useRef, useEffect, useState } from 'react';
 const PILLARS = [
   { label: 'Vision', sub: 'Anticipation', icon: Eye },
   { label: 'Rigueur', sub: 'Excellence', icon: Ruler },
-  { label: 'Sur-mesure', sub: 'Singularité', icon: Compass }
+  { label: 'Sur-mesure', sub: 'SingularitÃ©', icon: Compass }
 ];
 
 const Approche: React.FC = () => {
@@ -19,7 +19,7 @@ const Approche: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  // Mise Ã  jour dynamique des contraintes de drag lors du redimensionnement
   useEffect(() => {
     const updateConstraints = () => {
       if (carouselRef.current) {
@@ -49,7 +49,7 @@ const Approche: React.FC = () => {
           
           {/* Title Section (Visual only on mobile to avoid H2 duplication) */}
           <div className="w-full mb-8 md:hidden">
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -58,7 +58,7 @@ const Approche: React.FC = () => {
               className="font-display text-4xl font-light tracking-tight text-brand-text"
             >
               Mon approche
-            </motion.div>
+            </m.div>
             <div className="w-12 h-px bg-brand-gold mt-4" />
           </div>
 
@@ -66,7 +66,7 @@ const Approche: React.FC = () => {
           <div className="w-full md:w-5/12 aspect-[4/5] md:aspect-[3.5/5] bg-brand-accent-bg overflow-hidden group shadow-2xl relative">
             <img 
               src={`${import.meta.env.BASE_URL}assets/images/regenerated_image_1778143930021.webp`} 
-              alt="Réda Lahlou - Maître d'œuvre"
+              alt="RÃ©da Lahlou - MaÃ®tre d'Å“uvre"
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover grayscale transition-all duration-1000 ease-out group-hover:scale-105 group-hover:grayscale-0"
@@ -81,7 +81,7 @@ const Approche: React.FC = () => {
 
           {/* Text Content Column (Overlapping on Desktop) */}
           <div className="w-full md:w-8/12 md:-ml-24 md:mt-24 z-20">
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -94,26 +94,26 @@ const Approche: React.FC = () => {
               </div>
 
               <h3 className="font-display text-2xl md:text-3xl text-brand-text mb-8 leading-tight font-light">
-                Réda Lahlou : Bâtir l'exception, orchestrer la rigueur.
+                RÃ©da Lahlou : BÃ¢tir l'exception, orchestrer la rigueur.
               </h3>
               
               <div className="space-y-6 font-sans text-brand-muted font-light leading-relaxed text-lg mb-12">
                 <p>
-                  Depuis 30 ans, je transforme vos aspirations en volumes et en lumière. De la renaissance d'hôtels particuliers aux sièges sociaux internationaux, je m'engage sur un résultat où la vision stratégique rencontre une exécution millimétrée.
+                  Depuis 30 ans, je transforme vos aspirations en volumes et en lumiÃ¨re. De la renaissance d'hÃ´tels particuliers aux siÃ¨ges sociaux internationaux, je m'engage sur un rÃ©sultat oÃ¹ la vision stratÃ©gique rencontre une exÃ©cution millimÃ©trÃ©e.
                 </p>
                 <p>
-                  Mon approche est guidée par trois piliers fondamentaux qui assurent la cohérence de chaque projet, de la première esquisse à la livraison finale.
+                  Mon approche est guidÃ©e par trois piliers fondamentaux qui assurent la cohÃ©rence de chaque projet, de la premiÃ¨re esquisse Ã  la livraison finale.
                 </p>
                 <div className="pt-4">
-                  <p className="font-signature text-4xl text-brand-text opacity-80">Réda Lahlou</p>
+                  <p className="font-signature text-4xl text-brand-text opacity-80">RÃ©da Lahlou</p>
                 </div>
               </div>
 
               {/* The Three Pillars: Carousel on Mobile, Grid on Desktop */}
               <div className="relative pt-4 border-t border-brand-accent-bg mb-12">
-                {/* Mobile Slider (Framer Motion Slider pour éviter le blocage du scroll) */}
+                {/* Mobile Slider (Framer Motion Slider pour Ã©viter le blocage du scroll) */}
                 <div className="md:hidden overflow-hidden relative" ref={carouselRef}>
-                  <motion.div 
+                  <m.div 
                     drag="x"
                     dragDirectionLock
                     dragConstraints={dragConstraints}
@@ -161,7 +161,7 @@ const Approche: React.FC = () => {
                         </p>
                       </div>
                     ))}
-                  </motion.div>
+                  </m.div>
                   
                   {/* Progress Indicators (Dots) */}
                   <div className="flex justify-center gap-4 mt-8">
@@ -184,7 +184,7 @@ const Approche: React.FC = () => {
                 {/* Desktop Grid (Existing) */}
                 <div className="hidden md:grid grid-cols-3 gap-8">
                   {PILLARS.map((pillar) => (
-                    <motion.div 
+                    <m.div 
                       key={pillar.label}
                       whileHover={{ y: -5 }}
                       className="flex flex-col items-center text-center group"
@@ -194,21 +194,21 @@ const Approche: React.FC = () => {
                       </div>
                       <h4 className="text-brand-text text-[11px] font-bold uppercase tracking-[0.2em] mb-1">{pillar.label}</h4>
                       <p className="text-[9px] uppercase tracking-widest text-brand-gold/70">{pillar.sub}</p>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
               </div>
 
-              <motion.a 
+              <m.a 
                 href="#contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center justify-center w-full md:w-auto px-10 py-5 bg-brand-text text-white text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-brand-gold transition-colors duration-500 shadow-xl"
               >
-                Échanger sur votre projet
-              </motion.a>
+                Ã‰changer sur votre projet
+              </m.a>
 
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

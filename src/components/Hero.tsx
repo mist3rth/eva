@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+﻿import React, { useState } from 'react';
+import { m, useScroll, useMotionValueEvent } from 'motion/react';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
 import { Button } from './ui/Button';
 
@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           />
           <img 
             src={`${import.meta.env.BASE_URL}images/hero-banner-small.webp`} 
-            alt="Détail architectural - Rénovation de prestige Paris"
+            alt="DÃ©tail architectural - RÃ©novation de prestige Paris"
             className={`w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 ease-out ${isColored ? 'opacity-80 mix-blend-normal' : 'opacity-60 mix-blend-luminosity'}`}
             fetchPriority="high"
             loading="eager"
@@ -59,12 +59,12 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
       <div className="absolute inset-0 bg-brand-text/25" />
       
       <div className="relative z-10 text-center px-6">
-        <motion.div
+        <m.div
           initial="hidden"
           animate="visible"
           className="flex flex-col items-center"
         >
-          <motion.h1 
+          <m.h1 
             className="font-display text-white text-4xl md:text-8xl font-light tracking-tight max-w-5xl mx-auto leading-tight mt-12 md:mt-0"
             initial="hidden"
             animate="visible"
@@ -72,9 +72,9 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
               visible: { transition: { staggerChildren: 0.08 } }
             }}
           >
-            {"L'art de bâtir, la discipline de diriger.".split(" ").map((word, i) => (
+            {"L'art de bÃ¢tir, la discipline de diriger.".split(" ").map((word, i) => (
               <span key={i} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
-                <motion.span
+                <m.span
                   className="inline-block"
                   variants={{
                     hidden: { y: "100%" },
@@ -87,22 +87,22 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
                 >
                   {word}
                   {i === 2 ? <br className="hidden md:block" /> : null}
-                </motion.span>
+                </m.span>
               </span>
             ))}
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
             className="mt-8 text-white/70 font-sans text-[10px] md:text-xs uppercase tracking-[0.4em] max-w-2xl mx-auto leading-relaxed"
           >
-            L'expertise de la maîtrise d'œuvre haut de gamme <br className="hidden md:block" /> pour vos actifs résidentiels et tertiaires.
-          </motion.p>
-        </motion.div>
+            L'expertise de la maÃ®trise d'Å“uvre haut de gamme <br className="hidden md:block" /> pour vos actifs rÃ©sidentiels et tertiaires.
+          </m.p>
+        </m.div>
         
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
@@ -111,22 +111,22 @@ const Hero: React.FC<HeroProps> = ({ onSetActiveSection }) => {
           <Button 
             variant="glow"
             onClick={scrollToProjects}
-            aria-label="Découvrir nos projets réalisés"
+            aria-label="DÃ©couvrir nos projets rÃ©alisÃ©s"
             className="bg-white text-brand-text md:bg-transparent md:text-white border-white/10 md:border-white/30"
           >
-            VOIR LES PROJETS LIVRÉS
+            VOIR LES PROJETS LIVRÃ‰S
           </Button>
-        </motion.div>
+        </m.div>
         
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
           className="flex flex-col items-center text-white/60 gap-3 mt-[150px] mx-auto md:hidden"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em]">Découvrez nous</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">DÃ©couvrez nous</span>
           <ArrowDown size={20} className="animate-bounce" aria-hidden="true" />
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

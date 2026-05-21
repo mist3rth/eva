@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+﻿import React from 'react';
+import { m } from 'motion/react';
 import { cn } from '../../lib/utils';
 
 interface BlueprintOverlayProps {
@@ -25,7 +25,7 @@ export function BlueprintOverlay({
       preserveAspectRatio="none"
     >
       {/* Dynamic technical lines */}
-      <motion.path 
+      <m.path 
         initial={{ pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -36,7 +36,7 @@ export function BlueprintOverlay({
         strokeDasharray="2 1" 
         className="text-brand-gold/60" 
       />
-      <motion.path 
+      <m.path 
         initial={{ pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
         d="M0,30 L100,30 M0,70 L100,70 M30,0 L30,100 M70,0 L70,100" 

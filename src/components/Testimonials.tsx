@@ -1,23 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
+﻿import React, { useState, useRef, useEffect } from 'react';
+import { m } from 'motion/react';
 import TestimonialCard, { Testimonial } from './TestimonialCard';
 
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     name: 'Marc Lefebvre',
-    role: 'Propriétaire',
-    content: "Une rigueur technique exceptionnelle. EVA a su transformer notre appartement haussmannien en un espace contemporain tout en préservant son âme. Le suivi de chantier était exemplaire.",
+    role: 'PropriÃ©taire',
+    content: "Une rigueur technique exceptionnelle. EVA a su transformer notre appartement haussmannien en un espace contemporain tout en prÃ©servant son Ã¢me. Le suivi de chantier Ã©tait exemplaire.",
     image: `${import.meta.env.BASE_URL}images/jean_d.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
     year: '2023',
-    project: 'Rénovation Foch'
+    project: 'RÃ©novation Foch'
   },
   {
     id: 2,
     name: 'Marie Lefebvre',
     role: 'Directrice Patrimoine',
-    content: "En tant que foncière, nous exigeons une précision absolue sur les budgets et les délais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos réhabilitations complexes.",
+    content: "En tant que fonciÃ¨re, nous exigeons une prÃ©cision absolue sur les budgets et les dÃ©lais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos rÃ©habilitations complexes.",
     image: `${import.meta.env.BASE_URL}images/marie_l.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/expertise-engineering.webp`,
     year: '2024',
@@ -26,8 +26,8 @@ const TESTIMONIALS: Testimonial[] = [
   {
     id: 3,
     name: 'Jean-Pierre Castaldi',
-    role: 'Gérant, Villa Cap d\'Antibes',
-    content: "L'accompagnement d'EVA a été déterminant dans la réussite de notre projet balnéaire. Une vision architecturale forte alliée à une gestion de chantier rigoureuse.",
+    role: 'GÃ©rant, Villa Cap d\'Antibes',
+    content: "L'accompagnement d'EVA a Ã©tÃ© dÃ©terminant dans la rÃ©ussite de notre projet balnÃ©aire. Une vision architecturale forte alliÃ©e Ã  une gestion de chantier rigoureuse.",
     image: `${import.meta.env.BASE_URL}images/pierre_m.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/villa.webp`,
     year: '2024',
@@ -42,7 +42,7 @@ const Testimonials: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  // Mise Ã  jour dynamique des contraintes de drag lors du redimensionnement
   useEffect(() => {
     const updateConstraints = () => {
       if (carouselRef.current) {
@@ -65,7 +65,7 @@ const Testimonials: React.FC = () => {
       {/* Background Layers */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         {/* Typographic Watermark */}
-        <motion.div 
+        <m.div 
           animate={{ 
             opacity: hoveredProject !== null ? 0.06 : 0.03,
             scale: hoveredProject !== null ? 1.05 : 1
@@ -77,9 +77,9 @@ const Testimonials: React.FC = () => {
             className="text-[400px] font-display font-black leading-none tracking-tighter" 
             style={{ WebkitTextStroke: '1px var(--color-brand-text)', color: 'transparent' }}
           >
-            MAÎTRISE
+            MAÃŽTRISE
           </span>
-        </motion.div>
+        </m.div>
 
         {/* Wireframe Schema */}
         <div className="absolute top-[-10%] left-[-5%] w-[700px] h-[700px] opacity-[0.05] -rotate-12">
@@ -96,14 +96,14 @@ const Testimonials: React.FC = () => {
       
       <div className="max-w-[1280px] mx-auto relative z-10">
         <div className="mb-24">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div className="mb-12">
-              <motion.h2 
+              <m.h2 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -111,8 +111,8 @@ const Testimonials: React.FC = () => {
                 id="testimonials-title"
                 className="font-display text-4xl md:text-5xl font-light tracking-tight text-brand-text"
               >
-                {"Témoignages".split("").map((char, i) => (
-                  <motion.span
+                {"TÃ©moignages".split("").map((char, i) => (
+                  <m.span
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -121,25 +121,25 @@ const Testimonials: React.FC = () => {
                     className="inline-block"
                   >
                     {char}
-                  </motion.span>
+                  </m.span>
                 ))}
-              </motion.h2>
+              </m.h2>
             </div>
             <h3 className="font-display text-[38px] md:text-[60px] font-light text-brand-text leading-[1.1] mb-8 max-w-3xl">
-              La réussite se mesure à la satisfaction de nos clients.
+              La rÃ©ussite se mesure Ã  la satisfaction de nos clients.
             </h3>
             <div className="flex items-center gap-6">
               <div className="w-20 h-px bg-brand-gold" />
               <p className="font-sans text-[11px] font-normal tracking-[0.3em] uppercase text-brand-gold">
-                Plus de 600 chantiers menés avec la même rigueur technique
+                Plus de 600 chantiers menÃ©s avec la mÃªme rigueur technique
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         <div className="relative">
           {/* Desktop Grid */}
-          <motion.div 
+          <m.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -157,7 +157,7 @@ const Testimonials: React.FC = () => {
                 onMouseLeave={() => setHoveredProject(null)}
               />
             ))}
-          </motion.div>
+          </m.div>
 
           {/* Mobile Carousel */}
           <div className="md:hidden">
@@ -172,7 +172,7 @@ const Testimonials: React.FC = () => {
                 </span>
               </div>
               <div className="w-full h-[1px] bg-brand-gold/10 relative overflow-hidden">
-                <motion.div 
+                <m.div 
                   initial={{ width: "0%" }}
                   animate={{ width: `${((testimonialIndex + 1) / TESTIMONIALS.length) * 100}%` }}
                   className="absolute inset-y-0 left-0 bg-brand-gold/60"
@@ -183,7 +183,7 @@ const Testimonials: React.FC = () => {
 
             {/* Framer Motion Drag Carousel */}
             <div className="relative -mx-6 px-6 overflow-hidden" ref={carouselRef}>
-              <motion.div 
+              <m.div 
                 drag="x"
                 dragDirectionLock
                 dragConstraints={dragConstraints}
@@ -215,7 +215,7 @@ const Testimonials: React.FC = () => {
                     <TestimonialCard testimonial={testimonial} isMobile />
                   </div>
                 ))}
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Visual Navigation Hint */}

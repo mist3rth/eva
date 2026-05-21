@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+﻿import React, { useState, useEffect } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
 
 export function ScrollToTop() {
@@ -31,7 +31,7 @@ export function ScrollToTop() {
   return (
     <AnimatePresence>
       {showScrollTop && (
-        <motion.button
+        <m.button
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
@@ -43,7 +43,7 @@ export function ScrollToTop() {
         >
           <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           <ArrowUp size={20} className="relative z-10" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

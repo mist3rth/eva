@@ -1,6 +1,6 @@
-// 1. Libraries
+﻿// 1. Libraries
 import React, { useState, useEffect, Suspense, lazy, useMemo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 
 // 2. Components
 import Navbar from './components/Navbar';
@@ -38,7 +38,7 @@ const App: React.FC = () => {
   const [legalView, setLegalView] = useState<'mentions' | 'privacy' | null>(null);
 
   useEffect(() => {
-    // Chargement différé des scripts non-critiques (Analytics, etc.)
+    // Chargement diffÃ©rÃ© des scripts non-critiques (Analytics, etc.)
     loadNonCriticalScripts([]);
 
     let throttleTimeout: ReturnType<typeof setTimeout> | null = null;

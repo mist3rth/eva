@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+﻿import React from 'react';
+import { m } from 'motion/react';
 import { Linkedin, Facebook, Instagram, ExternalLink } from 'lucide-react';
 
 interface FooterProps {
@@ -16,7 +16,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
       <div className="max-w-[1280px] mx-auto px-[5vw] md:pr-[120px] relative z-10">
         {/* Top CTA Row */}
         <div className="mb-24 md:mb-32">
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -25,18 +25,18 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
             <div className="max-w-xl">
               <span className="text-brand-gold font-sans text-xs uppercase tracking-[0.4em] mb-6 block">Perspective</span>
               <h2 className="font-display text-3xl md:text-5xl font-light tracking-tight leading-tight">
-                Un projet à Paris ou en IDF ? Échangeons sur vos ambitions.
+                Un projet Ã  Paris ou en IDF ? Ã‰changeons sur vos ambitions.
               </h2>
             </div>
-            <motion.a 
+            <m.a 
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center justify-center px-10 py-5 bg-black text-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-gold transition-colors duration-500 shadow-2xl"
             >
               Engager la discussion
-            </motion.a>
-          </motion.div>
+            </m.a>
+          </m.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-10 gap-16 md:gap-8 mb-24">
@@ -44,12 +44,12 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
           <div className="md:col-span-4 flex flex-col items-start">
             <div className="flex flex-col items-start group cursor-pointer mb-10" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <span className="font-display text-5xl md:text-7xl tracking-[0.25em] font-extralight uppercase leading-none group-hover:text-brand-gold transition-colors duration-300">EVA</span>
-              <span className="font-sans text-[11px] md:text-[13px] tracking-[0.6em] uppercase font-light text-brand-gold mt-4 pl-0.5">Maitrise d’œuvre</span>
+              <span className="font-sans text-[11px] md:text-[13px] tracking-[0.6em] uppercase font-light text-brand-gold mt-4 pl-0.5">Maitrise dâ€™Å“uvre</span>
             </div>
             
             <div className="space-y-6">
               <div>
-                <h4 className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-text font-bold mb-3">Siège Social</h4>
+                <h4 className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-text font-bold mb-3">SiÃ¨ge Social</h4>
                 <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-brand-muted leading-relaxed max-w-[240px] opacity-80">
                   17 rue de la Banque<br />
                   75002 Paris
@@ -60,20 +60,20 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
                   rel="noopener noreferrer"
                   className="inline-block mt-4 text-[9px] uppercase tracking-widest text-brand-gold border-b border-brand-gold/30 pb-0.5 hover:border-brand-gold transition-colors"
                 >
-                  Itinéraire →
+                  ItinÃ©raire â†’
                 </a>
               </div>
               
-              {/* Assurance Décennale Badge */}
+              {/* Assurance DÃ©cennale Badge */}
               <div className="pt-6 flex items-center gap-4">
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/images/Smabtp.webp`} 
-                  alt="Partenaire SMABTP - Assurance Décennale"
+                  alt="Partenaire SMABTP - Assurance DÃ©cennale"
                   className="h-10 w-auto opacity-30 grayscale brightness-200 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                 />
                 <div className="flex flex-col">
                   <span className="text-[9px] font-sans font-bold uppercase tracking-[0.2em] text-brand-text">Garantie</span>
-                  <span className="text-[9px] font-sans font-bold uppercase tracking-[0.2em] text-brand-text">Décennale</span>
+                  <span className="text-[9px] font-sans font-bold uppercase tracking-[0.2em] text-brand-text">DÃ©cennale</span>
                 </div>
               </div>
             </div>
@@ -84,10 +84,10 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
             <h4 className="font-sans text-[10px] tracking-[0.3em] uppercase text-brand-text font-bold mb-8">Navigation</h4>
             <nav className="flex flex-col gap-5">
               {[
-                { name: 'Réalisations', id: 'projets' },
+                { name: 'RÃ©alisations', id: 'projets' },
                 { name: 'Expertises', id: 'expertises' },
                 { name: 'Approche', id: 'approche' },
-                { name: 'Témoignages', id: 'temoignages' }
+                { name: 'TÃ©moignages', id: 'temoignages' }
               ].map(link => (
                 <a 
                   key={link.name} 
@@ -123,7 +123,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
               </a>
               
               <div className="pt-8">
-                <span className="text-[9px] uppercase tracking-[0.3em] text-brand-muted/50 mb-4 block">Réseaux Sociaux</span>
+                <span className="text-[9px] uppercase tracking-[0.3em] text-brand-muted/50 mb-4 block">RÃ©seaux Sociaux</span>
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-4">
                     {[
@@ -154,8 +154,8 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
         
         <div className="pt-12 border-t border-brand-accent-bg/40 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-brand-muted/80 text-center md:text-left flex flex-wrap justify-center md:justify-start items-center gap-1">
-            © {new Date().getFullYear()} EVA Maitrise d’œuvre — 
-            <button onClick={() => setLegalView('privacy')} className="hover:text-brand-gold transition-colors cursor-pointer uppercase">Privacy by design</button> — 
+            Â© {new Date().getFullYear()} EVA Maitrise dâ€™Å“uvre â€” 
+            <button onClick={() => setLegalView('privacy')} className="hover:text-brand-gold transition-colors cursor-pointer uppercase">Privacy by design</button> â€” 
             <a 
               href="https://mist3rth.github.io/presentMe/" 
               target="_blank" 
@@ -174,9 +174,9 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
                 setLegalView('mentions');
               }}
               className="font-sans text-[9px] uppercase tracking-[0.3em] text-brand-muted/60 hover:text-brand-gold transition-colors cursor-pointer"
-              aria-label="Voir les mentions légales"
+              aria-label="Voir les mentions lÃ©gales"
             >
-              Mentions Légales
+              Mentions LÃ©gales
             </button>
             <button 
               type="button"
@@ -186,9 +186,9 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
                 setLegalView('privacy');
               }}
               className="font-sans text-[9px] uppercase tracking-[0.3em] text-brand-muted/60 hover:text-brand-gold transition-colors cursor-pointer"
-              aria-label="Voir la politique de confidentialité"
+              aria-label="Voir la politique de confidentialitÃ©"
             >
-              Confidentialité
+              ConfidentialitÃ©
             </button>
           </div>
         </div>
