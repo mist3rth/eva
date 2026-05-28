@@ -30,8 +30,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [showSwipeHint, setShowSwipeHint] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('hasSeenSwipeHint');
+    }
+    return true;
+  });
+
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const lastWheelTime = useRef(0);
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobileDevice(
+        window.innerWidth < 768 || 
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0
+      );
+    };
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   // Mise à jour dynamique des contraintes de drag lors du redimensionnement
   useEffect(() => {
@@ -49,6 +72,41 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
     window.addEventListener('resize', updateConstraints);
     return () => window.removeEventListener('resize', updateConstraints);
   }, [project.images.length]);
+
+  // Gestion de la molette et du swipe trackpad sur Desktop
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (isMobileDevice) return;
+
+    const deltaX = e.deltaX;
+    const deltaY = e.deltaY;
+    const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+
+    if (Math.abs(delta) < 20) return;
+
+    const now = Date.now();
+    if (now - lastWheelTime.current < 600) return;
+
+    if (delta > 0 && carouselIndex < project.images.length - 1) {
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        e.preventDefault();
+      }
+      setCarouselIndex(prev => prev + 1);
+      lastWheelTime.current = now;
+    } else if (delta < 0 && carouselIndex > 0) {
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        e.preventDefault();
+      }
+      setCarouselIndex(prev => prev - 1);
+      lastWheelTime.current = now;
+    }
+  };
+
+  const handleAnimationComplete = () => {
+    setShowSwipeHint(false);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('hasSeenSwipeHint', 'true');
+    }
+  };
 
   return (
     <m.div
@@ -76,10 +134,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            {/* Blueprint Overlay (Millimetric Grid) */}
           <div className="blueprint-overlay" />
  
+          {/* Onboarding Swipe Hint */}
+          <AnimatePresence>
+            {isMobileDevice && carouselIndex === 0 && showSwipeHint && (
+              <m.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 1, 0] }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 3, times: [0, 0.15, 0.85, 1], ease: "easeInOut" }}
+                onAnimationComplete={handleAnimationComplete}
+                className="absolute inset-0 bg-brand-text/30 backdrop-blur-[2px] z-30 flex flex-col items-center justify-center pointer-events-none"
+              >
+                <m.div 
+                  animate={{ x: [-15, 15, -15] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="text-brand-gold mb-2"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M9 18l6-6-6-6" />
+                    <path d="M5 18l6-6-6-6" opacity="0.5" />
+                  </svg>
+                </m.div>
+                <span className="text-[9px] text-white uppercase tracking-[0.3em] font-mono">Glisser pour voir</span>
+              </m.div>
+            )}
+          </AnimatePresence>
+
            {/* Carousel (Framer Motion Slider pour éviter le blocage du scroll mobile) */}
-           <div className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" ref={carouselRef}>
+           <div 
+             className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" 
+             ref={carouselRef}
+             onWheel={handleWheel}
+           >
              <m.div 
-               drag="x"
+               drag={isMobileDevice ? "x" : false}
                dragDirectionLock
                dragConstraints={dragConstraints}
                dragElastic={0.1}

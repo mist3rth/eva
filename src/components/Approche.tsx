@@ -1,5 +1,5 @@
 import React from 'react';
-import { m } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import Eye from 'lucide-react/dist/esm/icons/eye';
 import Ruler from 'lucide-react/dist/esm/icons/ruler';
 import Compass from 'lucide-react/dist/esm/icons/compass';
@@ -16,6 +16,12 @@ const Approche: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [showSwipeHint, setShowSwipeHint] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('hasSeenApprocheSwipeHint');
+    }
+    return true;
+  });
   const containerRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -113,6 +119,36 @@ const Approche: React.FC = () => {
               <div className="relative pt-4 border-t border-brand-accent-bg mb-12">
                 {/* Mobile Slider (Framer Motion Slider pour éviter le blocage du scroll) */}
                 <div className="md:hidden overflow-hidden relative" ref={carouselRef}>
+                  <AnimatePresence>
+                    {activeIndex === 0 && showSwipeHint && (
+                      <m.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 1, 1, 0] }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 3, times: [0, 0.15, 0.85, 1], ease: "easeInOut" }}
+                        onAnimationComplete={() => {
+                          setShowSwipeHint(false);
+                          if (typeof window !== 'undefined') {
+                            sessionStorage.setItem('hasSeenApprocheSwipeHint', 'true');
+                          }
+                        }}
+                        className="absolute inset-0 bg-brand-text/5 backdrop-blur-[1px] z-30 flex flex-col items-center justify-center pointer-events-none rounded-lg"
+                      >
+                        <m.div 
+                          animate={{ x: [-15, 15, -15] }}
+                          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                          className="text-brand-gold mb-2"
+                        >
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M9 18l6-6-6-6" />
+                            <path d="M5 18l6-6-6-6" opacity="0.5" />
+                          </svg>
+                        </m.div>
+                        <span className="text-[9px] text-brand-text uppercase tracking-[0.3em] font-mono">Glisser pour explorer</span>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+
                   <m.div 
                     drag="x"
                     dragDirectionLock

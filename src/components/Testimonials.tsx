@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { m } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import TestimonialCard, { Testimonial } from './TestimonialCard';
 
 const TESTIMONIALS: Testimonial[] = [
@@ -40,6 +40,12 @@ const Testimonials: React.FC = () => {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [showSwipeHint, setShowSwipeHint] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('hasSeenTestimonialsSwipeHint');
+    }
+    return true;
+  });
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Mise à jour dynamique des contraintes de drag lors du redimensionnement
@@ -183,6 +189,36 @@ const Testimonials: React.FC = () => {
 
             {/* Framer Motion Drag Carousel */}
             <div className="relative -mx-6 px-6 overflow-hidden" ref={carouselRef}>
+              <AnimatePresence>
+                {testimonialIndex === 0 && showSwipeHint && (
+                  <m.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 1, 0] }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 3, times: [0, 0.15, 0.85, 1], ease: "easeInOut" }}
+                    onAnimationComplete={() => {
+                      setShowSwipeHint(false);
+                      if (typeof window !== 'undefined') {
+                        sessionStorage.setItem('hasSeenTestimonialsSwipeHint', 'true');
+                      }
+                    }}
+                    className="absolute inset-0 bg-brand-text/5 backdrop-blur-[1px] z-30 flex flex-col items-center justify-center pointer-events-none rounded-lg"
+                  >
+                    <m.div 
+                      animate={{ x: [-15, 15, -15] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      className="text-brand-gold mb-2"
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M9 18l6-6-6-6" />
+                        <path d="M5 18l6-6-6-6" opacity="0.5" />
+                      </svg>
+                    </m.div>
+                    <span className="text-[9px] text-brand-text uppercase tracking-[0.3em] font-mono">Glisser pour lire</span>
+                  </m.div>
+                )}
+              </AnimatePresence>
+
               <m.div 
                 drag="x"
                 dragDirectionLock
