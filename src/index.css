@@ -103,8 +103,12 @@
     width: fit-content;
     animation: infinite-scroll 60s linear infinite;
     will-change: transform;
+    pointer-events: none;
   }
   @media (hover: hover) {
+    .animate-infinite-scroll {
+      pointer-events: auto;
+    }
     .animate-infinite-scroll:hover {
       animation-play-state: paused;
     }
