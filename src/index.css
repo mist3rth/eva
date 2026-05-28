@@ -104,8 +104,10 @@
     animation: infinite-scroll 60s linear infinite;
     will-change: transform;
   }
-  .animate-infinite-scroll:hover {
-    animation-play-state: paused;
+  @media (hover: hover) {
+    .animate-infinite-scroll:hover {
+      animation-play-state: paused;
+    }
   }
 
   @keyframes watermark-scroll {

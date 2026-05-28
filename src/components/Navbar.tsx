@@ -125,8 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
           <div className="hidden md:flex items-center gap-10">
             <div className="flex items-center gap-8">
               {NAV_LINKS.map((link) => {
-                const isActive = activeSection === link.id || 
-                                (link.id === 'projets' && activeSection === 'references');
+                const isActive = activeSection === link.id;
                 return (
                   <a 
                     key={link.id} 
@@ -221,8 +220,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, onSectionClick }) => {
               {/* Navigation Links */}
               <div className="relative z-10 flex flex-col items-center gap-8 py-4">
                 {NAV_LINKS.map((link, index) => {
-                  const isActive = activeSection === link.id || 
-                                  (link.id === 'projets' && activeSection === 'references');
+                  const isActive = activeSection === link.id;
                   return (
                     <m.a 
                       key={link.id} 

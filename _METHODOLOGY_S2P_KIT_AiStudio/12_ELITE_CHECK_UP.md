@@ -6,7 +6,7 @@ Ce document est la dernière étape avant la mise en ligne. Un projet n'est cons
 - [ ] **LCP < 1.2s :** Le Hero s'affiche quasi instantanément.
 - [ ] **Zéro Layout Shift (CLS) :** Les images et polices ont des dimensions réservées.
 - [ ] **Assets :** Toutes les images sont en WebP/AVIF et les vidéos sont compressées.
-- [ ] **Fonts :** Chargement optimisé (swap strategy) pour éviter le texte invisible.
+- [ ] **Fonts :** Chargement optimisé (swap strategy) pour éviter le texte invisible, font google auto-hébergé.
 
 ## ♿ 2. ACCESSIBILITÉ (A11Y) & SEO
 - [ ] **Contraste :** Les textes passent le test WCAG AA.

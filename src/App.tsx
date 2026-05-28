@@ -29,7 +29,7 @@ import { loadNonCriticalScripts } from './lib/performance';
 
 const App: React.FC = () => {
   const sectionIds = useMemo(() => [
-    'hero', 'projets', 'references', 'expertises', 'approche', 'temoignages', 'communaute'
+    'hero', 'stats', 'references', 'stats-text', 'projets', 'expertises', 'approche', 'temoignages', 'communaute'
   ], []);
 
   const [activeSection, setActiveSection] = useActiveSection(sectionIds);
@@ -68,6 +68,17 @@ const App: React.FC = () => {
         <ErrorBoundary>
           <Suspense fallback={<SectionLoader height="300px" type="text" />}>
             <StatsBar />
+          </Suspense>
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader height="200px" type="grid" />}>
+            <References />
+          </Suspense>
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader height="300px" type="text" />}>
             <Stats />
           </Suspense>
         </ErrorBoundary>
@@ -75,12 +86,6 @@ const App: React.FC = () => {
         <ErrorBoundary>
           <Suspense fallback={<SectionLoader height="800px" type="grid" />}>
             <Projets />
-          </Suspense>
-        </ErrorBoundary>
-
-        <ErrorBoundary>
-          <Suspense fallback={<SectionLoader height="200px" type="grid" />}>
-            <References />
           </Suspense>
         </ErrorBoundary>
 

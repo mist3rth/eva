@@ -3,7 +3,7 @@ import { m } from 'motion/react';
 
 const Stats: React.FC = () => {
   return (
-    <section className="pb-24 md:pb-40 bg-white overflow-hidden">
+    <section id="stats-text" className="pt-10 pb-24 md:pb-40 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-[5vw]">
         <div className="max-w-4xl mx-auto text-center">
           <m.div
