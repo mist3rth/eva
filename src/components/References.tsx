@@ -48,7 +48,7 @@ const References: React.FC = () => {
       </div>
 
       {/* Marquee with Mask - Full Width */}
-      <div className="relative w-full z-10">
+      <div className="relative w-full z-10 pointer-events-none md:pointer-events-auto">
         {/* Radial Fade Masks - Positioned relative to viewport edges */}
         <div className="absolute inset-y-0 left-0 w-[10vw] md:w-[20vw] bg-gradient-to-r from-[#FBFBF9] via-[#FBFBF9]/80 to-transparent z-20 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-[10vw] md:w-[20vw] bg-gradient-to-l from-[#FBFBF9] via-[#FBFBF9]/80 to-transparent z-20 pointer-events-none" />
@@ -57,7 +57,7 @@ const References: React.FC = () => {
           {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
             <span 
               key={i} 
-              className="text-2xl md:text-5xl font-display font-light text-brand-text/30 hover:text-brand-gold transition-all duration-500 uppercase tracking-[0.2em] whitespace-nowrap cursor-default"
+              className="marquee-item text-2xl md:text-5xl font-display font-light transition-all duration-500 uppercase tracking-[0.2em] whitespace-nowrap cursor-default"
             >
               {logo}
             </span>

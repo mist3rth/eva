@@ -319,5 +319,17 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .marquee-item {
+    color: var(--color-brand-text);
+    opacity: 0.3;
+    transition: color 0.5s ease, opacity 0.5s ease;
+  }
+  @media (hover: hover) {
+    .marquee-item:hover {
+      color: var(--color-brand-gold);
+      opacity: 1;
+    }
+  }
 }
 
