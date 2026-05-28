@@ -76,31 +76,46 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
     };
   }, [project.images.length]);
 
-  // Gestion de la molette et du swipe trackpad sur Desktop
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const deltaX = e.deltaX;
-    const deltaY = e.deltaY;
-    const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+  const carouselIndexRef = useRef(carouselIndex);
+  useEffect(() => {
+    carouselIndexRef.current = carouselIndex;
+  }, [carouselIndex]);
 
-    if (Math.abs(delta) < 20) return;
+  // Gestion de la molette et du swipe trackpad sur Desktop via écouteur non-passif
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || isMobileDevice) return;
 
-    const now = Date.now();
-    if (now - lastWheelTime.current < 600) return;
+    const handleNativeWheel = (e: WheelEvent) => {
+      const deltaX = e.deltaX;
+      const deltaY = e.deltaY;
+      const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
 
-    if (delta > 0 && carouselIndex < project.images.length - 1) {
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        e.preventDefault();
+      if (Math.abs(delta) < 20) return;
+
+      const now = Date.now();
+      if (now - lastWheelTime.current < 600) return;
+
+      const currentIndex = carouselIndexRef.current;
+
+      if (delta > 0 && currentIndex < project.images.length - 1) {
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          e.preventDefault();
+        }
+        setCarouselIndex(prev => prev + 1);
+        lastWheelTime.current = now;
+      } else if (delta < 0 && currentIndex > 0) {
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          e.preventDefault();
+        }
+        setCarouselIndex(prev => prev - 1);
+        lastWheelTime.current = now;
       }
-      setCarouselIndex(prev => prev + 1);
-      lastWheelTime.current = now;
-    } else if (delta < 0 && carouselIndex > 0) {
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        e.preventDefault();
-      }
-      setCarouselIndex(prev => prev - 1);
-      lastWheelTime.current = now;
-    }
-  };
+    };
+
+    el.addEventListener('wheel', handleNativeWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleNativeWheel);
+  }, [isMobileDevice, project.images.length]);
 
   const handleAnimationComplete = () => {
     setShowSwipeHint(false);
@@ -165,7 +180,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            <div 
              className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" 
              ref={carouselRef}
-             onWheel={handleWheel}
            >
              <m.div 
                drag={isMobileDevice ? "x" : false}
