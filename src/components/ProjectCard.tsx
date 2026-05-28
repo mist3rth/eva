@@ -42,14 +42,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
   const carouselRef = useRef<HTMLDivElement>(null);
   const lastWheelTime = useRef(0);
 
-  // Détecter si on est sur mobile
+  // Détecter si on est sur mobile/tablette (tactile primaire)
   useEffect(() => {
     const checkDevice = () => {
-      setIsMobileDevice(
-        window.innerWidth < 768 || 
-        'ontouchstart' in window || 
-        navigator.maxTouchPoints > 0
-      );
+      const isTouchPrimary = window.matchMedia('(pointer: coarse)').matches;
+      setIsMobileDevice(window.innerWidth < 768 || isTouchPrimary);
     };
     checkDevice();
     window.addEventListener('resize', checkDevice);
@@ -75,8 +72,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
 
   // Gestion de la molette et du swipe trackpad sur Desktop
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (isMobileDevice) return;
-
     const deltaX = e.deltaX;
     const deltaY = e.deltaY;
     const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
