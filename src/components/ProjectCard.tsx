@@ -29,6 +29,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
+  const [carouselWidth, setCarouselWidth] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(() => {
@@ -53,11 +54,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
     return () => window.removeEventListener('resize', checkDevice);
   }, []);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
+  // Mise à jour dynamique des contraintes de drag et de la largeur lors du redimensionnement
   useEffect(() => {
     const updateConstraints = () => {
       if (carouselRef.current) {
         const containerWidth = carouselRef.current.offsetWidth;
+        setCarouselWidth(containerWidth);
         setDragConstraints({
           left: -((project.images.length - 1) * containerWidth),
           right: 0
@@ -66,8 +68,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
     };
 
     updateConstraints();
+    const timer = setTimeout(updateConstraints, 100);
     window.addEventListener('resize', updateConstraints);
-    return () => window.removeEventListener('resize', updateConstraints);
+    return () => {
+      window.removeEventListener('resize', updateConstraints);
+      clearTimeout(timer);
+    };
   }, [project.images.length]);
 
   // Gestion de la molette et du swipe trackpad sur Desktop
@@ -179,7 +185,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                    setCarouselIndex(prev => prev - 1);
                  }
                }}
-               animate={{ x: `-${carouselIndex * 100}%` }}
+               animate={{ x: -carouselIndex * carouselWidth }}
                transition={{ type: "spring", stiffness: 300, damping: 30 }}
                className="flex h-full cursor-grab active:cursor-grabbing"
                style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
