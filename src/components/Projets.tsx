@@ -266,9 +266,6 @@ const Projets: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <div>
                     <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-brand-text">Immersion Terrain</h4>
-                    <p className="text-[10px] text-brand-muted tracking-widest uppercase">
-                      {activeTab === 'video' ? 'Video_Report_TCP.mp4' : `Photo_${currentPhotoIndex + 1}_TCP.webp`}
-                    </p>
                   </div>
                 </div>
                 
