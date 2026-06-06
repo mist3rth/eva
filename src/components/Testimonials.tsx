@@ -217,7 +217,6 @@ const Testimonials: React.FC = () => {
                   <div 
                     key={testimonial.id}
                     className="w-[85vw] md:w-[400px] flex-shrink-0 snap-center pr-6"
-                    style={{ touchAction: 'pan-y' }}
                   >
                     <TestimonialCard testimonial={testimonial} isMobile />
                   </div>

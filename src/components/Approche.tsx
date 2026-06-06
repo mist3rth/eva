@@ -147,8 +147,7 @@ const Approche: React.FC = () => {
                         className="min-w-full snap-start flex flex-col items-center text-center transition-all duration-500 pt-12 pb-8"
                         style={{ 
                           opacity: activeIndex === idx ? 1 : 0.3, 
-                          transform: `scale(${activeIndex === idx ? 1 : 0.9})`,
-                          touchAction: 'pan-y'
+                          transform: `scale(${activeIndex === idx ? 1 : 0.9})`
                         }}
                       >
                         <div className="w-20 h-20 rounded-full bg-brand-gold/5 flex items-center justify-center mx-auto mb-6 relative select-none">
