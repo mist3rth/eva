@@ -1,21 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import TestimonialCard, { Testimonial } from './TestimonialCard';
+import { BlossomCarousel } from '@blossom-carousel/react';
+import '@blossom-carousel/core/style.css';
 
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
-    name: 'Marc Lefebvre',
+    name: 'Marc',
     role: 'Propriétaire',
     content: "Une rigueur technique exceptionnelle. EVA a su transformer notre appartement haussmannien en un espace contemporain tout en préservant son âme. Le suivi de chantier était exemplaire.",
     image: `${import.meta.env.BASE_URL}images/jean_d.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
-    year: '2023',
+    year: '2025',
     project: 'Rénovation Foch'
   },
   {
     id: 2,
-    name: 'Marie Lefebvre',
+    name: 'Marie',
     role: 'Directrice Patrimoine',
     content: "En tant que foncière, nous exigeons une précision absolue sur les budgets et les délais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos réhabilitations complexes.",
     image: `${import.meta.env.BASE_URL}images/marie_l.webp`,
@@ -25,12 +27,12 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 3,
-    name: 'Jean-Pierre Castaldi',
-    role: 'Gérant, Villa Cap d\'Antibes',
+    name: 'Jean-Pierre',
+    role: 'Gérant',
     content: "L'accompagnement d'EVA a été déterminant dans la réussite de notre projet balnéaire. Une vision architecturale forte alliée à une gestion de chantier rigoureuse.",
     image: `${import.meta.env.BASE_URL}images/pierre_m.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/villa.webp`,
-    year: '2024',
+    year: '2023',
     project: 'Villa Antibes'
   }
 ];
@@ -38,33 +40,21 @@ const TESTIMONIALS: Testimonial[] = [
 const Testimonials: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
-  const [isDragging, setIsDragging] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(() => {
     if (typeof window !== 'undefined') {
       return !sessionStorage.getItem('hasSeenTestimonialsSwipeHint');
     }
     return true;
   });
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
-  useEffect(() => {
-    const updateConstraints = () => {
-      if (carouselRef.current) {
-        const containerWidth = carouselRef.current.offsetWidth;
-        const cardWidth = window.innerWidth < 768 ? window.innerWidth * 0.85 + 24 : 424;
-        setDragConstraints({
-          left: -((TESTIMONIALS.length - 1) * cardWidth),
-          right: 0
-        });
-      }
-    };
-
-    updateConstraints();
-    window.addEventListener('resize', updateConstraints);
-    return () => window.removeEventListener('resize', updateConstraints);
-  }, []);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    if (target.firstElementChild) {
+      // 24px est le gap-6 entre les cartes de témoignages
+      const index = Math.round(target.scrollLeft / (target.firstElementChild.clientWidth + 24));
+      setTestimonialIndex(index);
+    }
+  };
 
   return (
     <section id="temoignages" className="py-32 md:py-48 px-[5vw] bg-brand-bg-soft relative overflow-hidden" aria-labelledby="testimonials-title">
@@ -187,8 +177,8 @@ const Testimonials: React.FC = () => {
               </div>
             </div>
 
-            {/* Framer Motion Drag Carousel */}
-            <div className="relative -mx-6 px-6 overflow-hidden" ref={carouselRef}>
+            {/* Blossom Carousel */}
+            <div className="relative -mx-6 px-6 overflow-hidden">
               <AnimatePresence>
                 {testimonialIndex === 0 && showSwipeHint && (
                   <m.div 
@@ -219,39 +209,20 @@ const Testimonials: React.FC = () => {
                 )}
               </AnimatePresence>
 
-              <m.div 
-                drag="x"
-                dragDirectionLock
-                dragConstraints={dragConstraints}
-                dragElastic={0.1}
-                dragListener={true}
-                dragMomentum={true}
-                dragTransition={{ power: 0.2, timeConstant: 200 }}
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={(_, info) => {
-                  setIsDragging(false);
-                  const threshold = 50;
-                  if (info.offset.x < -threshold && testimonialIndex < TESTIMONIALS.length - 1) {
-                    setTestimonialIndex(prev => prev + 1);
-                  } else if (info.offset.x > threshold && testimonialIndex > 0) {
-                    setTestimonialIndex(prev => prev - 1);
-                  }
-                }}
-                animate={{ x: -(testimonialIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth * 0.85 + 24 : 424)) }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="flex gap-6 pb-4 cursor-grab active:cursor-grabbing"
-                style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
+              <BlossomCarousel
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4"
+                onScroll={handleScroll}
               >
                 {TESTIMONIALS.map((testimonial) => (
                   <div 
                     key={testimonial.id}
-                    className="w-[85vw] md:w-[400px] flex-shrink-0"
+                    className="w-[85vw] md:w-[400px] flex-shrink-0 snap-center pr-6"
                     style={{ touchAction: 'pan-y' }}
                   >
                     <TestimonialCard testimonial={testimonial} isMobile />
                   </div>
                 ))}
-              </m.div>
+              </BlossomCarousel>
             </div>
 
             {/* Visual Navigation Hint */}

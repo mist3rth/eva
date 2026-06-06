@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
+import { BlossomCarousel } from '@blossom-carousel/react';
+import '@blossom-carousel/core/style.css';
 
 export interface Project {
   id: number;
@@ -10,6 +12,7 @@ export interface Project {
   year: string;
   images: string[];
   details: string;
+  phase?: string;
   metrics: {
     area: string;
     duration: string;
@@ -28,10 +31,6 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
-  const [carouselWidth, setCarouselWidth] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(() => {
     if (typeof window !== 'undefined') {
       return !sessionStorage.getItem('hasSeenSwipeHint');
@@ -39,83 +38,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
     return true;
   });
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const lastWheelTime = useRef(0);
-
-  // Détecter si on est sur mobile/tablette (tactile primaire)
-  useEffect(() => {
-    const checkDevice = () => {
-      const isTouchPrimary = window.matchMedia('(pointer: coarse)').matches;
-      setIsMobileDevice(window.innerWidth < 768 || isTouchPrimary);
-    };
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
-  }, []);
-
-  // Mise à jour dynamique des contraintes de drag et de la largeur lors du redimensionnement
-  useEffect(() => {
-    const updateConstraints = () => {
-      if (carouselRef.current) {
-        const containerWidth = carouselRef.current.offsetWidth;
-        setCarouselWidth(containerWidth);
-        setDragConstraints({
-          left: -((project.images.length - 1) * containerWidth),
-          right: 0
-        });
-      }
-    };
-
-    updateConstraints();
-    const timer = setTimeout(updateConstraints, 100);
-    window.addEventListener('resize', updateConstraints);
-    return () => {
-      window.removeEventListener('resize', updateConstraints);
-      clearTimeout(timer);
-    };
-  }, [project.images.length]);
-
-  const carouselIndexRef = useRef(carouselIndex);
-  useEffect(() => {
-    carouselIndexRef.current = carouselIndex;
-  }, [carouselIndex]);
-
-  // Gestion de la molette et du swipe trackpad sur Desktop via écouteur non-passif
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el || isMobileDevice) return;
-
-    const handleNativeWheel = (e: WheelEvent) => {
-      const deltaX = e.deltaX;
-      const deltaY = e.deltaY;
-      const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
-
-      if (Math.abs(delta) < 20) return;
-
-      const now = Date.now();
-      if (now - lastWheelTime.current < 600) return;
-
-      const currentIndex = carouselIndexRef.current;
-
-      if (delta > 0 && currentIndex < project.images.length - 1) {
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-          e.preventDefault();
-        }
-        setCarouselIndex(prev => prev + 1);
-        lastWheelTime.current = now;
-      } else if (delta < 0 && currentIndex > 0) {
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-          e.preventDefault();
-        }
-        setCarouselIndex(prev => prev - 1);
-        lastWheelTime.current = now;
-      }
-    };
-
-    el.addEventListener('wheel', handleNativeWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleNativeWheel);
-  }, [isMobileDevice, project.images.length]);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    const index = Math.round(target.scrollLeft / target.clientWidth);
+    setCarouselIndex(index);
+  };
 
   const handleAnimationComplete = () => {
     setShowSwipeHint(false);
@@ -152,7 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
  
           {/* Onboarding Swipe Hint */}
           <AnimatePresence>
-            {isMobileDevice && carouselIndex === 0 && showSwipeHint && (
+            {carouselIndex === 0 && showSwipeHint && (
               <m.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 1, 0] }}
@@ -176,51 +103,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
             )}
           </AnimatePresence>
 
-           {/* Carousel (Framer Motion Slider pour éviter le blocage du scroll mobile) */}
-           <div 
-             className="absolute inset-0 overflow-hidden bg-[var(--color-brand-accent-bg)]" 
-             ref={carouselRef}
-           >
-             <m.div 
-               drag={isMobileDevice ? "x" : false}
-               dragDirectionLock
-               dragConstraints={dragConstraints}
-               dragElastic={0.1}
-               dragListener={true}
-               dragMomentum={true}
-               dragTransition={{ power: 0.2, timeConstant: 200 }}
-               onDragStart={() => setIsDragging(true)}
-               onDragEnd={(_, info) => {
-                 setIsDragging(false);
-                 const threshold = 50;
-                 if (info.offset.x < -threshold && carouselIndex < project.images.length - 1) {
-                   setCarouselIndex(prev => prev + 1);
-                 } else if (info.offset.x > threshold && carouselIndex > 0) {
-                   setCarouselIndex(prev => prev - 1);
-                 }
-               }}
-               animate={{ x: -carouselIndex * carouselWidth }}
-               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-               className="flex h-full cursor-grab active:cursor-grabbing"
-               style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
-             >
-               {project.images.map((img, idx) => (
-                 <div 
-                   key={idx} 
-                   className="min-w-full h-full relative overflow-hidden flex-shrink-0"
-                   style={{ touchAction: 'pan-y' }}
-                 >
-                   <img 
-                     src={img}
-                     alt={`${project.title} - Vue ${idx + 1}`}
-                     className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out select-none"
-                     loading="lazy"
-                     draggable={false}
-                   />
-                 </div>
-               ))}
-             </m.div>
-           </div>
+            {/* Carousel (Blossom native-first Carousel) */}
+            <BlossomCarousel 
+              className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none"
+              onScroll={handleScroll}
+            >
+              {project.images.map((img, idx) => (
+                <div 
+                  key={idx} 
+                  className="min-w-full h-full snap-start relative overflow-hidden flex-shrink-0"
+                >
+                  <img 
+                    src={img}
+                    alt={`${project.title} - Vue ${idx + 1}`}
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out select-none"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </div>
+              ))}
+            </BlossomCarousel>
  
            {/* Dimension Lines with Ticks (Hover Only) */}
           <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
@@ -245,7 +147,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
            </div>
            <div className="flex items-center gap-2">
              <span className="text-brand-gold">PHASE_</span>
-             <span className="text-brand-text font-bold">LIVRÉ</span>
+             <span className="text-brand-text font-bold">{project.phase || "LIVRÉ"}</span>
            </div>
          </div>
  
@@ -264,23 +166,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
              </p>
            </div>
  
-           {/* Metrics Grid (Cahier Technique Style) */}
-           <div className="grid grid-cols-3 border-t border-b border-brand-accent-bg/40 divide-x divide-brand-accent-bg/40 mb-6 bg-[var(--color-brand-accent-bg)]/5">
-             {[
-               { label: 'Surface', value: project.metrics.area },
-               { label: 'Durée', value: project.metrics.duration },
-               { label: 'Budget', value: project.metrics.budget }
-             ].map((m, i) => (
-               <div key={i} className="py-4 px-2 flex flex-col items-center group/metric">
-                 <span className="text-[9px] font-sans uppercase tracking-[0.2em] text-brand-muted mb-1 group-hover/metric:text-brand-gold transition-colors">
-                   {m.label}
-                 </span>
-                 <span className="text-[14px] font-mono font-bold text-brand-text tracking-tighter">
-                   {m.value}
-                 </span>
-               </div>
-             ))}
-           </div>
+            {/* Metrics Grid (Cahier Technique Style) */}
+            <div className="grid grid-cols-2 border-t border-b border-brand-accent-bg/40 divide-x divide-brand-accent-bg/40 mb-6 bg-[var(--color-brand-accent-bg)]/5">
+              {[
+                { label: 'Surface', value: project.metrics.area },
+                { label: 'Durée', value: project.metrics.duration }
+              ].map((m, i) => (
+                <div key={i} className="py-4 px-2 flex flex-col items-center group/metric">
+                  <span className="text-[9px] font-sans uppercase tracking-[0.2em] text-brand-muted mb-1 group-hover/metric:text-brand-gold transition-colors">
+                    {m.label}
+                  </span>
+                  <span className="text-[14px] font-mono font-bold text-brand-text tracking-tighter">
+                    {m.value}
+                  </span>
+                </div>
+              ))}
+            </div>
  
            <button 
             type="button"

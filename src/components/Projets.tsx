@@ -10,110 +10,132 @@ import VideoPlayer from './VideoPlayer';
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Appartement Victor Hugo",
-    category: "Résidentiel Luxe",
-    location: "Paris 16e",
+    title: "Appartement Rivoli",
+    category: "Particulier",
+    location: "Paris 1er",
     year: "2023",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`,
-      `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`
+      `${import.meta.env.BASE_URL}images/projets/p1-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p1-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p1-3.webp`
     ],
-    details: "Rénovation complète d'un appartement de maître. Valorisation des volumes originaux et intégration de domotique invisible.",
-    metrics: { area: "240m²", duration: "8 mois", budget: "450k€" },
+    details: "Rénovation complète d'un appartement historique de 170m². Conception sur-mesure, décoration contemporaine et suivi de chantier rigoureux pour magnifier les volumes.",
+    metrics: { area: "170m²", duration: "6 mois", budget: "Confidentiel" },
     likes: "342",
-    caption: "Rénovation de maître",
-    annotation: "Volumes & Lumière"
+    caption: "Conception, décoration & suivi travaux",
+    annotation: "Rivoli - 170m²"
   },
   {
     id: 2,
-    title: "Siège Social Tech",
-    category: "Tertiaire",
-    location: "Boulogne",
-    year: "2023",
+    title: "Stade Français",
+    category: "Sport & Public",
+    location: "Paris & St-Cloud",
+    year: "2026",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/siege-social.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`,
-      `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`
+      `${import.meta.env.BASE_URL}images/projets/p2-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p2-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p2-3.webp`
     ],
-    details: "Aménagement de bureaux en open-space avec focus sur l'acoustique et la lumière naturelle.",
-    metrics: { area: "1200m²", duration: "14 mois", budget: "1.2M€" },
+    details: "Études de conception, d'aménagement et de rénovation pour trois sites historiques : Golf du Haras Lupin, La Faisanderie (Parc de Saint-Cloud) et Géo André. Optimisation structurelle, gestion des flux et mise en conformité technique.",
+    phase: "ÉTUDE",
+    metrics: { area: "2500m²", duration: "En cours", budget: "N/A" },
     likes: "189",
-    caption: "Espace de travail agile",
-    annotation: "Focus Acoustique"
+    caption: "Études et dossiers complexes en cours",
+    annotation: "Haras Lupin / Faisanderie / Géo André"
   },
   {
     id: 3,
-    title: "Hôtel Particulier Marais",
-    category: "Rénovation Historique",
-    location: "Paris 4e",
-    year: "2022",
+    title: "Maison Asnières",
+    category: "Particulier",
+    location: "Asnières-sur-Seine",
+    year: "2025",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/villa.webp`,
-      `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
+      `${import.meta.env.BASE_URL}images/projets/p3-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p3-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p3-3.webp`
     ],
-    details: "Restauration minutieuse d'un bâtiment du XVIIe siècle. Mise en conformité technique et structurelle.",
-    metrics: { area: "650m²", duration: "18 mois", budget: "2.8M€" },
+    details: "Rénovation complète et transformation d'une maison de caractère. Aménagement d'une cuisine contemporaine haut de gamme dans d'anciens boxes de chevaux, création de surfaces habitables supplémentaires en sous-sol et décoration sur-mesure.",
+    metrics: { area: "300m²", duration: "9 mois", budget: "N/A" },
     likes: "567",
-    caption: "Restauration monument historique",
-    annotation: "Patrimoine XVIIe"
+    caption: "Cuisine dans d'anciens boxes & sous-sol",
+    annotation: "Cuisine & Extension sous-sol"
   },
   {
     id: 4,
-    title: "Villa Cap d'Antibes",
-    category: "Architecture Balnéaire",
-    location: "Antibes",
-    year: "2023",
+    title: "Dubbing Brothers",
+    category: "Entreprise",
+    location: "Saint-Denis",
+    year: "2024",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/villa.webp`,
-      `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
+      `${import.meta.env.BASE_URL}images/projets/p4-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p4-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p4-3.webp`
     ],
-    details: "Villa contemporaine avec vue mer. Utilisation de béton banché et de larges surfaces vitrées.",
-    metrics: { area: "450m²", duration: "22 mois", budget: "3.5M€" },
+    details: "Conception et extension des bâtiments de Dubbing Brothers, N° 1 du doublage en Europe. Études architecturales et techniques de bâtiments sur plus de 6000 m² regroupant des studios d’enregistrement de pointe et un centre de formation.",
+    metrics: { area: "> 6000m²", duration: "18 mois", budget: "N/A" },
     likes: "892",
-    caption: "Transparence & Horizon",
-    annotation: "Vue Mer 180°"
+    caption: "Conception & extension des studios",
+    annotation: "Studios & Centre de formation"
   },
   {
     id: 5,
-    title: "Gymnase Polyvalent",
-    category: "Sport & Public",
-    location: "Lyon",
-    year: "2022",
+    title: "Duplex Neuilly",
+    category: "Particulier",
+    location: "Neuilly-sur-Seine",
+    year: "2023",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/tennis-club.webp`,
-      `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
+      `${import.meta.env.BASE_URL}images/projets/p5-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p5-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p5-3.webp`
     ],
-    details: "Équipement sportif basse consommation. Charpente bois apparente et toiture végétalisée.",
-    metrics: { area: "1800m²", duration: "18 mois", budget: "4.2M€" },
+    details: "Rénovation complète et modification structurelle d'un duplex de 400m². Aménagement d'un espace terrasse avec vue dégagée sur la Tour Eiffel. Conception sur-mesure et suivi de chantier rigoureux pendant 12 mois.",
+    metrics: { area: "400m²", duration: "12 mois", budget: "N/A" },
     likes: "124",
-    caption: "Équipement durable",
-    annotation: "Structure Bois"
+    caption: "Duplex & terrasse vue Tour Eiffel",
+    annotation: "Duplex & Terrasse panoramique"
   },
   {
     id: 6,
-    title: "Boutique Flagship",
-    category: "Retail Luxe",
-    location: "Paris 8e",
-    year: "2023",
+    title: "Immeuble Haussmannien",
+    category: "Entreprise",
+    location: "Paris 9e",
+    year: "2025",
     images: [
-      `${import.meta.env.BASE_URL}assets/images/boutique.webp`,
-      `${import.meta.env.BASE_URL}assets/images/concrete-texture.webp`,
-      `${import.meta.env.BASE_URL}assets/images/architectural-detail.webp`
+      `${import.meta.env.BASE_URL}images/projets/p6-1.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p6-2.webp`,
+      `${import.meta.env.BASE_URL}images/projets/p6-3.webp`
     ],
-    details: "Concept store innovant. Mise en scène théâtrale des produits et parcours client immersif.",
-    metrics: { area: "150m²", duration: "5 mois", budget: "800k€" },
+    details: "Rénovation globale d’un immeuble Haussmannien à Paris 9e. Restructurations et rénovations sur cours avec extensions et surélévations sur 3 niveaux avec créations de terrasses. Utilisation d'ossatures bois, aménagement de commerces en RDC et appartements.",
+    metrics: { area: "2800m²", duration: "24 mois", budget: "N/A" },
     likes: "453",
-    caption: "Expérience immersive",
-    annotation: "Retail Design"
+    caption: "Surélévation bois & commerces",
+    annotation: "Surélévation bois & Commerces"
   }
 ];
 
 const Projets: React.FC = () => {
   const [activeMobileProject, setActiveMobileProject] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'video' | 'photos'>('video');
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number>(0);
+
+  const photos = [
+    {
+      src: `${import.meta.env.BASE_URL}images/t1.webp`,
+      caption: "Complexe de tennis principal rénové"
+    },
+    {
+      src: `${import.meta.env.BASE_URL}images/t2.webp`,
+      caption: "Structure porteuse en bois lamellé-collé"
+    },
+    {
+      src: `${import.meta.env.BASE_URL}images/t3.webp`,
+      caption: "Optimisation de l'éclairage zénithal et thermique"
+    },
+    {
+      src: `${import.meta.env.BASE_URL}images/t4.webp`,
+      caption: "Finitions de la surface du futsal"
+    }
+  ];
 
   return (
     <section 
@@ -205,7 +227,19 @@ const Projets: React.FC = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Surface</span>
-                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">5 200 m²</span>
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">2 200 m²</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Études & travaux</span>
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">2 ans</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Sociétés</span>
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">Plus de 12</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Effectif géré</span>
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-brand-text">130 personnes</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-[9px] uppercase tracking-widest text-brand-muted/60">Status</span>
@@ -232,28 +266,150 @@ const Projets: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <div>
                     <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-brand-text">Immersion Terrain</h4>
-                    <p className="text-[10px] text-brand-muted tracking-widest uppercase">Video_Report_TCP.mp4</p>
+                    <p className="text-[10px] text-brand-muted tracking-widest uppercase">
+                      {activeTab === 'video' ? 'Video_Report_TCP.mp4' : `Photo_${currentPhotoIndex + 1}_TCP.webp`}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
+                
+                {/* Commutateur de Médias */}
+                <div className="flex bg-brand-accent-bg/30 p-1 border border-brand-accent-bg/10">
+                  <button
+                    onClick={() => setActiveTab('video')}
+                    className={cn(
+                      "px-3 py-1.5 text-[9px] uppercase tracking-widest font-bold cursor-pointer transition-all duration-300",
+                      activeTab === 'video' 
+                        ? "bg-brand-gold text-brand-bg shadow-architect" 
+                        : "text-brand-muted hover:text-brand-text"
+                    )}
+                  >
+                    Vidéo
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('photos')}
+                    className={cn(
+                      "px-3 py-1.5 text-[9px] uppercase tracking-widest font-bold cursor-pointer transition-all duration-300",
+                      activeTab === 'photos' 
+                        ? "bg-brand-gold text-brand-bg shadow-architect" 
+                        : "text-brand-muted hover:text-brand-text"
+                    )}
+                  >
+                    Photos
+                  </button>
                 </div>
               </div>
 
-              {/* Video Container with Technical Overlays */}
-              <VideoPlayer 
-                webmSrc={`${import.meta.env.BASE_URL}video-tennis.webm`}
-                mp4Src={`${import.meta.env.BASE_URL}video-tennis.mp4`}
-                poster={`${import.meta.env.BASE_URL}images/poster-video-tennis.webp`}
-                title="Aperçu vidéo du projet Tennis Club de Paris - Rénovation technique"
-                containerClassName="flex-1 aspect-video md:aspect-auto md:min-h-[400px] group/video"
-              />
+              {/* Media Container with Technical Overlays */}
+              <div className="flex-1 aspect-video md:aspect-auto md:min-h-[400px] relative overflow-hidden bg-black/20 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  {activeTab === 'video' ? (
+                    <m.div
+                      key="video"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full"
+                    >
+                      <VideoPlayer 
+                        webmSrc={`${import.meta.env.BASE_URL}video-tennis.webm`}
+                        mp4Src={`${import.meta.env.BASE_URL}video-tennis.mp4`}
+                        poster={`${import.meta.env.BASE_URL}images/poster-video-tennis.webp`}
+                        title="Aperçu vidéo du projet Tennis Club de Paris - Rénovation technique"
+                        containerClassName="w-full h-full group/video"
+                      />
+                    </m.div>
+                  ) : (
+                    <m.div
+                      key="photos"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full relative group/gallery flex flex-col justify-between"
+                    >
+                      {/* Photo Display */}
+                      <div className="absolute inset-0 w-full h-full">
+                        <AnimatePresence mode="wait">
+                          <m.img
+                            key={currentPhotoIndex}
+                            src={photos[currentPhotoIndex].src}
+                            alt={photos[currentPhotoIndex].caption}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.4 }}
+                            className="w-full h-full object-cover"
+                          />
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Photo Overlays & Navigation controls */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+                      
+                      {/* Upper Caption Overlay */}
+                      <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
+                        <span className="bg-black/60 backdrop-blur-md px-3 py-1 text-[8px] uppercase tracking-widest text-brand-gold border border-brand-gold/20">
+                          Photo {currentPhotoIndex + 1} / {photos.length}
+                        </span>
+                      </div>
+
+                      {/* Navigation Controls */}
+                      <div className="absolute inset-y-0 left-0 right-0 flex justify-between items-center px-4">
+                        <button
+                          onClick={() => setCurrentPhotoIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1))}
+                          className="bg-black/60 hover:bg-brand-gold hover:text-brand-bg text-brand-text p-2 cursor-pointer backdrop-blur-sm border border-brand-accent-bg/20 transition-all duration-300"
+                          aria-label="Photo précédente"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => setCurrentPhotoIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1))}
+                          className="bg-black/60 hover:bg-brand-gold hover:text-brand-bg text-brand-text p-2 cursor-pointer backdrop-blur-sm border border-brand-accent-bg/20 transition-all duration-300"
+                          aria-label="Photo suivante"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
+
+                      {/* Lower Caption Overlay & Dot Indicators */}
+                      <div className="absolute bottom-4 left-4 right-4 flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+                        <p className="text-xs text-white/90 font-light tracking-wide drop-shadow-md">
+                          {photos[currentPhotoIndex].caption}
+                        </p>
+                        
+                        {/* Dot Indicators */}
+                        <div className="flex gap-1.5">
+                          {photos.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setCurrentPhotoIndex(idx)}
+                              className={cn(
+                                "h-1 cursor-pointer transition-all duration-300",
+                                currentPhotoIndex === idx 
+                                  ? "w-6 bg-brand-gold" 
+                                  : "w-2 bg-white/40 hover:bg-white/80"
+                              )}
+                              aria-label={`Aller à la photo ${idx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Bottom Technical Grid */}
               <div className="grid grid-cols-3 divide-x divide-brand-accent-bg/10 border-t border-brand-accent-bg/10">
                 {[
                   { label: "Isol. Thermique", value: "A+", icon: ShieldCheck },
                   { label: "Optim. LED", value: "-42%", icon: Zap },
-                  { label: "Surfaces", value: "5.2k", icon: Ruler }
+                  { label: "Surfaces", value: "2.2k", icon: Ruler }
                 ].map((stat, i) => (
                   <div key={i} className="p-6 flex flex-col items-center text-center group/stat">
                     <stat.icon size={16} className="text-brand-gold/60 mb-2 group-hover/stat:text-brand-gold transition-colors" aria-hidden="true" />
@@ -271,7 +427,7 @@ const Projets: React.FC = () => {
               {
                 num: '01',
                 title: 'Le Défi Technique',
-                content: 'Vétusté critique des installations & Urgence thermique d’un site de 5000m² sans interruption de l’activité sportive.',
+                content: 'Vétusté critique des installations & Urgence thermique d’un site de 2200m² sans interruption de l’activité sportive.',
                 accent: 'border-l-4 border-brand-gold/20'
               },
               {

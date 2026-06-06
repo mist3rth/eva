@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import Eye from 'lucide-react/dist/esm/icons/eye';
 import Ruler from 'lucide-react/dist/esm/icons/ruler';
 import Compass from 'lucide-react/dist/esm/icons/compass';
 import { cn } from '@/src/lib/utils';
-import { useRef, useEffect, useState } from 'react';
+import { BlossomCarousel } from '@blossom-carousel/react';
+import '@blossom-carousel/core/style.css';
 
 const PILLARS = [
   { label: 'Vision', sub: 'Anticipation', icon: Eye },
@@ -14,33 +15,20 @@ const PILLARS = [
 
 const Approche: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
-  const [isDragging, setIsDragging] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(() => {
     if (typeof window !== 'undefined') {
       return !sessionStorage.getItem('hasSeenApprocheSwipeHint');
     }
     return true;
   });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Mise à jour dynamique des contraintes de drag lors du redimensionnement
-  useEffect(() => {
-    const updateConstraints = () => {
-      if (carouselRef.current) {
-        const containerWidth = carouselRef.current.offsetWidth;
-        setDragConstraints({
-          left: -((PILLARS.length - 1) * containerWidth),
-          right: 0
-        });
-      }
-    };
-
-    updateConstraints();
-    window.addEventListener('resize', updateConstraints);
-    return () => window.removeEventListener('resize', updateConstraints);
-  }, []);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    if (target.firstElementChild) {
+      const index = Math.round(target.scrollLeft / target.firstElementChild.clientWidth);
+      setActiveIndex(index);
+    }
+  };
 
   return (
     <section id="approche" className="py-32 md:py-56 bg-brand-bg-warm relative overflow-hidden" aria-labelledby="approche-title-desktop">
@@ -117,8 +105,8 @@ const Approche: React.FC = () => {
 
               {/* The Three Pillars: Carousel on Mobile, Grid on Desktop */}
               <div className="relative pt-4 border-t border-brand-accent-bg mb-12">
-                {/* Mobile Slider (Framer Motion Slider pour éviter le blocage du scroll) */}
-                <div className="md:hidden overflow-hidden relative" ref={carouselRef}>
+                {/* Mobile Slider Section */}
+                <div className="md:hidden relative">
                   <AnimatePresence>
                     {activeIndex === 0 && showSwipeHint && (
                       <m.div 
@@ -149,40 +137,21 @@ const Approche: React.FC = () => {
                     )}
                   </AnimatePresence>
 
-                  <m.div 
-                    drag="x"
-                    dragDirectionLock
-                    dragConstraints={dragConstraints}
-                    dragElastic={0.1}
-                    dragListener={true}
-                    dragMomentum={true}
-                    dragTransition={{ power: 0.2, timeConstant: 200 }}
-                    onDragStart={() => setIsDragging(true)}
-                    onDragEnd={(_, info) => {
-                      setIsDragging(false);
-                      const threshold = 50;
-                      if (info.offset.x < -threshold && activeIndex < PILLARS.length - 1) {
-                        setActiveIndex(prev => prev + 1);
-                      } else if (info.offset.x > threshold && activeIndex > 0) {
-                        setActiveIndex(prev => prev - 1);
-                      }
-                    }}
-                    animate={{ x: `-${activeIndex * 100}%` }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="flex pt-12 pb-8 cursor-grab active:cursor-grabbing"
-                    style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
+                  <BlossomCarousel
+                    className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none relative"
+                    onScroll={handleScroll}
                   >
                     {PILLARS.map((pillar, idx) => (
                       <div 
                         key={pillar.label}
-                        className="w-full shrink-0 flex flex-col items-center text-center transition-all duration-500"
+                        className="min-w-full snap-start flex flex-col items-center text-center transition-all duration-500 pt-12 pb-8"
                         style={{ 
                           opacity: activeIndex === idx ? 1 : 0.3, 
                           transform: `scale(${activeIndex === idx ? 1 : 0.9})`,
                           touchAction: 'pan-y'
                         }}
                       >
-                        <div className="w-20 h-20 rounded-full bg-brand-gold/5 flex items-center justify-center mb-6 relative select-none">
+                        <div className="w-20 h-20 rounded-full bg-brand-gold/5 flex items-center justify-center mx-auto mb-6 relative select-none">
                           <div className={cn(
                             "absolute inset-0 border border-brand-gold/10 rounded-full scale-110 transition-transform duration-500",
                             activeIndex === idx && "scale-125 border-brand-gold/30"
@@ -197,8 +166,8 @@ const Approche: React.FC = () => {
                         </p>
                       </div>
                     ))}
-                  </m.div>
-                  
+                  </BlossomCarousel>
+                    
                   {/* Progress Indicators (Dots) */}
                   <div className="flex justify-center gap-4 mt-8">
                     {PILLARS.map((_, idx) => (
