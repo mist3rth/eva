@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}images/projets/p3-3.webp`
     ],
     details: "Rénovation complète d'une maison particulière de caractère avec intégration d'écuries transformées en cuisine moderne. Création de surfaces habitables supplémentaires et aménagement d'espaces en sous-sol avec décoration sur-mesure.",
-    metrics: { area: "300m²", duration: "9 mois", budget: "N/A" },
+    metrics: { area: "360m²", duration: "9 mois", budget: "N/A" },
     likes: "567",
     caption: "Cuisine dans d'anciens boxes & sous-sol",
     annotation: "Cuisine & Extension sous-sol"
@@ -88,8 +88,8 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}images/projets/p5-2.webp`,
       `${import.meta.env.BASE_URL}images/projets/p5-3.webp`
     ],
-    details: "Rénovation totale et modification structurelle d'un duplex de 400m² avec aménagement d'une terrasse offrant une vue sur Paris et la Tour Eiffel. Conception sur-mesure, exigences techniques et suivi de chantier rigoureux (12 mois).",
-    metrics: { area: "400m²", duration: "12 mois", budget: "N/A" },
+    details: "Rénovation totale et modification structurelle d'un duplex de 440m² avec aménagement d'une terrasse offrant une vue sur Paris et la Tour Eiffel. Conception sur-mesure, exigences techniques et suivi de chantier rigoureux (12 mois).",
+    metrics: { area: "440m²", duration: "12 mois", budget: "N/A" },
     likes: "124",
     caption: "Duplex & terrasse vue Tour Eiffel",
     annotation: "Duplex & Terrasse panoramique"
