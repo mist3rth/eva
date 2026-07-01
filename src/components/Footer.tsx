@@ -162,7 +162,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
               rel="noopener noreferrer" 
               className="hover:text-brand-gold transition-colors inline-flex items-center gap-1 font-bold cursor-pointer"
             >
-              Make by T.Thiesson <ExternalLink size={8} />
+              Made by T.Thiesson <ExternalLink size={8} />
             </a>
           </p>
           <div className="flex gap-8">

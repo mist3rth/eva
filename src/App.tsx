@@ -27,35 +27,18 @@ const LegalOverlay = lazy(() => import('./components/LegalOverlay'));
 import { useActiveSection } from './hooks/useActiveSection';
 import { loadNonCriticalScripts } from './lib/performance';
 
-const App: React.FC = () => {
-  const sectionIds = useMemo(() => [
-    'hero', 'stats', 'references', 'stats-text', 'projets', 'expertises', 'approche', 'temoignages', 'communaute'
-  ], []);
+const SECTION_IDS = [
+  'hero', 'stats', 'references', 'stats-text', 'projets', 'expertises', 'approche', 'temoignages', 'communaute'
+];
 
-  const [activeSection, setActiveSection] = useActiveSection(sectionIds);
-  const [isAtBottom, setIsAtBottom] = useState(false);
+const App: React.FC = () => {
+  const [activeSection, setActiveSection] = useActiveSection(SECTION_IDS);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [legalView, setLegalView] = useState<'mentions' | 'privacy' | null>(null);
 
   useEffect(() => {
     // Chargement différé des scripts non-critiques (Analytics, etc.)
     loadNonCriticalScripts([]);
-
-    let throttleTimeout: ReturnType<typeof setTimeout> | null = null;
-    const handleScroll = () => {
-      if (!throttleTimeout) {
-        throttleTimeout = setTimeout(() => {
-          const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 200;
-          setIsAtBottom(isNearBottom);
-          throttleTimeout = null;
-        }, 100);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (throttleTimeout) clearTimeout(throttleTimeout);
-    };
   }, []);
 
   return (

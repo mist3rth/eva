@@ -13,27 +13,27 @@ const TESTIMONIALS: Testimonial[] = [
     image: `${import.meta.env.BASE_URL}images/jean_d.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/appartement.webp`,
     year: '2025',
-    project: 'Rénovation Foch'
+    project: 'Rénovation Appartement Rue de Varenne 75007 - 160 m²'
   },
   {
     id: 2,
-    name: 'Marie',
+    name: 'Astride',
     role: 'Directrice Patrimoine',
-    content: "En tant que foncière, nous exigeons une précision absolue sur les budgets et les délais. EVA Architecte est devenu notre partenaire de confiance pour toutes nos réhabilitations complexes.",
+    content: "En tant que foncière, nous exigeons une précision absolue sur les budgets et les délais. EVA est devenu notre partenaire de confiance pour toutes nos réhabilitations complexes.",
     image: `${import.meta.env.BASE_URL}images/marie_l.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/expertise-engineering.webp`,
     year: '2024',
-    project: 'Bureaux Luxus'
+    project: 'Bureaux Hôtel Particulier Rue Berthollet 75005 - 800 m²'
   },
   {
     id: 3,
-    name: 'Jean-Pierre',
+    name: 'Louis',
     role: 'Gérant',
-    content: "L'accompagnement d'EVA a été déterminant dans la réussite de notre projet balnéaire. Une vision architecturale forte alliée à une gestion de chantier rigoureuse.",
+    content: "L'accompagnement d'EVA a été déterminant dans la réussite de notre projet au bord du Lac. Une vision architecturale forte alliée à une gestion de chantier rigoureuse.",
     image: `${import.meta.env.BASE_URL}images/pierre_m.webp`,
     bgImage: `${import.meta.env.BASE_URL}assets/images/villa.webp`,
     year: '2023',
-    project: 'Villa Antibes'
+    project: 'Villa Annecy - 330 m²'
   }
 ];
 

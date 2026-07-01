@@ -105,7 +105,7 @@
     will-change: transform;
     pointer-events: none;
   }
-  @media (hover: hover) {
+  @media (min-width: 1024px) and (hover: hover) {
     .animate-infinite-scroll {
       pointer-events: auto;
     }
@@ -325,7 +325,7 @@
     opacity: 0.3;
     transition: color 0.5s ease, opacity 0.5s ease;
   }
-  @media (hover: hover) {
+  @media (min-width: 1024px) and (hover: hover) {
     .marquee-item:hover {
       color: var(--color-brand-gold);
       opacity: 1;

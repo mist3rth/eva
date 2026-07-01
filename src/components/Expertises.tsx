@@ -1,5 +1,5 @@
-import React from 'react';
-import { m, AnimatePresence } from 'motion/react';
+import React, { useRef } from 'react';
+import { m, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
 interface Expertise {
@@ -53,6 +53,91 @@ const EXPERTISES: Expertise[] = [
     align: "left"
   }
 ];
+
+const DesktopExpertiseRow = ({ exp }: { exp: Expertise }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const yParallax = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <m.div 
+      ref={containerRef}
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(
+        "flex flex-col md:flex-row items-center gap-16 md:gap-32 relative z-10",
+        exp.align === "right" ? "md:flex-row-reverse" : ""
+      )}
+    >
+      {/* Text Content */}
+      <div className="flex-1 w-full relative">
+        <div className="absolute -top-24 md:-top-32 left-0 md:-left-20 pointer-events-none select-none opacity-[0.05] z-0">
+          <span 
+            className="text-[140px] md:text-[280px] font-display font-black leading-none" 
+            style={{ WebkitTextStroke: '2.5px var(--color-brand-text)', color: 'transparent' }}
+          >
+            {exp.id}
+          </span>
+        </div>
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-[0.5px] bg-brand-gold/40" />
+            <span className="text-brand-gold font-mono text-[9px] tracking-[.4em] uppercase">{exp.subtitle}</span>
+          </div>
+          <h3 className="font-display text-4xl md:text-6xl font-light text-brand-text mb-10 leading-[1.1] tracking-tight">
+            {exp.title}
+          </h3>
+          <p className="font-sans text-brand-text-muted text-lg md:text-xl font-light leading-relaxed max-w-md opacity-80">
+            {exp.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Visual Reveal Element */}
+      <div className="flex-1 w-full group relative">
+        <div className="absolute -inset-6 border-brand-gold/10 pointer-events-none z-0">
+          <div className="absolute top-0 left-0 w-12 h-px bg-brand-gold/30" />
+          <div className="absolute top-0 left-0 h-12 w-px bg-brand-gold/30" />
+          <div className="absolute bottom-0 right-0 w-12 h-px bg-brand-gold/30" />
+          <div className="absolute bottom-0 right-0 h-12 w-px bg-brand-gold/30" />
+          
+          <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 border border-brand-gold/20 rounded-full" />
+          <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 border border-brand-gold/20 rounded-full" />
+        </div>
+
+        <div className="relative aspect-[4/5] md:aspect-[4/3] overflow-hidden bg-brand-accent-bg shadow-2xl">
+          <m.img 
+            src={exp.image} 
+            alt={exp.title}
+            loading="lazy"
+            decoding="async"
+            style={{ y: yParallax, scale: 1.15 }}
+            className="w-full h-[120%] object-cover transition-[filter] duration-700 group-hover:brightness-110"
+          />
+          
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-30 pointer-events-none" />
+          
+          <div className="absolute top-8 right-8 w-16 h-16 border border-white/20 rounded-full hidden md:flex items-center justify-center animate-spin-slow opacity-30">
+            <div className="w-px h-full bg-white/40 absolute left-1/2 -translate-x-1/2" />
+            <div className="h-px w-full bg-white/40 absolute top-1/2 -translate-y-1/2" />
+            <div className="w-8 h-8 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-1 h-1 bg-brand-gold rounded-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </m.div>
+  );
+};
 
 const Expertises: React.FC = () => {
   const [expandedId, setExpandedId] = React.useState<string | null>(EXPERTISES[0].id);
@@ -148,12 +233,9 @@ const Expertises: React.FC = () => {
                           alt={exp.title}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/10" />
+                        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
                         
-                        {/* Mobile technical tag */}
-                        <div className="absolute bottom-2 right-2 bg-white/10 backdrop-blur-md px-2 py-1 border border-white/20">
-                          <span className="text-[6px] font-mono text-white/70 tracking-widest uppercase">TECH_{exp.id}</span>
-                        </div>
+                        {/* Mobile technical tag removed */}
                       </div>
                       <p className="font-sans text-brand-text-muted text-lg font-light leading-relaxed">
                         {exp.description}
@@ -168,89 +250,10 @@ const Expertises: React.FC = () => {
 
         {/* --- Desktop View: Immersive Scroll (Hidden on Mobile) --- */}
         <div className="hidden md:block space-y-72 relative">
-          {/* Connecting Vertical Cote Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-brand-gold/10 -translate-x-1/2 z-0" />
+          {/* Connecting Vertical Cote Line removed */ }
 
           {EXPERTISES.map((exp) => (
-            <m.div 
-              key={exp.id}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className={cn(
-                "flex flex-col md:flex-row items-center gap-16 md:gap-32 relative z-10",
-                exp.align === "right" ? "md:flex-row-reverse" : ""
-              )}
-            >
-              {/* Text Content */}
-              <div className="flex-1 w-full relative">
-                {/* Background Large Number */}
-                <div className="absolute -top-24 md:-top-32 left-0 md:-left-20 pointer-events-none select-none opacity-[0.05] z-0">
-                  <span 
-                    className="text-[140px] md:text-[280px] font-display font-black leading-none" 
-                    style={{ WebkitTextStroke: '2.5px var(--color-brand-text)', color: 'transparent' }}
-                  >
-                    {exp.id}
-                  </span>
-                </div>
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="w-8 h-[0.5px] bg-brand-gold/40" />
-                    <span className="text-brand-gold font-mono text-[9px] tracking-[.4em] uppercase">{exp.subtitle}</span>
-                  </div>
-                  <h3 className="font-display text-4xl md:text-6xl font-light text-brand-text mb-10 leading-[1.1] tracking-tight">
-                    {exp.title}
-                  </h3>
-                  <p className="font-sans text-brand-text-muted text-lg md:text-xl font-light leading-relaxed max-w-md opacity-80">
-                    {exp.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Visual Reveal Element */}
-              <div className="flex-1 w-full group relative">
-                {/* Dimension Lines (Technical Detail) */}
-                <div className="absolute -inset-6 border-brand-gold/10 pointer-events-none z-0">
-                  <div className="absolute top-0 left-0 w-12 h-px bg-brand-gold/30" />
-                  <div className="absolute top-0 left-0 h-12 w-px bg-brand-gold/30" />
-                  <div className="absolute bottom-0 right-0 w-12 h-px bg-brand-gold/30" />
-                  <div className="absolute bottom-0 right-0 h-12 w-px bg-brand-gold/30" />
-                  
-                  {/* Corner Crosshairs */}
-                  <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 border border-brand-gold/20 rounded-full" />
-                  <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-3 h-3 border border-brand-gold/20 rounded-full" />
-                </div>
-
-                <div className="relative aspect-[4/5] md:aspect-[4/3] overflow-hidden bg-brand-accent-bg shadow-2xl">
-                  <img 
-                    src={exp.image} 
-                    alt={exp.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover grayscale brightness-[0.6] transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-30" />
-                  
-                  {/* Technical Tag Label */}
-                  <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-xl px-4 py-2 border border-white/20 flex flex-col">
-                    <span className="text-[7px] font-mono text-white/50 tracking-widest uppercase mb-1">Status: OK</span>
-                    <span className="text-[9px] font-mono text-white tracking-[0.2em] uppercase font-bold">SEC_{exp.id}_TECH</span>
-                  </div>
-
-                  {/* SVG Graphic element (Compass style) */}
-                  <div className="absolute top-8 right-8 w-16 h-16 border border-white/20 rounded-full hidden md:flex items-center justify-center animate-spin-slow opacity-30">
-                    <div className="w-px h-full bg-white/40 absolute left-1/2 -translate-x-1/2" />
-                    <div className="h-px w-full bg-white/40 absolute top-1/2 -translate-y-1/2" />
-                    <div className="w-8 h-8 border border-white/40 rounded-full flex items-center justify-center">
-                      <div className="w-1 h-1 bg-brand-gold rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </m.div>
+            <DesktopExpertiseRow key={exp.id} exp={exp} />
           ))}
         </div>
       </div>

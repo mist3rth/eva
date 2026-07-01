@@ -219,10 +219,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onToggle }
                  </span>
                </div>
  
-               <div className="flex items-center gap-1 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                 <div className="w-1 h-1 rounded-full bg-brand-gold animate-pulse" />
-                 <span className="text-[7px] font-mono text-brand-gold uppercase tracking-widest">Blueprint_Active</span>
-               </div>
+
              </div>
            </button>
          </div>

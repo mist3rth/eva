@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
     title: "Appartement Rivoli",
     category: "Particulier",
     location: "Paris 1er",
-    year: "2023",
+    year: "2025",
     images: [
       `${import.meta.env.BASE_URL}images/projets/p1-1.webp`,
       `${import.meta.env.BASE_URL}images/projets/p1-2.webp`,
@@ -38,9 +38,9 @@ export const PROJECTS: Project[] = [
     ],
     details: "Études de conception, d'aménagement et de rénovation pour trois sites historiques : Golf du Haras Lupin, La Faisanderie (Parc de Saint-Cloud) et Géo André. Optimisation structurelle, gestion des flux et mise en conformité technique.",
     phase: "ÉTUDE",
-    metrics: { area: "2500m²", duration: "En cours", budget: "N/A" },
+    metrics: { area: "4200m²", duration: "En cours", budget: "N/A" },
     likes: "189",
-    caption: "Études et dossiers complexes en cours",
+    caption: "Études, Padels/Tennis/Espaces spécifiques",
     annotation: "Haras Lupin / Faisanderie / Géo André"
   },
   {
@@ -48,13 +48,13 @@ export const PROJECTS: Project[] = [
     title: "Maison Asnières",
     category: "Particulier",
     location: "Asnières-sur-Seine",
-    year: "2025",
+    year: "2023",
     images: [
       `${import.meta.env.BASE_URL}images/projets/p3-1.webp`,
       `${import.meta.env.BASE_URL}images/projets/p3-2.webp`,
       `${import.meta.env.BASE_URL}images/projets/p3-3.webp`
     ],
-    details: "Rénovation complète et transformation d'une maison de caractère. Aménagement d'une cuisine contemporaine haut de gamme dans d'anciens boxes de chevaux, création de surfaces habitables supplémentaires en sous-sol et décoration sur-mesure.",
+    details: "Rénovation complète d'une maison particulière de caractère avec intégration d'écuries transformées en cuisine moderne. Création de surfaces habitables supplémentaires et aménagement d'espaces en sous-sol avec décoration sur-mesure.",
     metrics: { area: "300m²", duration: "9 mois", budget: "N/A" },
     likes: "567",
     caption: "Cuisine dans d'anciens boxes & sous-sol",
@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
       `${import.meta.env.BASE_URL}images/projets/p4-2.webp`,
       `${import.meta.env.BASE_URL}images/projets/p4-3.webp`
     ],
-    details: "Conception et extension des bâtiments de Dubbing Brothers, N° 1 du doublage en Europe. Études architecturales et techniques de bâtiments sur plus de 6000 m² regroupant des studios d’enregistrement de pointe et un centre de formation.",
+    details: "Conception & extension de studios et bureaux (>6000m²) pour Dubbing Brothers. Création de surfaces avec forte approche environnementale et thermique pour la décarbonation, intégrant des studios d'enregistrement et un centre de formation.",
     metrics: { area: "> 6000m²", duration: "18 mois", budget: "N/A" },
     likes: "892",
     caption: "Conception & extension des studios",
@@ -82,13 +82,13 @@ export const PROJECTS: Project[] = [
     title: "Duplex Neuilly",
     category: "Particulier",
     location: "Neuilly-sur-Seine",
-    year: "2023",
+    year: "2025",
     images: [
       `${import.meta.env.BASE_URL}images/projets/p5-1.webp`,
       `${import.meta.env.BASE_URL}images/projets/p5-2.webp`,
       `${import.meta.env.BASE_URL}images/projets/p5-3.webp`
     ],
-    details: "Rénovation complète et modification structurelle d'un duplex de 400m². Aménagement d'un espace terrasse avec vue dégagée sur la Tour Eiffel. Conception sur-mesure et suivi de chantier rigoureux pendant 12 mois.",
+    details: "Rénovation totale et modification structurelle d'un duplex de 400m² avec aménagement d'une terrasse offrant une vue sur Paris et la Tour Eiffel. Conception sur-mesure, exigences techniques et suivi de chantier rigoureux (12 mois).",
     metrics: { area: "400m²", duration: "12 mois", budget: "N/A" },
     likes: "124",
     caption: "Duplex & terrasse vue Tour Eiffel",
@@ -99,13 +99,13 @@ export const PROJECTS: Project[] = [
     title: "Immeuble Haussmannien",
     category: "Entreprise",
     location: "Paris 9e",
-    year: "2025",
+    year: "2023",
     images: [
       `${import.meta.env.BASE_URL}images/projets/p6-1.webp`,
       `${import.meta.env.BASE_URL}images/projets/p6-2.webp`,
       `${import.meta.env.BASE_URL}images/projets/p6-3.webp`
     ],
-    details: "Rénovation globale d’un immeuble Haussmannien à Paris 9e. Restructurations et rénovations sur cours avec extensions et surélévations sur 3 niveaux avec créations de terrasses. Utilisation d'ossatures bois, aménagement de commerces en RDC et appartements.",
+    details: "Rénovation globale d’un immeuble Haussmannien à Paris 9e, validée par les ABF et la Commission du Vieux Paris. Restructurations sur cours, extensions et surélévations en ossature bois sur 3 niveaux. Création de surfaces : appartements et commerces en RDC.",
     metrics: { area: "2800m²", duration: "24 mois", budget: "N/A" },
     likes: "453",
     caption: "Surélévation bois & commerces",
@@ -327,7 +327,7 @@ const Projets: React.FC = () => {
                     >
                       {/* Photo Display */}
                       <div className="absolute inset-0 w-full h-full">
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence>
                           <m.img
                             key={currentPhotoIndex}
                             src={photos[currentPhotoIndex].src}
@@ -335,8 +335,8 @@ const Projets: React.FC = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="w-full h-full object-cover"
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="absolute inset-0 w-full h-full object-cover"
                           />
                         </AnimatePresence>
                       </div>
