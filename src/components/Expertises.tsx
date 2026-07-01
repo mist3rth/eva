@@ -9,6 +9,7 @@ interface Expertise {
   description: string;
   image: string;
   align: 'left' | 'right';
+  imageOffset?: string;
 }
 
 const EXPERTISES: Expertise[] = [
@@ -34,7 +35,8 @@ const EXPERTISES: Expertise[] = [
     subtitle: "(Développement)",
     description: "Nous gérons les contraintes, vous savourez l'avancement. Maîtrise totale des budgets et des délais. 98% de nos chantiers sont livrés à la date convenue.",
     image: `${import.meta.env.BASE_URL}assets/images/expertise-management.webp`,
-    align: "left"
+    align: "left",
+    imageOffset: "md:-translate-x-[50px]"
   },
   {
     id: "04",
@@ -102,7 +104,7 @@ const DesktopExpertiseRow = ({ exp }: { exp: Expertise }) => {
       </div>
 
       {/* Visual Reveal Element */}
-      <div className="flex-1 w-full group relative">
+      <div className={cn("flex-1 w-full group relative", exp.imageOffset)}>
         <div className="absolute -inset-6 border-brand-gold/10 pointer-events-none z-0">
           <div className="absolute top-0 left-0 w-12 h-px bg-brand-gold/30" />
           <div className="absolute top-0 left-0 h-12 w-px bg-brand-gold/30" />

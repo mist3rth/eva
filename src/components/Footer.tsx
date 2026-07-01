@@ -122,6 +122,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
                 contact@eva-fr.com
               </a>
               
+              {/* Section Réseaux Sociaux désactivée temporairement
               <div className="pt-8">
                 <span className="text-[9px] uppercase tracking-[0.3em] text-brand-muted/50 mb-4 block">Réseaux Sociaux</span>
                 <div className="flex flex-col gap-4">
@@ -148,6 +149,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
                   </div>
                 </div>
               </div>
+              */}
             </div>
           </div>
         </div>

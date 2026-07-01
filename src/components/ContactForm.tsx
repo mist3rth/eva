@@ -314,7 +314,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                 }}
                 aria-invalid={errors.message ? "true" : "false"}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                className={`w-full bg-white/5 border-b ${errors.message ? 'border-red-500' : 'border-white/10'} py-5 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white resize-none placeholder:text-white/40 text-lg`}
+                className={`w-full bg-white/5 border-b ${errors.message ? 'border-red-500' : 'border-white/10'} py-5 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white resize-none placeholder:text-white/40 text-lg leading-tight md:leading-normal`}
                 placeholder="Quels sont vos objectifs et vos contraintes (budget, délais, lieu) ?"
               />
               {errors.message && <span id="message-error" className="text-[10px] text-red-500 ml-0.5 font-light">{errors.message}</span>}

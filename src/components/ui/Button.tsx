@@ -28,7 +28,7 @@ export function Button({ variant = 'primary', className, children, ...props }: B
   return (
     <button 
       className={cn(
-        "w-full md:w-auto px-20 py-6 text-[11px] uppercase tracking-[0.4em] font-black transition-all duration-500 shadow-3xl group relative overflow-hidden cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
+        "w-full md:w-auto px-6 py-4 md:px-20 md:py-6 text-[11px] uppercase tracking-[0.2em] md:tracking-[0.4em] font-black transition-all duration-500 shadow-3xl group relative overflow-hidden cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed",
         variant === 'primary' && "bg-brand-gold text-white hover:bg-white hover:text-brand-gold",
         variant === 'secondary' && "bg-white/5 border border-white/10 text-white hover:border-brand-gold/40 hover:bg-white/10",
         className

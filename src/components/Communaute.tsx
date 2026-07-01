@@ -108,7 +108,8 @@ export default function Communaute() {
            ))}
         </m.div>
 
-        <div className="mt-24 flex flex-col md:flex-row items-center justify-between border-t border-brand-text/10 pt-12 gap-8">
+          {/* Section Réseaux Sociaux désactivée temporairement
+          <div className="mt-24 flex flex-col md:flex-row items-center justify-between border-t border-brand-text/10 pt-12 gap-8">
           <div className="flex gap-8 text-brand-text">
             {[
               { Icon: Linkedin, label: "LinkedIn", href: "#" },
@@ -132,6 +133,7 @@ export default function Communaute() {
             ))}
           </div>
         </div>
+        */}
       </div>
     </section>
   );

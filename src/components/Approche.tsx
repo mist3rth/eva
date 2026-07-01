@@ -203,14 +203,16 @@ const Approche: React.FC = () => {
                 </div>
               </div>
 
-              <m.a 
-                href="#contact"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center w-full md:w-auto px-10 py-5 bg-brand-text text-white text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-brand-gold transition-colors duration-500 shadow-xl"
-              >
-                Échanger sur votre projet
-              </m.a>
+              <div className="flex justify-center w-full mt-10 md:mt-16">
+                <m.a 
+                  href="#contact"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center text-center whitespace-nowrap px-4 py-4 md:px-10 md:py-5 bg-brand-text text-white text-[10px] md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.3em] font-bold hover:bg-brand-gold transition-colors duration-500 shadow-xl"
+                >
+                  Échanger sur votre projet
+                </m.a>
+              </div>
 
             </m.div>
           </div>
