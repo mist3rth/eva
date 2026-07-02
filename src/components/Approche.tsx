@@ -96,7 +96,7 @@ const Approche: React.FC = () => {
                   Depuis 30 ans, je transforme vos aspirations en volumes et en lumière. De la renaissance d'hôtels particuliers aux sièges sociaux internationaux, je m'engage sur un résultat où la vision stratégique rencontre une exécution millimétrée.
                 </p>
                 <p>
-                  Mon approche est guidée par trois piliers fondamentaux qui assurent la cohérence de chaque projet, de la première esquisse à la livraison finale.
+                  Mon approche est guidée par trois piliers fondamentaux qui assurent la cohérence de chaque projet, de la première esquisse à la livraison finale. Car l'excellence architecturale n'est jamais une œuvre solitaire : elle s'accomplit par l'intelligence collective et un dialogue constant avec une équipe d'experts et de maîtres artisans de confiance.
                 </p>
                 <div className="pt-4">
                   <p className="font-signature text-4xl text-brand-text opacity-80">Réda Lahlou</p>
