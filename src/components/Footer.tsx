@@ -25,7 +25,7 @@ export default function Footer({ setActiveSection, setLegalView }: FooterProps) 
             <div className="max-w-xl">
               <span className="text-brand-gold font-sans text-xs uppercase tracking-[0.4em] mb-6 block">Perspective</span>
               <h2 className="font-display text-3xl md:text-5xl font-light tracking-tight leading-tight">
-                Un projet à Paris ou partout en france ? Échangeons sur vos ambitions.
+                Un projet à Paris ou partout en France ? Échangeons sur vos ambitions.
               </h2>
             </div>
             <m.a 
