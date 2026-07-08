@@ -191,6 +191,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                     setFormData({...formData, firstName: e.target.value});
                     if (errors.firstName) setErrors({...errors, firstName: ''});
                   }}
+                  required
                   aria-invalid={errors.firstName ? "true" : "false"}
                   aria-describedby={errors.firstName ? "firstName-error" : undefined}
                   className={`w-full bg-white/5 border-b ${errors.firstName ? 'border-red-500' : 'border-white/10'} py-4 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white placeholder:text-white/40 text-lg`}
@@ -208,6 +209,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                     setFormData({...formData, lastName: e.target.value});
                     if (errors.lastName) setErrors({...errors, lastName: ''});
                   }}
+                  required
                   aria-invalid={errors.lastName ? "true" : "false"}
                   aria-describedby={errors.lastName ? "lastName-error" : undefined}
                   className={`w-full bg-white/5 border-b ${errors.lastName ? 'border-red-500' : 'border-white/10'} py-4 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white placeholder:text-white/40 text-lg`}
@@ -227,6 +229,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                   setFormData({...formData, email: e.target.value});
                   if (errors.email) setErrors({...errors, email: ''});
                 }}
+                required
                 aria-invalid={errors.email ? "true" : "false"}
                 aria-describedby={errors.email ? "email-error" : undefined}
                 className={`w-full bg-white/5 border-b ${errors.email ? 'border-red-500' : 'border-white/10'} py-4 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white placeholder:text-white/40 text-lg`}
@@ -312,6 +315,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
                   setFormData({...formData, message: e.target.value});
                   if (errors.message) setErrors({...errors, message: ''});
                 }}
+                required
                 aria-invalid={errors.message ? "true" : "false"}
                 aria-describedby={errors.message ? "message-error" : undefined}
                 className={`w-full bg-white/5 border-b ${errors.message ? 'border-red-500' : 'border-white/10'} py-5 px-5 focus:outline-none focus:border-brand-gold transition-all font-light text-white resize-none placeholder:text-white/40 text-lg leading-tight md:leading-normal`}
