@@ -68,14 +68,6 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Honeypot check
-    const honey = (e.target as HTMLFormElement).elements.namedItem('website') as HTMLInputElement;
-    if (honey && honey.value) {
-      console.warn('Bot detected');
-      onSuccess(); // Simulate success to confuse the bot
-      return;
-    }
 
     if (!validateForm()) {
       const el = document.getElementById('contact');
@@ -175,10 +167,6 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           className="bg-white/5 backdrop-blur-2xl border border-white/10 p-8 md:p-16 shadow-2xl rounded-sm"
         >
           <form className="space-y-8 text-left" onSubmit={handleSubmit}>
-            {/* Honeypot field - hidden from users */}
-            <div className="absolute opacity-0 pointer-events-none -z-10" aria-hidden="true">
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-3">
